@@ -1,0 +1,20 @@
+[TO BE COMPLETED BY T/A OR INSTRUCTOR]
+
+Project Name:
+Team members:
+Score: xx/100
+=============
+
+Degree of difficulty (up to 5 pts):
+
+Written Progress Report (5 pts):
+
+Final project presentation at Demo Day (15 pts):
+
+Correctly implements commited functionality (40 pts):
+
+Quality of design report (15 pts):
+
+Quality of code (comments, clarity, etc). (15 pts):
+
+Extra Credit (up to 8 pts):
