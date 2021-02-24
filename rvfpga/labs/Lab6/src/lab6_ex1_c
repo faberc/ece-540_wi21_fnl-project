@@ -1,0 +1,70 @@
+#define GPIO_SWs 0x80001400
+#define GPIO_LEDs 0x80001404
+#define GPIO_INOUT 0x80001408
+
+#define READ_GPIO(dir) (*(volatile unsigned *)dir)
+#define WRITE_GPIO(dir, value)                 \
+    {                                          \
+        (*(volatile unsigned *)dir) = (value); \
+    }
+#define FAST_DELAY 0xFFFFF
+#define SLOW_DELAY 0x8FFFFF
+
+int main(void)
+{
+    int En_Value = 0x0000FFFF;
+    int switches_value = 0x0000;
+    int ledval = 0x0000;
+    _Bool fastMode = 0;
+    _Bool rightToLeft = 0;
+    int counter = 0;
+
+    if (switches_value & 0x2)
+    { // Right to Left
+        rightToLeft = 1;
+        ledval = 0x000F;
+    }
+    else
+    { // Left to Right
+        rightToLeft = 0;
+        ledval = 0xF000;
+    }
+
+    WRITE_GPIO(GPIO_INOUT, En_Value);
+    WRITE_GPIO(GPIO_LEDs, ledval);
+
+    while (1)
+    {
+        switches_value = READ_GPIO(GPIO_SWs) >> 16;
+        if (switches_value & 0x1) {            // Fast Mode
+            fastMode = 1;
+        } else {    // Slow Mode
+            fastMode = 0;
+        }
+
+        // Initialize
+        for (int i = 0; i < (fastMode ? FAST_DELAY : SLOW_DELAY); i++) {}
+        counter++;
+
+        if (counter >= 16) {
+            counter = 0;
+            if (switches_value & 0x2)
+            { // Right to Left
+                rightToLeft = 1;
+                ledval = 0x000F;
+            }
+            else
+            { // Left to Right
+                rightToLeft = 0;
+                ledval = 0xF000;
+            }
+        } else if (rightToLeft) {
+            ledval = ledval << 1;
+        } else {
+            ledval = ledval >> 1;
+        }
+        WRITE_GPIO(GPIO_LEDs, ledval);
+    }
+
+    return (0);
+}

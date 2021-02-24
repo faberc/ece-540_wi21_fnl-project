@@ -1,0 +1,128 @@
+Initialization:
+define 5HZ_VAL
+
+set LeftCounter = 0
+set RightCounter = 0
+set BlinkCounter = 0
+set ChaseVal = 0
+
+
+initialize MotionVal = seg_G
+initialize DecimalPoint
+initialize CompassVal = 0
+
+While true:
+    Read button presses
+    RightStop = (!BTNR && !BTND) || (BTNR && BTND) 
+    LeftStop = (!BTNL && !BTNU) || (BTNL && BTNU)
+    Enter SwitchCase
+
+Switch Case:
+Forward Case: (BTNL && BTNR)
+    CompassVal = CompassVal
+    BlinkCounter++
+    If BlinkCounter >= 5HZ_VAL
+        BlinkCounter = 0
+        Toggle MotionVal between seg_A and space
+        Write MotionVal to Display
+
+Reverse Case: (BTNU && BTND)
+    CompassVal = CompassVal
+    BlinkCounter++
+    If BlinkCounter >= 5HZ_VAL
+        BlinkCounter = 0
+        Toggle MotionVal between seg_D and space
+        Write MotionVal to Display
+
+All Stop Case: (LeftStop && RightStop)
+    CompassVal = CompassVal
+    MotionVal = seg_G
+    hex2bcd(CompassVal)
+    Write MotionVal to Display
+
+Right 1x Case: (BTNL && RightStop) || (LeftStop && BTND)
+    RightCounter++
+    If RightCounter >= 5HZ_VAL
+        RightCounter = 0
+        CompassVal++
+        If CompassVal >= 359:
+            CompassVal = 0
+        hex2bcd(CompassVal)
+    BlinkCounter++
+    If BlinkCounter >= 5HZ_VAL
+        BlinkCounter = 0
+        ChaseVal++
+        If ChaseVal >= 5
+            ChaseVal = 0
+        MotionVal = seg_A + ChaseVal
+        Write MotionVal to Display
+
+Right 2x Case: (BTNL && BTND)
+    RightCounter += 2
+    If RightCounter >= 5HZ_VAL
+        RightCounter = 0
+        CompassVal++
+        If CompassVal >= 359:
+            CompassVal = 0
+        hex2bcd(CompassVal)
+    BlinkCounter += 2
+    If BlinkCounter >= 5HZ_VAL
+        BlinkCounter = 0
+        ChaseVal++
+        If ChaseVal >= 5
+            ChaseVal = 0
+        MotionVal = seg_A + ChaseVal
+        Write MotionVal to Display
+
+Left 1x Case: (LeftStop && BTNR) || (BTNU && RightStop)
+    LeftCounter++
+    If LeftCounter >= 5HZ_VAL
+        LeftCounter = 0
+        CompassVal--
+        If CompassVal <= 0:
+            CompassVal = 359
+        hex2bcd(CompassVal)
+    BlinkCounter++
+    If BlinkCounter >= 5HZ_VAL
+        BlinkCounter = 0
+        ChaseVal--
+        If ChaseVal <= 0
+            ChaseVal = 5
+        MotionVal = seg_A + ChaseVal
+        Write MotionVal to Display
+
+Left 2x Case: (BTNU && BTNR)
+    LeftCounter += 2
+    If LeftCounter >= 5HZ_VAL
+        LeftCounter = 0
+        CompassVal--
+        If CompassVal <= 0:
+            CompassVal = 359
+        hex2bcd(CompassVal)
+    BlinkCounter += 2
+    If BlinkCounter >= 5HZ_VAL
+        BlinkCounter = 0
+        ChaseVal--
+        If ChaseVal <= 0
+            ChaseVal = 5
+        MotionVal = seg_A + ChaseVal
+        Write MotionVal to Display
+
+function hex2bcd (int val):
+    if val >= 100:
+        for (i = 3; i > 0; i--)
+            if val >= i*100:
+                write i to DisplayRegister[Byte 2]
+                val -= i*100
+                break
+    else:
+        write 0 to DisplayRegister[Byte 2]
+    if val >= 10:
+        for (i = 9; i > 0; i--)
+            if val >= i*10:
+                write i to DisplayRegister[Byte 1]
+                val -= i*10
+                break
+    else:
+        write 0 to DisplayRegister[Byte 1]
+    write val to DisplayRegister[Byte 0]

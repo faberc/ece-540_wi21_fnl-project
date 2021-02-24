@@ -1,0 +1,349 @@
+# File: \project1_asm.s
+# Project: c:\Users\Chuck\RVfpga\labs\project1\src
+# Created Date: Friday, January 22nd 2021, 2:12:04 pm
+# Author: Chuck Faber
+# -----
+# Last Modified: Sat Jan 23 2021
+# Modified By: Chuck Faber
+# -----
+# Copyright (c) 2021 Portland State University
+# 
+# Simple Bot -- Push Button and Seven Segment Display Implementation
+# This program emulates a 2-wheeled robot with a left and right motor for
+# each wheel. This program is to be implemented on the Nexys A7 Development
+# board. The pushbuttons on the board control the left and right motor.
+# BTNL - Left motor forward
+# BTNU - Left motor reverse
+# BTNR - Right motor forward
+# BTND - Right motor reverse
+# When the robot turns, the compass heading is updated and displays on the
+# lower three seven segment display digits. If the robot is moving or turning
+# different animations will display on the fourth digit.
+# ----------	---	----------------------------------------------------------
+
+# Register defines
+#define GPIO_IN         0x80001400
+#define GPIO_OUT        0x80001404
+#define GPIO_OE         0x80001408
+#define GPIO_A_IN       0x80001500
+#define GPIO_A_OUT      0x80001504
+#define GPIO_A_OE       0x80001508
+#define SEV_SEG_EN      0x80001038
+#define SEV_SEG_DIG1    0x80001024
+#define SEV_SEG_DIG2    0x8000103C
+
+# Constants
+#define FIVE_HZ_DELAY   0x1FFFF
+#define SEG_A           0x10
+#define SPACE           0x1C
+
+.globl main
+main:
+
+main:
+    # Persistent variables
+    li  s0, 0x0             # Initialize LeftCounter to 0
+    li  s1, 0x0             # Initialize RightCounter to 0
+    li  s2, 0x0             # Initialize BlinkCounter to 0
+    li  s3, 0x0             # Initialize ChaseVal to 0
+    li  s4, 0x16            # Initialize MotionVal to seg_G
+    li  s5, 0x0             # Initialize CompassVal to 0
+    li  s6, 0x0             # Initialize BlinkToggle to 0
+
+    # Enable and Initialize Seven Segment Display
+    li  t0, SEV_SEG_EN      # Address to SSD digit and decimal enable register
+    li  t1, 0xFFFFF7F0      # Value to enable digits 0 to 3, and decimal point on digit 3
+    sw  t1, 0(t0)           # Write to enable digits and decimals
+    li  t0, SEV_SEG_DIG1    # Address to change digits 0-3 of SSD
+    li  t1, 0x1F1F1F1F      # Value to change 0-3 to empty spaces.
+    sw  t1, 0(t0)           # Write value to SSD1 register
+    sb  s4, 3(t0)           # Change digit 3 to seg_g in SSD1 register
+    mv  a0, s5              # send CompassVal to hex2bcd function
+    jal hex2bcd_disp        # Jump to hex2bcd function
+
+# Main Loop
+loop:
+    li  t0, GPIO_A_IN       # Address to read button presses
+    lw  t1, 0(t0)           # Read button press values
+    andi t1, t1, 0x1F       # Mask just the lowest 5 bits
+    srli t1, t1, 1          # Shift all bits to right by 1 (masking center push button)
+    
+# Jump Tree/Switch Case Here:
+    li  t2, SEV_SEG_DIG1    # Address to SSD digit display 0-3
+    li  t3, 3               # If t1 == 3 jump to forward
+    beq t3, t1, forward     # if t2 == t1 then forward
+    li  t3, 12              # If t1 == 12 jump to reverse
+    beq t3, t1, reverse
+    li  t3, 9               # If t1 == 9 jump to left2x
+    beq t3, t1, left2x
+    li  t3, 6               # If t1 == 6 jump to right2x
+    beq t3, t1, right2x
+
+    # If t1 == 1 || 8 || 11 || 13 go to left1x
+    li  t3, 1
+    beq t3, t1, left1x      # if t1 == 1 then left1x
+    li  t3, 8
+    beq t3, t1, left1x      # if t1 == 8 then left1x
+    li  t3, 11
+    beq t3, t1, left1x      # if t1 == 11 then left1x
+    li  t3, 13
+    beq t3, t1, left1x      # if t1 == 13 then left1x
+
+    # If t1 == 2 || 4 || 7 || 14 go to right1x
+    li  t3, 2
+    beq t3, t1, right1x     # if t1 == 2 then right1x
+    li  t3, 4
+    beq t3, t1, right1x     # if t1 == 4 then right1x
+    li  t3, 7
+    beq t3, t1, right1x     # if t1 == 7 then right1x
+    li  t3, 14
+    beq t3, t1, right1x     # if t1 == 14 then right1x
+
+    j   stop                # Else go to stop
+
+
+## Forward Case
+forward:
+    addi s2, s2, 1          # BlinkCounter++
+    li  t0, FIVE_HZ_DELAY   # t0 = FIVE_HZ_DELAY
+    blt s2, t0, loop        # if BlinkCounter < FIVE_HZ_DELAY go to loop
+    li  s2, 0               # BlinkCounter = 0
+    not s6, s6              # ~BlinkToggle
+    li  t0, -1              # t0 = -1
+    beq s6, t0, blink_off   # if s6 == 1 goto blink_off
+    li  s4, 0x10            # MotionVal = seg_A
+    sb  s4, 3(t2)           # Write value to SSD digit 3
+    j   loop                # Jump to main loop.
+
+
+## Reverse Case
+reverse:
+    addi s2, s2, 1          # BlinkCounter++
+    li  t0, FIVE_HZ_DELAY   # t0 = FIVE_HZ_DELAY
+    blt s2, t0, loop        # if BlinkCounter < FIVE_HZ_DELAY go to loop
+    li  s2, 0               # BlinkCounter = 0
+    not s6, s6              # ~BlinkToggle
+    li  t0, -1              # t0 = -1
+    beq s6, t0, blink_off   # if s6 == 1 goto blink_off
+    li  s4, 0x13            # MotionVal = seg_D
+    sb  s4, 3(t2)           # Write value to SSD digit 3
+    j   loop                # Jump to main loop.
+
+    # Blink-Off Code for Forward and Reverse
+blink_off:
+    li  s4, SPACE           # Set MotionVal to SPACE
+    sb  s4, 3(t2)           # Store MotionVal in digit 3 of SSD
+    j   loop                # Jump to main loop.
+
+## Left 1x Turn Case
+left1x:
+    addi s0, s0, 1          # LeftCounter++
+    li  t0, FIVE_HZ_DELAY   # t0 = FIVE_HZ_DELAY
+    blt s0, t0, left1xmi    # If LeftCounter < 5HZ_DELAY go to left1xmi
+    li  s0, 0               # else set LeftCounter = 0
+    addi s5, s5, -1         # CompassVal--
+    blt s5, zero, left1xro  # if CompassVal < zero then to to rollover code
+    mv  a0, s5              # Load CompassVal as function argument
+    jal hex2bcd_disp        # jump to hex2bcd function
+    j   left1xmi            # jump to left1x motion indicator code
+
+    # Left 1x CompassVal Roll-Over code
+left1xro:                   # Compass Vall needs to roll-over
+    li  s5, 359             # if CompassVal is less than 0, set equal to 359
+    mv  a0, s5              # Load CompassVal as function argument
+    jal hex2bcd_disp        # jump to hex2bcd function
+    j   left1xmi            # jump to left1x motion indicator code
+
+    # Left 1x Motion Indicator Code
+left1xmi:                   # left1x motion indicator
+    addi s2, s2, 1          # BlinkCounter++
+    blt s2, t0, loop        # if BlinkCounter < FIVE_HZ_DELAY then target
+    li  s2, 0               # BlinkCounter = 0
+    addi s3, s3, -1         # ChaseVal--
+    blt s3, zero, lchase_ro # if ChaseVal < 0 jump to rollover code
+    addi s4, s3, SEG_A      # MotionVal = ChaseVal + 0x10
+    sb  s4, 3(t2)           # Write MotionVal to SSD digit 3.
+    j   loop                # jump to loop
+
+## Left 2x Turn Case
+left2x:
+    addi s0, s0, 2          # LeftCounter += 2
+    li  t0, FIVE_HZ_DELAY   # t0 = FIVE_HZ_DELAY
+    blt s0, t0, left2xmi    # If LeftCounter < 5HZ_DELAY go to left1xmi
+    li  s0, 0               # else set LeftCounter = 0
+    addi s5, s5, -1         # CompassVal--
+    blt s5, zero, left2xro  # if CompassVal < zero then to to rollover code
+    mv  a0, s5              # Load CompassVal as function argument
+    jal hex2bcd_disp        # jump to hex2bcd function
+    j   left2xmi            # jump to left1x motion indicator code
+
+    # Left 2x CompassVal Roll-over code
+left2xro:                   # Compass Val needs to roll-over
+    li  s5, 359             # if CompassVal is less than 0, set equal to 359
+    mv  a0, s5              # Load CompassVal as function argument
+    jal hex2bcd_disp        # jump to hex2bcd function
+    j   left2xmi            # jump to left2x motion indicator code
+
+    # Left 2x Motion Indicator Code
+left2xmi:                   # left1x motion indicator
+    addi s2, s2, 2          # BlinkCounter += 2
+    blt s2, t0, loop        # if BlinkCounter < FIVE_HZ_DELAY then target
+    li  s2, 0               # BlinkCounter = 0
+    addi s3, s3, -1         # ChaseVal--
+    blt s3, zero, lchase_ro # if ChaseVal < 0 jump to rollover code
+    addi s4, s3, SEG_A      # MotionVal = ChaseVal + 0x10
+    sb  s4, 3(t2)           # Write MotionVal to SSD digit 3.
+    j   loop                # jump to loop
+
+    # Left Chase Animation Roll-Over code
+lchase_ro:
+    li  s3, 5               # ChaseVal = 5
+    addi s4, s3, SEG_A      # MotionVal = ChaseVal + 0x10
+    sb  s4, 3(t2)           # Write MotionVal to SSD digit 3.
+    j   loop                # jump to loop
+
+
+## Right 1x Turn Case
+right1x:
+    addi s1, s1, 1          # RightCounter++
+    li  t0, FIVE_HZ_DELAY   # t0 = FIVE_HZ_DELAY
+    blt s1, t0, right1xmi   # If RightCounter < 5HZ_DELAY go to right1xmi
+    li  s1, 0               # else set RightCounter = 0
+    addi s5, s5, 1          # CompassVal++
+    li  t1, 360             # t1 = 360
+    bge s5, t1, right1xro   # if CompassVal >= 360 then rollover
+    mv  a0, s5              # Load CompassVal as function argument
+    jal hex2bcd_disp        # jump to hex2bcd function
+    j   right1xmi           # jump to right1x motion indicator code
+
+    # Right 1x CompassVal Roll-Over Code
+right1xro:                  # CompassVal needs to roll-over
+    li  s5, 0               # if CompassVal is >= 360, set equal to 0
+    mv  a0, s5              # Load CompassVal as function argument
+    jal hex2bcd_disp        # jump to hex2bcd function
+    j   right1xmi           # jump to right1x motion indicator code
+
+    # Right 1x Motion Indicator Code
+right1xmi:                  # right1x motion indicator
+    addi s2, s2, 1          # BlinkCounter++
+    blt s2, t0, loop        # if BlinkCounter < FIVE_HZ_DELAY then no change
+    li  s2, 0               # else: BlinkCounter = 0
+    addi s3, s3, 1          # ChaseVal++
+    li  t1, 6               # Load 6 into t1 for comparison
+    bge s3, t1, rchase_ro   # if ChaseVal >= 6 jump to rollover code
+    addi s4, s3, SEG_A      # MotionVal = ChaseVal + 0x10
+    sb  s4, 3(t2)           # Write MotionVal to SSD digit 3.
+    j   loop                # jump to loop
+
+## Right 2x Turn Case
+right2x:
+    addi s1, s1, 2          # RightCounter += 2
+    li  t0, FIVE_HZ_DELAY   # t0 = FIVE_HZ_DELAY
+    blt s1, t0, right2xmi   # If RightCounter < 5HZ_DELAY go to right1xmi
+    li  s1, 0               # else set RightCounter = 0
+    addi s5, s5, 1          # CompassVal++
+    li  t1, 360             # t1 = 360
+    bge s5, t1, right2xro   # if CompassVal >= 360 then rollover
+    mv  a0, s5              # Load CompassVal as function argument
+    jal hex2bcd_disp        # jump to hex2bcd function
+    j   right2xmi           # jump to right1x motion indicator code
+
+    # Right 2x CompassVal Roll-Over Code
+right2xro:                  # CompassVal needs to roll-over
+    li  s5, 0               # if CompassVal is >= 360, set equal to 0
+    mv  a0, s5              # Load CompassVal as function argument
+    jal hex2bcd_disp        # jump to hex2bcd function
+    j   right2xmi           # jump to right1x motion indicator code
+
+    # Right 2x Motion Indicator Code
+right2xmi:                  # right1x motion indicator
+    addi s2, s2, 2          # BlinkCounter += 2
+    blt s2, t0, loop        # if BlinkCounter < FIVE_HZ_DELAY then no change
+    li  s2, 0               # else: BlinkCounter = 0
+    addi s3, s3, 1          # ChaseVal++
+    li  t1, 6               # Load 6 into t1 for comparison
+    bge s3, t1, rchase_ro   # if ChaseVal >= 6 jump to rollover code
+    addi s4, s3, SEG_A      # MotionVal = ChaseVal + 0x10
+    sb  s4, 3(t2)           # Write MotionVal to SSD digit 3.
+    j   loop                # jump to loop
+
+    # Right Chase Animation Roll-Over Code
+rchase_ro:
+    li  s3, 0               # ChaseVal = 0
+    addi s4, s3, SEG_A      # MotionVal = ChaseVal + 0x10
+    sb  s4, 3(t2)           # Write MotionVal to SSD digit 3.
+    j   loop                # jump to loop
+
+## Stop Case
+stop:
+    li  s4, 0x16            # Set MotionVal to seg_G
+    sb  s4, 3(t2)           # store MotionVal in digit 3 of SEV_SEG_DIGIT1
+    j   loop                # jump to main loop
+
+
+### hex2bcd_disp Function: Takes a numerical value and displays it in BCD on SSD.
+# a0 = value entered as argument
+# Uses registers t0-t4
+hex2bcd_disp:
+    # Prepare Stack
+    addi sp, sp, -20        # Make space on stack for 5 registers
+    sw   t4, 16(sp)         # Store registers t0-t4 on stack
+    sw   t3, 12(sp)
+    sw   t2, 8(sp)
+    sw   t1, 4(sp)
+    sw   t0, 0(s0)          # Store register t0-t4 on stack
+
+    li  t0, SEV_SEG_DIG1    # Load SSD1 display register
+    li  t1, 100             # Load 100 for comparison
+    li  t2, 0x00            # Store 0x00 in t2 for for loops or SSD
+    li  t3, 3               # Prepare for hundreds place for loop
+    bge a0, t1, hundo       # if val >= t1 then hundo 
+    sb  t2, 2(t0)           # Store byte 0x00 in digit 2 (hundreds place)
+    li  t1, 10              # Load 10 for comparison
+    li  t3, 9               # Prepare for tens place for loop
+    bge a0, t1, tendo       # if val >= t1 then tendo
+    sb  t2, 1(t0)           # Store byte 0x00 in digit 1 (tens place)
+    sb  a0, 0(t0)           # if val < 10 store value directly in digit 0 (ones place)
+    j    hex2bcd_done       # jump to done
+
+    # Process Hundreds Place Digit
+hundo:
+    # for (i=3, i > 0, i--)
+    beq  t3, t2, bcd_error  # if t3 == t2 then error
+    mul  t4, t3, t1         # t4 = i * 100
+    addi t3, t3, -1         # i-- (prepare for next loop)
+    blt  a0, t4, hundo      # if val < i*100 then loop back
+    addi t3, t3, 1          # Add back a 1
+    sb   t3, 2(t0)          # Write i to hundreds place
+    sub  a0, a0, t4         # val = val - t4
+    li   t1, 10             # Load 10 for comparison
+    li   t3, 9              # Prepare for tens place loop
+    bge  a0, t1, tendo      # if val >= 10 then go to tendo
+    sb   t2, 1(t0)          # else store byte 0x00 in digit 1 (tens place)
+    sb   a0, 0(t0)          # and store value directly in digit 0 (ones place)
+    j    hex2bcd_done       # jump to done
+
+# Process tens place digit
+tendo:
+    #for (i=9, i > 0, i--)
+    beq  t3, t2, bcd_error  # if t3 == t1 then error
+    mul  t4, t3, t1         # t4 = i * 10
+    addi t3, t3, -1         # i--
+    blt  a0, t4, tendo      # if val < i*10 loop back
+    addi t3, t3, 1          # Add 1 back to i.
+    sb   t3, 1(t0)          # Write i to tens place
+    sub  a0, a0, t4         # val = val - i*10
+    sb   a0, 0(t0)          # and store remaining value directly in digit 0 (ones place)
+    j    hex2bcd_done       # jump to done
+
+bcd_error:                  # code should never get here
+    nop
+hex2bcd_done:
+    lw   t0, 0(sp)          # Restore registers t0-t4 from stack
+    lw   t1, 4(sp)
+    lw   t2, 8(sp)
+    lw   t3, 12(sp)
+    lw   t4, 16(sp)
+    addi sp, sp, 20         # deallocate stack space
+    jr   ra                 # return to caller
+## End hex2bcd function

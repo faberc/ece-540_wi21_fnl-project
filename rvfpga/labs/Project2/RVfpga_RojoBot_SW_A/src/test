@@ -1,0 +1,44 @@
+/*
+ * File: \test.s
+ * Project: c:\Users\Chuck\RVfpga\labs\Project2\RVfpga_RojoBot_SW_A\src
+ * Created Date: Friday, February 5th 2021, 6:16:24 pm
+ * Author: Chuck Faber
+ * -----
+ * Last Modified: Sun Feb 07 2021
+ * Modified By: Chuck Faber
+ * -----
+ * Copyright (c) 2021 Portland State University
+ * 
+ * "Any time I had a problem, and I threw a Molotov cocktail…Boom, right away, I had a different problem."
+ * - Jason Mendoza
+ * -----
+ * HISTORY:
+ * Date      	By	Comments
+ * ----------	---	----------------------------------------------------------
+ */
+/*
+PORT_BOTINFO        = 0x80001600        # (i) Bot Info port
+PORT_BOTCTRL        = 0x80001604        # (o) Bot Control port
+PORT_BOTUPDT        = 0x80001608        # (i) Bot Update port (Poll)
+PORT_INTACK         = 0x8000160C        # (o) Bot Int Ack
+*/
+
+PORT_BOTINFO        = 0x80001600        # (i) Bot Info port
+PORT_BOTCTRL        = 0x80001608        # (o) Bot Control port
+PORT_BOTUPDT        = 0x80001604        # (i) Bot Update port (Poll)
+PORT_INTACK         = 0x8000160C        # (o) Bot Int Ack
+
+
+.globl main
+.globl _start
+_start:
+main:
+    li  t0, PORT_BOTCTRL
+   # li  t0, PORT_BOTINFO    # Get address
+    lw  t2, 0(t0)           # Read from 
+    li  t0, PORT_BOTCTRL
+    li  t1, 0xFCFC          # Value to write
+    sw  t1, 0(t0)           # Write to
+
+loop:
+    j main  # jump to loop

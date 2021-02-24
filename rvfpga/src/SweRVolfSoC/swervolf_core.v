@@ -100,7 +100,10 @@ module swervolf_core
     output wire         io_int_ack,
 
     // Debounced Switches Output
-    output reg [15:0]  sw_db
+    output reg [15:0]  sw_db,
+
+    // Rope Game Signals
+    output wire [9:0]  rope_loc
     );
 
 
@@ -430,7 +433,7 @@ module swervolf_core
         .ext_padoe_o   (en_gpio));
 
 
-   // New Instantiation of GPIO A
+   // New Instantiation of GPIO A for SimpleBot
     gpio_top gpio_module_a(
         .wb_clk_i     (clk), 
         .wb_rst_i     (wb_rst), 
@@ -470,6 +473,29 @@ module swervolf_core
         .o_reg_a    (io_botctrl[7:0]),
         .i_reg_b    ({31'b0, io_botupdt_sync}),
         .o_reg_b    (io_int_ack)
+    );
+
+
+    // Instantiation of Rope Game Peripheral
+    wire            per2_irq;
+
+    periph_top per2 (
+        .wb_clk_i   (clk), 
+        .wb_rst_i   (wb_rst), 
+        .wb_adr_i   (wb_m2s_per2_adr), 
+        .wb_dat_i   (wb_m2s_per2_dat), 
+        .wb_sel_i   (wb_m2s_per2_sel), 
+        .wb_we_i    (wb_m2s_per2_we), 
+        .wb_cyc_i   (wb_m2s_per2_cyc), 
+        .wb_stb_i   (wb_m2s_per2_stb), 
+        .wb_dat_o   (wb_s2m_per2_dat), 
+        .wb_ack_o   (wb_s2m_per2_ack), 
+        .wb_err_o   (wb_s2m_per2_err), 
+        .wb_inta_o  (per2_irq),
+        .i_reg_a    (pbtn_db[4:0]),
+        .o_reg_a    (rope_loc[9:0]),
+        .i_reg_b    (),
+        .o_reg_b    ()
     );
 
    // PTC
