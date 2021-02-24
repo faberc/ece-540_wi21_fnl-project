@@ -11,9 +11,10 @@
  * 
  */
 
-// #include <stdbool.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 // Nexys Port Addresses
 #define PORT_LEDS       0x80001404      // (o) LEDs
@@ -39,53 +40,73 @@
 #define READ_GPIO(dir) (*(volatile unsigned *)dir)
 #define WRITE_GPIO(dir, value) { (*(volatile unsigned *)dir) = (value); }
 
+#define VGA_WIDTH 768
+#define HALF_VGA_WIDTH  VGA_WIDTH / 2       // = 384 
+
+void rope_down(){
+    int i, j;
+
+    // Rope starts descent
+    for(i = HALF_VGA_WIDTH; i < VGA_WIDTH; i++ ){
+        WRITE_GPIO(ROPE_REG, i);
+        for(j=0;j<50000;j++);
+
+        // If we are in action window, check for button push
+    }
+
+    // Rope starts ascent 
+    for(i = VGA_WIDTH; i >= HALF_VGA_WIDTH; i--){
+        WRITE_GPIO(ROPE_REG, i);
+        for(j=0;j<50000;j++);
+    }
+}
 
 int main ( void ) 
 {
-    int En_Value = 0xFFFF;    //GPIO enable value
+    int gpio_enable = 0xFFFF;    //GPIO enable value
+    int sseg_enable = 0xF0;      //Seven Segment enable
     int start = 0x00;
+    int score = 0x00;
 
-    int vga_width = 768;
-    int half_vga_width = vga_width / 2;       // = 384    
-    int bpm = 150;                            // beats per minute -- defined by song
-    int mpb = 1 / bpm;                        // minutes per beat
-    int spb = mpb / 60.0;                     // seconds per beat
-    int hbd = spb / 2.0;                      // half-beat delay
-    
-    char jump_array[] = {0b00, 0b00, 0b00, 0b01, 0b00, 0b00, 0b00, 0b01, 0b00, 0b00};
+    char jump_array[] = {0b00, 0b00, 0b00, 0b01, 0b00, 0b00, 0b00, 0b01, 0b00, 0b00, 0b00, 0b00, 0b00, 0b01, 0b00, 0b00, 0b00, 0b01,
+                        0b00, 0b00, 0b00, 0b00, 0b00, 0b01, 0b00, 0b00, 0b00, 0b00, 0b00, 0b01};
+
     int jump_array_size = sizeof jump_array;
 
-    WRITE_GPIO(PORT_GPIO_EN, En_Value);         // Enable GPIOs
-    WRITE_GPIO(ROPE_REG, half_vga_width);       // Start rope in the middle of the screen
+    WRITE_GPIO(PORT_GPIO_EN, gpio_enable);         // Enable GPIOs
+    WRITE_GPIO(PORT_SEVENSEG_EN, sseg_enable);
+    WRITE_GPIO(PORT_SEVENSEG_LOW, score);
+    WRITE_GPIO(ROPE_REG, HALF_VGA_WIDTH);       // Start rope in the middle of the screen
     
-    int j;
+    int i, j;
 
     while (1) { 
 
         start = READ_GPIO(PORT_PBTNS);          // Game starts when the user presses any button
 
         if(start) {
-            WRITE_GPIO(ROPE_REG, 10);
-            for(j=0;j<10000000;j++);
-
-            int i = 0;
             
             for(i = 0; i < jump_array_size; i++){
                 switch (jump_array[i])
                 {
                 case 0b00:  // Rope stays at center
-                    WRITE_GPIO(ROPE_REG, half_vga_width);
+                    WRITE_GPIO(ROPE_REG, HALF_VGA_WIDTH);
+                    for(j=0;j<1000000;j++);
                     break;
                 
                 case 0b01:  //Jump action -- rope moves down and back to center
-                    WRITE_GPIO(ROPE_REG, vga_width);
+                    rope_down();
+                    break;
+                
+                case 0b10:  //Duck action -- rope moves up and back to center
                     break;
 
                 default:
-                    WRITE_GPIO(ROPE_REG, half_vga_width);
+                    WRITE_GPIO(ROPE_REG, HALF_VGA_WIDTH);
                     break;
                 }
-                for(j=0;j<10000000;j++);
+                score += 1;
+                WRITE_GPIO(PORT_SEVENSEG_LOW, score);
             }
         }
 
@@ -94,3 +115,18 @@ int main ( void )
 
     return(0);    
 }
+
+/* Not working yet... 
+void delay(int milli_seconds) 
+{ 
+    // Converting time into milli_seconds 
+    // int milli_seconds = 1000 * number_of_seconds; 
+  
+    // Storing start time 
+    clock_t start_time = clock(); 
+  
+    // looping till required time is not achieved 
+    while (clock() < start_time + milli_seconds) 
+        ; 
+} 
+*/
