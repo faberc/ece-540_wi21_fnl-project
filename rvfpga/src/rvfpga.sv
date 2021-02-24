@@ -286,11 +286,12 @@ module rvfpga
       .o_accel_cs_n     (o_accel_cs_n),
       .o_accel_mosi     (o_accel_mosi),
       .i_accel_miso     (i_accel_miso),
-      .io_botinfo       (io_botinfo),
-      .io_botctrl       (io_botctrl),
-      .io_botupdt_sync  (io_botupdt_sync),
-      .io_int_ack       (io_int_ack),
-      .sw_db            (sw_db)
+    //   .io_botinfo       (io_botinfo),
+    //   .io_botctrl       (io_botctrl),
+    //   .io_botupdt_sync  (io_botupdt_sync),
+    //   .io_int_ack       (io_int_ack),
+      .sw_db            (sw_db),
+      .rope_loc         (rope_loc)
       );
 
     always @(posedge clk_core) begin
@@ -299,82 +300,7 @@ module rvfpga
 
    assign o_uart_tx = 1'b0 ? litedram_tx : cpu_tx;
 
-
-// Implementing ROJOBOT 
-
-    wire [7:0]  io_botctrl;
-    wire [31:0] io_botinfo;
-    reg         io_botupdt_sync; 
-    wire        io_int_ack;
-    wire        upd_sysregs;
-    wire [13:0] wm_addr_a, wm_addr_b;
-    wire [1:0]  wm_data_a, wm_data_b;
-
-    rojobot31_0 rojo_bot_0 (
-        .MotCtl_in(io_botctrl),            // input wire [7 : 0] MotCtl_in
-        .LocX_reg(io_botinfo[31:24]),      // output wire [7 : 0] LocX_reg
-        .LocY_reg(io_botinfo[23:16]),      // output wire [7 : 0] LocY_reg
-        .Sensors_reg(io_botinfo[15:8]),    // output wire [7 : 0] Sensors_reg
-        .BotInfo_reg(io_botinfo[7:0]),     // output wire [7 : 0] BotInfo_reg
-        .worldmap_addr(wm_addr_a),         // output wire [13 : 0] worldmap_addr
-        .worldmap_data(wm_data_a),         // input wire [1 : 0] worldmap_data
-        .clk_in(o_clk_75M),                // input wire clk_in   Will need 75MHz
-        .reset(~rstn),                     // input wire reset
-        .upd_sysregs(upd_sysregs),         // output wire upd_sysregs
-        .Bot_Config_reg(sw_db[7:0])        // input wire [7 : 0] Bot_Config_reg
-    );
-
-    // World map implementation
-    // map_mux was used to mux the output of the different
-    // world_map modules to be output to the rojo_bot and
-    // colorizer module based on the values of switches 13
-    // and 14 on the Nexys A7
-    
-    wire [1:0] wm0_data_a, wm0_data_b;
-    wire [1:0] wm1_data_a, wm1_data_b;
-    wire [1:0] wm2_data_a, wm2_data_b;
-
-    world_map_part_a wm_pa (
-        .clka(o_clk_75M),
-        .addra(wm_addr_a),
-        .douta(wm0_data_a),
-
-        // Dual Ported, connect B to VGA logic.
-        .clkb(o_clk_75M),
-        .addrb(wm_addr_b),
-        .doutb(wm0_data_b)
-    );
-
-    world_map_loop wm_loop (
-        .clka(o_clk_75M),
-        .addra(wm_addr_a),
-        .douta(wm1_data_a),
-
-        // Dual Ported, connect B to VGA logic.
-        .clkb(o_clk_75M),
-        .addrb(wm_addr_b),
-        .doutb(wm1_data_b)
-    );
-
-    world_map_lr wm_lr (
-        .clka(o_clk_75M),
-        .addra(wm_addr_a),
-        .douta(wm2_data_a),
-
-        // Dual Ported, connect B to VGA logic.
-        .clkb(o_clk_75M),
-        .addrb(wm_addr_b),
-        .doutb(wm2_data_b)
-    );
-
-    map_mux mm1 (
-        .i_sw_sel(sw_db[14:13]),
-        .i_data_a({2'b00, wm2_data_a, wm1_data_a, wm0_data_a}),
-        .i_data_b({2'b00, wm2_data_b, wm1_data_b, wm0_data_b}),
-        .o_data_a(wm_data_a),
-        .o_data_b(wm_data_b)
-    );
-
+// VGA Implementation
     wire        vid_en;
     wire [9:0]  px_row;
     wire [9:0]  px_col;
@@ -389,45 +315,141 @@ module rvfpga
         .pixel_column(px_col)
     );
 
-    scale sc1 (
-        .pixel_addr({px_col, px_row}),
-        .vid_addr(wm_addr_b)
-    );
+// // Implementing ROJOBOT 
 
-    wire [1:0]  icon_px;
+//     wire [7:0]  io_botctrl;
+//     wire [31:0] io_botinfo;
+//     reg         io_botupdt_sync; 
+//     wire        io_int_ack;
+//     wire        upd_sysregs;
+//     wire [13:0] wm_addr_a, wm_addr_b;
+//     wire [1:0]  wm_data_a, wm_data_b;
 
-    icon #(
-        .ICON_SCALE(1),
-        .CENT_CORR(1)
-    ) corgi1 (
+//     rojobot31_0 rojo_bot_0 (
+//         .MotCtl_in(io_botctrl),            // input wire [7 : 0] MotCtl_in
+//         .LocX_reg(io_botinfo[31:24]),      // output wire [7 : 0] LocX_reg
+//         .LocY_reg(io_botinfo[23:16]),      // output wire [7 : 0] LocY_reg
+//         .Sensors_reg(io_botinfo[15:8]),    // output wire [7 : 0] Sensors_reg
+//         .BotInfo_reg(io_botinfo[7:0]),     // output wire [7 : 0] BotInfo_reg
+//         .worldmap_addr(wm_addr_a),         // output wire [13 : 0] worldmap_addr
+//         .worldmap_data(wm_data_a),         // input wire [1 : 0] worldmap_data
+//         .clk_in(o_clk_75M),                // input wire clk_in   Will need 75MHz
+//         .reset(~rstn),                     // input wire reset
+//         .upd_sysregs(upd_sysregs),         // output wire upd_sysregs
+//         .Bot_Config_reg(sw_db[7:0])        // input wire [7 : 0] Bot_Config_reg
+//     );
+
+//     // World map implementation
+//     // map_mux was used to mux the output of the different
+//     // world_map modules to be output to the rojo_bot and
+//     // colorizer module based on the values of switches 13
+//     // and 14 on the Nexys A7
+    
+//     wire [1:0] wm0_data_a, wm0_data_b;
+//     wire [1:0] wm1_data_a, wm1_data_b;
+//     wire [1:0] wm2_data_a, wm2_data_b;
+
+//     world_map_part_a wm_pa (
+//         .clka(o_clk_75M),
+//         .addra(wm_addr_a),
+//         .douta(wm0_data_a),
+
+//         // Dual Ported, connect B to VGA logic.
+//         .clkb(o_clk_75M),
+//         .addrb(wm_addr_b),
+//         .doutb(wm0_data_b)
+//     );
+
+//     world_map_loop wm_loop (
+//         .clka(o_clk_75M),
+//         .addra(wm_addr_a),
+//         .douta(wm1_data_a),
+
+//         // Dual Ported, connect B to VGA logic.
+//         .clkb(o_clk_75M),
+//         .addrb(wm_addr_b),
+//         .doutb(wm1_data_b)
+//     );
+
+//     world_map_lr wm_lr (
+//         .clka(o_clk_75M),
+//         .addra(wm_addr_a),
+//         .douta(wm2_data_a),
+
+//         // Dual Ported, connect B to VGA logic.
+//         .clkb(o_clk_75M),
+//         .addrb(wm_addr_b),
+//         .doutb(wm2_data_b)
+//     );
+
+//     map_mux mm1 (
+//         .i_sw_sel(sw_db[14:13]),
+//         .i_data_a({2'b00, wm2_data_a, wm1_data_a, wm0_data_a}),
+//         .i_data_b({2'b00, wm2_data_b, wm1_data_b, wm0_data_b}),
+//         .o_data_a(wm_data_a),
+//         .o_data_b(wm_data_b)
+//     );
+
+//     scale sc1 (
+//         .pixel_addr({px_col, px_row}),
+//         .vid_addr(wm_addr_b)
+//     );
+
+//     wire [1:0]  icon_px;
+
+//     icon #(
+//         .ICON_SCALE(1),
+//         .CENT_CORR(1)
+//     ) corgi1 (
+//         .pixel_row(px_row),
+//         .pixel_column(px_col),
+//         .botinfo_reg(io_botinfo[7:0]),
+//         .locx_reg(io_botinfo[31:24]),
+//         .locy_reg(io_botinfo[23:16]),
+//         .icon(icon_px)
+//     );
+
+//     colorizer color_out (
+//         .video_on(vid_en),
+//         .world_pixel(wm_data_b),
+//         .icon(icon_px),
+//         .vgaRed(RED),
+//         .vgaGreen(GRN),
+//         .vgaBlue(BLU)
+//     );
+
+//     always @(posedge o_clk_75M) begin: Handshake_FF
+//      // io_int_ack needs to be handled in an interrupt handler or software bit-banging
+//         if (io_int_ack == 1'b1) begin
+//             io_botupdt_sync <= 1'b0;
+//         end
+//         else 
+//         if (upd_sysregs == 1'b1) begin
+//             io_botupdt_sync <= 1'b1;
+//         end else begin
+//             io_botupdt_sync <= io_botupdt_sync;
+//         end
+//     end: Handshake_FF
+
+// Implementing Rope Game
+
+    wire [9:0]  rope_loc;
+    wire [1:0]  ico_px;
+
+    rope rope_0 (
         .pixel_row(px_row),
         .pixel_column(px_col),
-        .botinfo_reg(io_botinfo[7:0]),
-        .locx_reg(io_botinfo[31:24]),
-        .locy_reg(io_botinfo[23:16]),
-        .icon(icon_px)
+        .rope_loc(rope_loc),
+        .icon(ico_px)
     );
 
-    colorizer color_out (
+    colorizer2 color_out2 (
         .video_on(vid_en),
-        .world_pixel(wm_data_b),
-        .icon(icon_px),
-        .vgaRed(RED),
-        .vgaGreen(GRN),
+        .icon(ico_px),
+        .vgaRed(RED), 
+        .vgaGreen(GRN), 
         .vgaBlue(BLU)
     );
 
-    always @(posedge o_clk_75M) begin: Handshake_FF
-     // io_int_ack needs to be handled in an interrupt handler or software bit-banging
-        if (io_int_ack == 1'b1) begin
-            io_botupdt_sync <= 1'b0;
-        end
-        else 
-        if (upd_sysregs == 1'b1) begin
-            io_botupdt_sync <= 1'b1;
-        end else begin
-            io_botupdt_sync <= io_botupdt_sync;
-        end
-    end: Handshake_FF
 
 endmodule

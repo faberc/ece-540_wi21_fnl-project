@@ -1,0 +1,5 @@
+vhdl xil_defaultlib  \
+"../../../../project_final.srcs/sources_1/ip/PmodBLE_0/src/PmodBLE_axi_uart16550_0_0/sim/PmodBLE_axi_uart16550_0_0.vhd" \
+"../../../../project_final.srcs/sources_1/ip/PmodBLE_0/src/PmodBLE_axi_gpio_0_0/sim/PmodBLE_axi_gpio_0_0.vhd" \
+
+nosort

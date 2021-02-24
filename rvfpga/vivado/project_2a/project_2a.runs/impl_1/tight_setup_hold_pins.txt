@@ -1,0 +1,24 @@
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|       Launch Clock       |      Capture Clock       |                                                 Pin                                                      |
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|       soc_s7pll0_clkout0 |                 clk_core |                   cdc/i_axi_cdc/i_cdc_fifo_gray_r/i_dst/i_spill_register/gen_spill_reg.a_data_q_reg[38]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[0].stbuf_flush_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[2].stbuf_flush_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[1].stbuf_drain_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[0].stbuf_drain_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[4].stbuf_drain_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[3].stbuf_flush_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[1].stbuf_flush_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[7].stbuf_drain_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[2].stbuf_drain_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[7].stbuf_flush_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[5].stbuf_flush_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                                    swervolf/swerv_eh1/swerv/lsu/clkdomain/lsu_free_cgc/clkhdr/en_ff_reg/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[4].stbuf_flush_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[6].stbuf_drain_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[5].stbuf_drain_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[6].stbuf_flush_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                      swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[3].stbuf_drain_vldff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                                   swervolf/swerv_eh1/swerv/lsu/clkdomain/lsu_c1_dc1_clkenff/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                         swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/sddc1ff/genblock.dff/dffs/dout_reg[56]/D|
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
