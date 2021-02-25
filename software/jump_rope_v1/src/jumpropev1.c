@@ -43,6 +43,10 @@
 #define VGA_WIDTH 768
 #define HALF_VGA_WIDTH  VGA_WIDTH / 2       // = 384 
 
+// Global variables
+int global_score = 0;
+
+
 void rope_down(){
     int i, j;
 
@@ -61,22 +65,38 @@ void rope_down(){
     }
 }
 
+void score(int amount){
+    int ones, tens, hundreds, thousands;
+
+    global_score += amount;
+    
+    ones = global_score % 10;
+    tens = global_score / 10;
+    hundreds = global_score / 100;
+    thousands = global_score / 1000;
+
+    WRITE_GPIO(PORT_SEVENSEG_LOW, ones);
+    WRITE_GPIO((PORT_SEVENSEG_LOW + 1), tens);
+    WRITE_GPIO((PORT_SEVENSEG_LOW + 2), hundreds);
+    WRITE_GPIO((PORT_SEVENSEG_LOW + 3), thousands);
+
+}
+
 int main ( void ) 
 {
     int gpio_enable = 0xFFFF;    //GPIO enable value
     int sseg_enable = 0xF0;      //Seven Segment enable
-    int start = 0x00;
-    int score = 0x00;
+    int start = 0;
 
     char jump_array[] = {0b00, 0b00, 0b00, 0b01, 0b00, 0b00, 0b00, 0b01, 0b00, 0b00, 0b00, 0b00, 0b00, 0b01, 0b00, 0b00, 0b00, 0b01,
                         0b00, 0b00, 0b00, 0b00, 0b00, 0b01, 0b00, 0b00, 0b00, 0b00, 0b00, 0b01};
 
     int jump_array_size = sizeof jump_array;
 
-    WRITE_GPIO(PORT_GPIO_EN, gpio_enable);         // Enable GPIOs
-    WRITE_GPIO(PORT_SEVENSEG_EN, sseg_enable);
-    WRITE_GPIO(PORT_SEVENSEG_LOW, score);
-    WRITE_GPIO(ROPE_REG, HALF_VGA_WIDTH);       // Start rope in the middle of the screen
+    WRITE_GPIO(PORT_GPIO_EN, gpio_enable);          // Enable GPIOs
+    WRITE_GPIO(PORT_SEVENSEG_EN, sseg_enable);      // Enable seven-segment display
+    WRITE_GPIO(PORT_SEVENSEG_LOW, global_score);    // Initialize score to 0000
+    WRITE_GPIO(ROPE_REG, HALF_VGA_WIDTH);           // Start rope in the middle of the screen
     
     int i, j;
 
@@ -91,7 +111,7 @@ int main ( void )
                 {
                 case 0b00:  // Rope stays at center
                     WRITE_GPIO(ROPE_REG, HALF_VGA_WIDTH);
-                    for(j=0;j<1000000;j++);
+                    for(j=0;j<10000000;j++);
                     break;
                 
                 case 0b01:  //Jump action -- rope moves down and back to center
@@ -105,8 +125,8 @@ int main ( void )
                     WRITE_GPIO(ROPE_REG, HALF_VGA_WIDTH);
                     break;
                 }
-                score += 1;
-                WRITE_GPIO(PORT_SEVENSEG_LOW, score);
+                score(1);
+                
             }
         }
 
