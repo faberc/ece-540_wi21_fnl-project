@@ -82,9 +82,11 @@ void rope_down(){
                 thresh2 = true;
             }
         }
-    }
-    if ( thresh1 | thresh2){
-        score(1);
+        else if( i == (VGA_WIDTH - global_actionwindow)){
+            if ( thresh1 | thresh2){
+                score(1);
+            }
+        }
     }
 }
 
