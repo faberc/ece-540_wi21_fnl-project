@@ -45,23 +45,46 @@
 
 // Global variables
 int global_score = 0;
+int global_actionwindow = 50;
 
 
 void rope_down(){
     int i, j;
+    bool thresh1 = false;
+    bool thresh2 = false;
+    int btn_value = 0;
 
     // Rope starts descent
     for(i = HALF_VGA_WIDTH; i < VGA_WIDTH; i++ ){
         WRITE_GPIO(ROPE_REG, i);
+        
+        // Delay - will get changed to delay(half beat / vga half-width)
         for(j=0;j<50000;j++);
-
+        
         // If we are in action window, check for button push
+        if ( i > (VGA_WIDTH - global_actionwindow)){
+            btn_value = READ_GPIO(PORT_PBTNS);
+            if(btn_value == BTN_U_MASK){
+                thresh1 = true;
+            }
+        }
     }
 
     // Rope starts ascent 
     for(i = VGA_WIDTH; i >= HALF_VGA_WIDTH; i--){
         WRITE_GPIO(ROPE_REG, i);
         for(j=0;j<50000;j++);
+
+        // If we are in action window, check for button push
+        if ( i > (VGA_WIDTH - global_actionwindow)){
+            btn_value = READ_GPIO(PORT_PBTNS);
+            if(btn_value == BTN_U_MASK){
+                thresh2 = true;
+            }
+        }
+    }
+    if ( thresh1 | thresh2){
+        score(1);
     }
 }
 
@@ -70,6 +93,10 @@ void score(int amount){
 
     global_score += amount;
     
+    if(global_score > 99){
+        global_score = 0;
+    }
+
     ones = global_score % 10;
     tens = global_score / 10;
     hundreds = global_score / 100;
@@ -89,7 +116,8 @@ int main ( void )
     int start = 0;
 
     char jump_array[] = {0b00, 0b00, 0b00, 0b01, 0b00, 0b00, 0b00, 0b01, 0b00, 0b00, 0b00, 0b00, 0b00, 0b01, 0b00, 0b00, 0b00, 0b01,
-                        0b00, 0b00, 0b00, 0b00, 0b00, 0b01, 0b00, 0b00, 0b00, 0b00, 0b00, 0b01};
+                        0b00, 0b00, 0b00, 0b00, 0b00, 0b01, 0b00, 0b00, 0b00, 0b00, 0b00, 0b01, 0b00, 0b01, 0b00, 0b00, 0b00, 0b01, 
+                        0b00, 0b01, 0b00, 0b00, 0b00, 0b00, 0b00, 0b01, 0b00, 0b00};
 
     int jump_array_size = sizeof jump_array;
 
@@ -125,7 +153,7 @@ int main ( void )
                     WRITE_GPIO(ROPE_REG, HALF_VGA_WIDTH);
                     break;
                 }
-                score(1);
+                
                 
             }
         }
