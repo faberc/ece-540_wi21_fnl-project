@@ -48,7 +48,7 @@ int global_score = 0;
 int global_actionwindow = 50;
 int bpm = 150;
 // Made up number right now to see if timing works
-long int test_time =  2000000; // half-beat time? 
+long int test_time =  2000000; // quarter-beat time? 
 
 
 void score(int amount){
@@ -84,7 +84,7 @@ void rope_down(){
         WRITE_GPIO(ROPE_REG, i);
         
         // Delay - will get changed to delay(half beat / vga half-width)
-        for(j=0;j<(test_time/HALF_VGA_WIDTH);j++);
+        for(j=0;j<(test_time/(HALF_VGA_WIDTH * 4));j++);
         
         // If we are in action window, check for button push
         if ( i > (VGA_WIDTH - global_actionwindow)){
@@ -99,7 +99,7 @@ void rope_down(){
     for(i = VGA_WIDTH; i >= HALF_VGA_WIDTH; i--){
         WRITE_GPIO(ROPE_REG, i);
         
-        for(j=0;j<(test_time/HALF_VGA_WIDTH);j++);
+        for(j=0;j<(test_time/(HALF_VGA_WIDTH * 4));j++);
 
         // If we are in action window, check for button push
         if ( i > (VGA_WIDTH - global_actionwindow)){
