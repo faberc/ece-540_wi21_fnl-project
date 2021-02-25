@@ -46,6 +46,40 @@
 // Global variables
 int global_score = 0;
 int global_actionwindow = 50;
+int bpm = 150;
+long int test_time =  2000000; // half-beat time
+
+
+
+void delay(long int milli_seconds) 
+{ 
+    long int j;
+    long int micro_seconds = milli_seconds * 1000;
+
+    for(j=0;j<micro_seconds;j++);
+} 
+
+
+void score(int amount){
+    int ones, tens, hundreds, thousands;
+
+    global_score += amount;
+    
+    if(global_score > 9999){
+        global_score = 0;
+    }
+
+    ones = global_score % 10;
+    tens = global_score / 10;
+    hundreds = global_score / 100;
+    thousands = global_score / 1000;
+
+    WRITE_GPIO(PORT_SEVENSEG_LOW, ones);
+    WRITE_GPIO((PORT_SEVENSEG_LOW + 1), tens);
+    WRITE_GPIO((PORT_SEVENSEG_LOW + 2), hundreds);
+    WRITE_GPIO((PORT_SEVENSEG_LOW + 3), thousands);
+
+}
 
 
 void rope_down(){
@@ -59,8 +93,10 @@ void rope_down(){
         WRITE_GPIO(ROPE_REG, i);
         
         // Delay - will get changed to delay(half beat / vga half-width)
-        for(j=0;j<50000;j++);
         
+        //delay(test_time/HALF_VGA_WIDTH);
+        
+        for(j=0;j<(test_time/HALF_VGA_WIDTH);j++);
         // If we are in action window, check for button push
         if ( i > (VGA_WIDTH - global_actionwindow)){
             btn_value = READ_GPIO(PORT_PBTNS);
@@ -73,7 +109,8 @@ void rope_down(){
     // Rope starts ascent 
     for(i = VGA_WIDTH; i >= HALF_VGA_WIDTH; i--){
         WRITE_GPIO(ROPE_REG, i);
-        for(j=0;j<50000;j++);
+        
+        for(j=0;j<(test_time/HALF_VGA_WIDTH);j++);
 
         // If we are in action window, check for button push
         if ( i > (VGA_WIDTH - global_actionwindow)){
@@ -90,25 +127,17 @@ void rope_down(){
     }
 }
 
-void score(int amount){
-    int ones, tens, hundreds, thousands;
-
-    global_score += amount;
-    
-    if(global_score > 99){
-        global_score = 0;
-    }
-
-    ones = global_score % 10;
-    tens = global_score / 10;
-    hundreds = global_score / 100;
-    thousands = global_score / 1000;
-
-    WRITE_GPIO(PORT_SEVENSEG_LOW, ones);
-    WRITE_GPIO((PORT_SEVENSEG_LOW + 1), tens);
-    WRITE_GPIO((PORT_SEVENSEG_LOW + 2), hundreds);
-    WRITE_GPIO((PORT_SEVENSEG_LOW + 3), thousands);
-
+void rope_center(){
+    int j;
+    WRITE_GPIO(ROPE_REG, HALF_VGA_WIDTH);
+    for(j=0;j<((test_time/4));j++);
+    WRITE_GPIO(ROPE_REG, (HALF_VGA_WIDTH + 10));
+    for(j=0;j<((test_time/4));j++);
+    WRITE_GPIO(ROPE_REG, HALF_VGA_WIDTH);
+    for(j=0;j<((test_time/4));j++);
+    WRITE_GPIO(ROPE_REG, (HALF_VGA_WIDTH + 10));
+    for(j=0;j<((test_time/4));j++);
+    WRITE_GPIO(ROPE_REG, HALF_VGA_WIDTH);
 }
 
 int main ( void ) 
@@ -128,20 +157,19 @@ int main ( void )
     WRITE_GPIO(PORT_SEVENSEG_LOW, global_score);    // Initialize score to 0000
     WRITE_GPIO(ROPE_REG, HALF_VGA_WIDTH);           // Start rope in the middle of the screen
     
-    int i, j;
+    int i;
 
     while (1) { 
 
         start = READ_GPIO(PORT_PBTNS);          // Game starts when the user presses any button
 
         if(start) {
-            
+
             for(i = 0; i < jump_array_size; i++){
                 switch (jump_array[i])
                 {
                 case 0b00:  // Rope stays at center
-                    WRITE_GPIO(ROPE_REG, HALF_VGA_WIDTH);
-                    for(j=0;j<10000000;j++);
+                    rope_center();
                     break;
                 
                 case 0b01:  //Jump action -- rope moves down and back to center
@@ -154,29 +182,9 @@ int main ( void )
                 default:
                     WRITE_GPIO(ROPE_REG, HALF_VGA_WIDTH);
                     break;
-                }
-                
-                
+                } 
             }
         }
-
-
     }
-
     return(0);    
 }
-
-/* Not working yet... 
-void delay(int milli_seconds) 
-{ 
-    // Converting time into milli_seconds 
-    // int milli_seconds = 1000 * number_of_seconds; 
-  
-    // Storing start time 
-    clock_t start_time = clock(); 
-  
-    // looping till required time is not achieved 
-    while (clock() < start_time + milli_seconds) 
-        ; 
-} 
-*/
