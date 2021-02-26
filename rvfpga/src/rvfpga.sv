@@ -62,8 +62,20 @@ module rvfpga
     inout wire         i_btn_r,
     inout wire         i_btn_c,
     output reg [3:0]   RED, GRN, BLU,
-    output wire        vsync, hsync
+    output wire        vsync, hsync,
+
+    // Junction A -- BLE PMOD
+    output wire        JA1,     // RTS
+    output wire        JA2,     // RXD
+    input wire         JA3,     // TXD
+    input wire         JA4,     // CTS
+    inout wire         JA7,     // GPIO
+    inout wire         JA8,     // RST_N
+    inout wire         JA9,     // MODE
+    inout wire         JA10     // STATUS
+
     );
+
 
     wire [15:0]     gpio_out;
     wire            cpu_tx,litedram_tx;
@@ -291,7 +303,15 @@ module rvfpga
     //   .io_botupdt_sync  (io_botupdt_sync),
     //   .io_int_ack       (io_int_ack),
       .sw_db            (sw_db),
-      .rope_loc         (rope_loc)
+      .rope_loc         (rope_loc),
+      .ble_rts          (JA1),
+      .ble_rxd          (JA2),
+      .ble_txd          (JA3),
+      .ble_cts          (JA4),
+      .ble_gpio         (JA7), 
+      .ble_rstn         (JA8), 
+      .ble_mode         (JA9), 
+      .ble_status       (JA10)
       );
 
     always @(posedge clk_core) begin
@@ -450,6 +470,8 @@ module rvfpga
         .vgaGreen(GRN), 
         .vgaBlue(BLU)
     );
+
+
 
 
 endmodule

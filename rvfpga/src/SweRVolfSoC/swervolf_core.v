@@ -94,16 +94,27 @@ module swervolf_core
     input wire         i_accel_miso,
 
     // ROJO Bot Signals
-    inout wire [31:0]   io_botinfo,
-    inout wire [7:0]    io_botctrl,
-    input wire          io_botupdt_sync,
-    output wire         io_int_ack,
+    // inout wire [31:0]   io_botinfo,
+    // inout wire [7:0]    io_botctrl,
+    // input wire          io_botupdt_sync,
+    // output wire         io_int_ack,
 
     // Debounced Switches Output
     output reg [15:0]  sw_db,
 
     // Rope Game Signals
-    output wire [9:0]  rope_loc
+    output wire [9:0]  rope_loc,
+
+    // BLE Pmod
+        // Junction A -- BLE PMOD
+    output wire        ble_rts,         // RTS
+    output wire        ble_rxd,         // RXD
+    input wire         ble_txd,         // TXD
+    input wire         ble_cts,         // CTS
+    inout wire         ble_gpio,        // GPIO
+    input wire         ble_rstn,        // RST_N
+    inout wire         ble_mode,        // MODE
+    inout wire         ble_status       // STATUS
     );
 
 
@@ -304,17 +315,30 @@ module swervolf_core
 
       // Outputs
       .int_o     (uart_irq),
-      .stx_pad_o (o_uart_tx),
+      .stx_pad_o (/*o_uart_tx*/),
       .rts_pad_o (),
       .dtr_pad_o (),
 
       // Inputs
-      .srx_pad_i (i_uart_rx),
+      .srx_pad_i (/*i_uart_rx*/),
       .cts_pad_i (1'b0),
       .dsr_pad_i (1'b0),
       .ri_pad_i  (1'b0),
       .dcd_pad_i (1'b0));
 
+    // Adding BLE PMOD
+    pmod_ble_top ble0 (
+        .clk(clk),
+
+        // UART Connections
+        .i_uart_rx(i_uart_rx),        // UART RX Data from Computer
+        .o_uart_tx(o_uart_tx),       // UART TX Data To Computer
+
+        // PMOD Interface
+        .io_pmod_rxd(ble_rxd),     // Receive on RN4871 - FPGA drives this -- pin 2
+        .io_pmod_txd(ble_txd),      // Transmit on RN4871 -- pin 3
+        .io_pmod_rstn(ble_rstn)     // pin 8
+    );
 
     // GPIO - Leds and Switches
     wire [31:0] en_gpio;
@@ -435,46 +459,46 @@ module swervolf_core
 
 
    // New Instantiation of GPIO A for SimpleBot
-    gpio_top gpio_module_a(
-        .wb_clk_i     (clk), 
-        .wb_rst_i     (wb_rst), 
-        .wb_cyc_i     (wb_m2s_gpio_a_cyc), 
-        .wb_adr_i     ({2'b0,wb_m2s_gpio_a_adr[5:2],2'b0}), 
-        .wb_dat_i     (wb_m2s_gpio_a_dat), 
-        .wb_sel_i     (4'b1111),
-        .wb_we_i      (wb_m2s_gpio_a_we), 
-        .wb_stb_i     (wb_m2s_gpio_a_stb), 
-        .wb_dat_o     (wb_s2m_gpio_a_dat),
-        .wb_ack_o     (wb_s2m_gpio_a_ack), 
-        .wb_err_o     (wb_s2m_gpio_a_err),
-        .wb_inta_o    (gpio_a_irq),
-        // External GPIO Interface
-        .ext_pad_i     ({i_gpio_a[31:5],pbtn_db[4:0]}),
-        .ext_pad_o     (o_gpio_a[31:0]),
-        .ext_padoe_o   (en_gpio_a));
+    // gpio_top gpio_module_a(
+    //     .wb_clk_i     (clk), 
+    //     .wb_rst_i     (wb_rst), 
+    //     .wb_cyc_i     (wb_m2s_gpio_a_cyc), 
+    //     .wb_adr_i     ({2'b0,wb_m2s_gpio_a_adr[5:2],2'b0}), 
+    //     .wb_dat_i     (wb_m2s_gpio_a_dat), 
+    //     .wb_sel_i     (4'b1111),
+    //     .wb_we_i      (wb_m2s_gpio_a_we), 
+    //     .wb_stb_i     (wb_m2s_gpio_a_stb), 
+    //     .wb_dat_o     (wb_s2m_gpio_a_dat),
+    //     .wb_ack_o     (wb_s2m_gpio_a_ack), 
+    //     .wb_err_o     (wb_s2m_gpio_a_err),
+    //     .wb_inta_o    (gpio_a_irq),
+    //     // External GPIO Interface
+    //     .ext_pad_i     ({i_gpio_a[31:5],pbtn_db[4:0]}),
+    //     .ext_pad_o     (o_gpio_a[31:0]),
+    //     .ext_padoe_o   (en_gpio_a));
 
 
     // Instantiation of RojoBot Peripheral
-    wire            per1_irq;
+    // wire            per1_irq;
 
-    rojobot_top per1 (
-        .wb_clk_i   (clk), 
-        .wb_rst_i   (wb_rst), 
-        .wb_adr_i   (wb_m2s_per1_adr), 
-        .wb_dat_i   (wb_m2s_per1_dat), 
-        .wb_sel_i   (wb_m2s_per1_sel), 
-        .wb_we_i    (wb_m2s_per1_we), 
-        .wb_cyc_i   (wb_m2s_per1_cyc), 
-        .wb_stb_i   (wb_m2s_per1_stb), 
-        .wb_dat_o   (wb_s2m_per1_dat), 
-        .wb_ack_o   (wb_s2m_per1_ack), 
-        .wb_err_o   (wb_s2m_per1_err), 
-        .wb_inta_o  (per1_irq),
-        .i_reg_a    (io_botinfo[31:0]),
-        .o_reg_a    (io_botctrl[7:0]),
-        .i_reg_b    ({31'b0, io_botupdt_sync}),
-        .o_reg_b    (io_int_ack)
-    );
+    // periph_top per1 (
+    //     .wb_clk_i   (clk), 
+    //     .wb_rst_i   (wb_rst), 
+    //     .wb_adr_i   (wb_m2s_per1_adr), 
+    //     .wb_dat_i   (wb_m2s_per1_dat), 
+    //     .wb_sel_i   (wb_m2s_per1_sel), 
+    //     .wb_we_i    (wb_m2s_per1_we), 
+    //     .wb_cyc_i   (wb_m2s_per1_cyc), 
+    //     .wb_stb_i   (wb_m2s_per1_stb), 
+    //     .wb_dat_o   (wb_s2m_per1_dat), 
+    //     .wb_ack_o   (wb_s2m_per1_ack), 
+    //     .wb_err_o   (wb_s2m_per1_err), 
+    //     .wb_inta_o  (per1_irq),
+    //     .i_reg_a    (io_botinfo[31:0]),
+    //     .o_reg_a    (io_botctrl[7:0]),
+    //     .i_reg_b    ({31'b0, io_botupdt_sync}),
+    //     .o_reg_b    (io_int_ack)
+    // );
 
 
     // Instantiation of Rope Game Peripheral

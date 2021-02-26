@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
--- Date        : Mon Feb 22 13:20:56 2021
+-- Date        : Mon Feb 22 13:20:55 2021
 -- Host        : DESKTOP-HHTTKMG running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               c:/Users/Chuck/RVfpga/vivado/project_final/project_final.srcs/sources_1/ip/clk_gen_75M/clk_gen_75M_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top clk_gen_75M -prefix
+--               clk_gen_75M_ clk_gen_75M_sim_netlist.vhdl
 -- Design      : clk_gen_75M
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -22,8 +22,6 @@ entity clk_gen_75M_clk_gen_75M_clk_wiz is
     o_locked : out STD_LOGIC;
     i_clk_100M : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of clk_gen_75M_clk_gen_75M_clk_wiz : entity is "clk_gen_75M_clk_wiz";
 end clk_gen_75M_clk_gen_75M_clk_wiz;
 
 architecture STRUCTURE of clk_gen_75M_clk_gen_75M_clk_wiz is
