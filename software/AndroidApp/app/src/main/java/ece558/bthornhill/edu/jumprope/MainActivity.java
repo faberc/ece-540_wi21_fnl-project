@@ -18,10 +18,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager sensorManager;
     private Sensor sensor;
 
-    private TextView x_axis;
-    private TextView y_axis;
-    private TextView z_axis;
+    private TextView x_axis, y_axis, z_axis;
 
+    private float lastX, lastY, lastZ;
+    private float deltaX = 0;
+    private float deltaY = 0;
+    private float deltaZ = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +42,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public final void onSensorChanged(SensorEvent event) {
 
-        float amount1 = event.values[0];     // x value?
-        float amount2 = event.values[1];     // y value?
-        float amount3 = event.values[2];     // z value?
+        x_axis.setText(Float.toString(deltaX));
+        y_axis.setText(Float.toString(deltaY));
+        z_axis.setText(Float.toString(deltaZ));
 
-        Log.d(TAG, String.valueOf(amount1));
-        // Do something with these sensor values
+        deltaX = Math.abs(lastX - event.values[0]);     // x value
+        deltaY = Math.abs(lastY - event.values[1]);    // y value
+        deltaZ = Math.abs(lastZ - event.values[2]);     // z value
 
-        x_axis.setText(String.valueOf(amount1));
-        y_axis.setText(String.valueOf(amount2));
-        z_axis.setText(String.valueOf(amount3));
+        // Filter out the noise
+        if(deltaX < 2) deltaX = 0;
+        if(deltaY < 2) deltaY = 0;
+        if(deltaZ < 2) deltaZ = 0;
+
+        // set the last know values of x,y,z
+        lastX = event.values[0];
+        lastY = event.values[1];
+        lastZ = event.values[2];
 
     }
 
