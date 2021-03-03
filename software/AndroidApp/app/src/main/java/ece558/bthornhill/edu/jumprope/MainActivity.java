@@ -1,6 +1,8 @@
 package ece558.bthornhill.edu.jumprope;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -11,7 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener{
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
@@ -30,15 +32,24 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+
+        if(fragment == null){
+            fragment = new GameplayFragment();
+            fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
+        }
+
+        /*
         x_axis = (TextView) findViewById(R.id.xvalue);
         y_axis = (TextView) findViewById(R.id.yvalue);
         z_axis = (TextView) findViewById(R.id.zvalue);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-
+*/
     }
-
+/*
     @Override
     public final void onSensorChanged(SensorEvent event) {
 
@@ -78,5 +89,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onPause();
         sensorManager.unregisterListener(this);
     }
+    */
+
 }
 
