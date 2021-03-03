@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 import static androidx.core.content.ContextCompat.getSystemService;
 
 /**
@@ -86,7 +88,7 @@ public class GameplayFragment extends Fragment implements SensorEventListener {
         y_axis = (TextView) v.findViewById(R.id.yvalue);
         z_axis = (TextView) v.findViewById(R.id.zvalue);
 
-        sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        sensorManager = (SensorManager) Objects.requireNonNull(getActivity()).getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
         
         return v;
