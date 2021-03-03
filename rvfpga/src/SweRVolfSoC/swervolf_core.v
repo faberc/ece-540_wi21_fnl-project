@@ -189,8 +189,8 @@ module swervolf_core
 
    assign io_rid = rid;
 
-   wire 		      wb_clk = clk;
-   wire 		      wb_rst = ~rst_n;
+   wire       wb_clk = clk;
+   wire       wb_rst = ~rst_n;
 
 
 `include "wb_intercon.vh"
@@ -300,6 +300,9 @@ module swervolf_core
    wire [7:0] 		       uart_rdt;
    assign wb_s2m_uart_dat = {24'd0, uart_rdt};
 
+   wire o_core_tx;
+   wire i_core_rx;
+
    uart_top uart16550_0
      (// Wishbone slave interface
       .wb_clk_i	(clk),
@@ -315,30 +318,149 @@ module swervolf_core
 
       // Outputs
       .int_o     (uart_irq),
-      .stx_pad_o (/*o_uart_tx*/),
+      .stx_pad_o (/*o_uart_tx*/o_core_tx),
       .rts_pad_o (),
       .dtr_pad_o (),
 
       // Inputs
-      .srx_pad_i (/*i_uart_rx*/),
+      .srx_pad_i (/*i_uart_rx*/i_core_rx),
       .cts_pad_i (1'b0),
       .dsr_pad_i (1'b0),
       .ri_pad_i  (1'b0),
-      .dcd_pad_i (1'b0));
+      .dcd_pad_i (1'b0),
+      .baud_o (s_tick)
+      );
+
+    // Adding UART RX Interpreter
+    wire        s_tick;
+    // wire [10:0] divisor;
+    // assign      divisor = 54;        // Divisor value for 115200 baud.
+
+    // baud_gen baud_115200 (
+    //     .clk(clk), 
+    //     .reset(~rst_n),         // system clock and reset
+    //     .dvsr(divisor),         // divisor for the clock divider -- [100MHz / (16 * 115200)] = 54
+    //     .tick(s_tick)        // one cycle sampling clock signal
+    // );
+
+    wire rx_done;
+    wire [7:0] rx_data;
+    wire ble_txd_parse;
+    wire drdy_tick;
+    wire [63:0] ascii_out;
+    wire parsed_tick;
+    wire [31:0] ble_accel_val;
+
+    uart_rx
+    #(
+        .DBIT(8),               // 8 Data Bits
+        .SB_TICK(16)            // 16 ticks per stop bit
+    ) rx_interpreter (
+        .clk(clk),
+        .reset(~rst_n),
+        .rx(ble_txd_parse),
+        .s_tick(s_tick),
+        .rx_done_tick(rx_done),
+        .dout(rx_data),
+        .smpl_tick()            // Debug Signal
+    );
+
+    uart_parse up0 (
+        .clk(clk),
+        .reset(~rst_n),
+        .brcv_tick(rx_done),
+        .byte_in(rx_data),
+        .drdy_tick(drdy_tick),
+        .ascii_out(ascii_out)
+    );
+
+    ascii_2_hex a2h (
+        .clk(clk),
+        .reset(~rst_n),
+        .drdy_tick(drdy_tick),
+        .ascii(ascii_out),
+        .parsed_tick(parsed_tick),
+        .hex_result(ble_accel_val)
+    );
 
     // Adding BLE PMOD
     pmod_ble_top ble0 (
         .clk(clk),
 
-        // UART Connections
+        // Computer UART Connections
         .i_uart_rx(i_uart_rx),        // UART RX Data from Computer
-        .o_uart_tx(o_uart_tx),       // UART TX Data To Computer
+        .o_uart_tx(o_uart_tx),        // UART TX Data To Computer
+
+        // UART Core Connections
+        .i_core_rx(o_core_tx),
+        .o_core_tx(i_core_rx),
+
+        .o_parse_tx(ble_txd_parse),
+        .sw(sw_db[0]),
 
         // PMOD Interface
-        .io_pmod_rxd(ble_rxd),     // Receive on RN4871 - FPGA drives this -- pin 2
-        .io_pmod_txd(ble_txd),      // Transmit on RN4871 -- pin 3
-        .io_pmod_rstn(ble_rstn)     // pin 8
+        .o_pmod_rxd(ble_rxd),               // Receive on RN4871 - FPGA drives this -- pin 2
+        .i_pmod_txd(ble_txd),               // Transmit on RN4871 -- pin 3
+        .o_pmod_rstn(ble_rstn)              // pin 8
     );
+
+    wire zero;
+    wire [7:0] zeros8;
+    wire [31:0] zeros32;
+    assign zero = 1'b0;
+    assign zeros8 = 8'b0;
+    assign zeros32 = 32'b0;
+
+    ila_0 ila_test (
+        .clk(clk), // input wire clk
+
+
+        .probe0(rx_done),       // input wire [0:0]  probe0  
+        .probe1(drdy_tick),     // input wire [0:0]  probe1 
+        .probe2(parsed_tick),   // input wire [0:0]  probe2 
+        .probe3(zero),        // input wire [0:0]  probe3 
+        .probe4(zero),        // input wire [0:0]  probe4 
+        .probe5(zero),        // input wire [0:0]  probe5 
+        .probe6(zero),        // input wire [0:0]  probe6 
+        .probe7(zero),        // input wire [0:0]  probe7 
+        .probe8(rx_data),       // input wire [7:0]  probe8 
+        .probe9(zeros8),        // input wire [7:0]  probe9 
+        .probe10(zeros8),      // input wire [7:0]  probe10 
+        .probe11(zeros8),      // input wire [7:0]  probe11 
+        .probe12(ascii_out[31:0]),      // input wire [31:0]  probe12 
+        .probe13(ascii_out[63:32]),      // input wire [31:0]  probe13 
+        .probe14(ble_accel_val),      // input wire [31:0]  probe14 
+        .probe15(zeros32)       // input wire [31:0]  probe15
+    );
+
+//    wire [7:0] 		       uart_2_rdt;
+//    assign wb_s2m_uart_2_dat = {24'd0, uart_2_rdt};
+
+//    uart_top uart16550_1
+//      (// Wishbone slave interface
+//       .wb_clk_i	(clk),
+//       .wb_rst_i	(~rst_n),
+//       .wb_adr_i	(wb_m2s_uart_2_adr[4:2]),
+//       .wb_dat_i	(wb_m2s_uart_2_dat[7:0]),
+//       .wb_we_i	(wb_m2s_uart_2_we),
+//       .wb_cyc_i	(wb_m2s_uart_2_cyc),
+//       .wb_stb_i	(wb_m2s_uart_2_stb),
+//       .wb_sel_i	(4'b0), // Not used in 8-bit mode
+//       .wb_dat_o	(uart_2_rdt),
+//       .wb_ack_o	(wb_s2m_uart_2_ack),
+
+//       // Outputs
+//       .int_o     (uart_irq),
+//       .stx_pad_o (o_uart_tx_conn),
+//       .rts_pad_o (),
+//       .dtr_pad_o (),
+
+//       // Inputs
+//       .srx_pad_i (i_uart_rx_conn),
+//       .cts_pad_i (1'b0),
+//       .dsr_pad_i (1'b0),
+//       .ri_pad_i  (1'b0),
+//       .dcd_pad_i (1'b0));
 
     // GPIO - Leds and Switches
     wire [31:0] en_gpio;
@@ -360,7 +482,7 @@ module swervolf_core
 
     // Push buttons and Switches Debounced
     wire [5:0] pbtn_db;
-    wire [15:0] sw_db;
+    // wire [15:0] sw_db;
 
     // Tristate Bidirects for LEDs and Switches
     bidirec gpio0  (.oe(en_gpio[0] ), .inp(o_gpio[0] ), .outp(i_gpio[0] ), .bidir(io_data[0] ));
@@ -517,7 +639,7 @@ module swervolf_core
         .wb_ack_o   (wb_s2m_per2_ack), 
         .wb_err_o   (wb_s2m_per2_err), 
         .wb_inta_o  (per2_irq),
-        .i_reg_a    (pbtn_db[4:0]),
+        .i_reg_a    (ble_accel_val[31:0]),
         .o_reg_a    (rope_loc[9:0]),
         .i_reg_b    (),
         .o_reg_b    ()

@@ -22,6 +22,8 @@ wire [31:0] wb_s2m_rom_dat;
 wire        wb_s2m_rom_ack;
 wire        wb_s2m_rom_err;
 wire        wb_s2m_rom_rty;
+
+// SPI - Flash
 wire [31:0] wb_m2s_spi_flash_adr;
 wire [31:0] wb_m2s_spi_flash_dat;
 wire  [3:0] wb_m2s_spi_flash_sel;
@@ -34,6 +36,8 @@ wire [31:0] wb_s2m_spi_flash_dat;
 wire        wb_s2m_spi_flash_ack;
 wire        wb_s2m_spi_flash_err;
 wire        wb_s2m_spi_flash_rty;
+
+// SysCon
 wire [31:0] wb_m2s_sys_adr;
 wire [31:0] wb_m2s_sys_dat;
 wire  [3:0] wb_m2s_sys_sel;
@@ -46,6 +50,8 @@ wire [31:0] wb_s2m_sys_dat;
 wire        wb_s2m_sys_ack;
 wire        wb_s2m_sys_err;
 wire        wb_s2m_sys_rty;
+
+// UART
 wire [31:0] wb_m2s_uart_adr;
 wire [31:0] wb_m2s_uart_dat;
 wire  [3:0] wb_m2s_uart_sel;
@@ -58,6 +64,20 @@ wire [31:0] wb_s2m_uart_dat;
 wire        wb_s2m_uart_ack;
 wire        wb_s2m_uart_err;
 wire        wb_s2m_uart_rty;
+
+// UART 2
+wire [31:0] wb_m2s_uart_2_adr;
+wire [31:0] wb_m2s_uart_2_dat;
+wire  [3:0] wb_m2s_uart_2_sel;
+wire        wb_m2s_uart_2_we;
+wire        wb_m2s_uart_2_cyc;
+wire        wb_m2s_uart_2_stb;
+wire  [2:0] wb_m2s_uart_2_cti;
+wire  [1:0] wb_m2s_uart_2_bte;
+wire [31:0] wb_s2m_uart_2_dat;
+wire        wb_s2m_uart_2_ack;
+wire        wb_s2m_uart_2_err;
+wire        wb_s2m_uart_2_rty;
 
 // GPIO
 wire [31:0] wb_m2s_gpio_adr;
@@ -195,6 +215,8 @@ wb_intercon wb_intercon0
     .wb_sys_ack_i       (wb_s2m_sys_ack),
     .wb_sys_err_i       (wb_s2m_sys_err),
     .wb_sys_rty_i       (wb_s2m_sys_rty),
+
+// UART
     .wb_uart_adr_o      (wb_m2s_uart_adr),
     .wb_uart_dat_o      (wb_m2s_uart_dat),
     .wb_uart_sel_o      (wb_m2s_uart_sel),
@@ -207,6 +229,21 @@ wb_intercon wb_intercon0
     .wb_uart_ack_i      (wb_s2m_uart_ack),
     .wb_uart_err_i      (wb_s2m_uart_err),
     .wb_uart_rty_i      (wb_s2m_uart_rty),
+
+// UART 2 - BLE Pmod
+    .wb_uart_2_adr_o      (wb_m2s_uart_2_adr),
+    .wb_uart_2_dat_o      (wb_m2s_uart_2_dat),
+    .wb_uart_2_sel_o      (wb_m2s_uart_2_sel),
+    .wb_uart_2_we_o       (wb_m2s_uart_2_we),
+    .wb_uart_2_cyc_o      (wb_m2s_uart_2_cyc),
+    .wb_uart_2_stb_o      (wb_m2s_uart_2_stb),
+    .wb_uart_2_cti_o      (wb_m2s_uart_2_cti),
+    .wb_uart_2_bte_o      (wb_m2s_uart_2_bte),
+    .wb_uart_2_dat_i      (wb_s2m_uart_2_dat),
+    .wb_uart_2_ack_i      (wb_s2m_uart_2_ack),
+    .wb_uart_2_err_i      (wb_s2m_uart_2_err),
+    .wb_uart_2_rty_i      (wb_s2m_uart_2_rty),
+
 // GPIO
     .wb_gpio_adr_o      (wb_m2s_gpio_adr),
     .wb_gpio_dat_o      (wb_m2s_gpio_dat),
@@ -249,7 +286,7 @@ wb_intercon wb_intercon0
     .wb_per1_err_i      (wb_s2m_per1_err),
     .wb_per1_rty_i      (wb_s2m_per1_rty),
 
-    // Peripheral 2 :: Rope Game
+// Peripheral 2 :: Rope Game
     .wb_per2_adr_o      (wb_m2s_per2_adr),
     .wb_per2_dat_o      (wb_m2s_per2_dat),
     .wb_per2_sel_o      (wb_m2s_per2_sel),
