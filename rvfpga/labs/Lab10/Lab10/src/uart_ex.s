@@ -4,7 +4,7 @@
  * Created Date: Tuesday, February 23rd 2021, 6:05:33 pm
  * Author: Chuck Faber
  * -----
- * Last Modified: Wed Feb 24 2021
+ * Last Modified: Sun Feb 28 2021
  * Modified By: Chuck Faber
  * -----
  * Copyright (c) 2021 Portland State University
@@ -47,10 +47,20 @@ main:
     la a0, WELCOME
     jal uartSendString
 
+    and x1, zero, zero           # Wait some time before the next iteration
+    li   x29, 0x100000           # This is the time delay required for it to be able to respond after the initial command
+    time1:
+        addi x1, x1, 1
+        bne  x29, x1, time1
+
+    la a0, ECHO
+    jal uartSendString
+
 loop:
     nop
     j loop
 
+delay:
 
 
 # .globl main
@@ -64,11 +74,11 @@ loop:
 
 # 	call uartSendString
 
-#     and x1, zero, zero           # Wait some time before the next iteration
-# 	li   x29, 0x1000000
-#     time1:
-#         addi x1, x1, 1
-#         bne  x29, x1, time1
+    # and x1, zero, zero           # Wait some time before the next iteration
+    # li   x29, 0x1000000
+    # time1:
+    #     addi x1, x1, 1
+    #     bne  x29, x1, time1
 
 # 	j sayHello
 
@@ -111,8 +121,8 @@ uartInit:
 uartSendByte: 
     li t1, UART_BASE /* Check for space in UART FIFO */ 
     lb t0, REG_LSR(t1)      // Read Line Status Register
-    andi t0, t0, LSR_THRE   // Check bit 5 of LSR.
-    beqz t0, uartSendByte   // If it is zero, the FIFO is NOT empty. go back to beginning and check again
+    andi t0, t0, LSR_THRE   // Check bit 5 of LSR for Transmit FIFO status.
+    beqz t0, uartSendByte   // If it is zero, the TX FIFO is NOT empty. go back to beginning and check again
     sb a0, 0(t1)            // FIFO is empty. Store byte in a0 to FIFO.
     ret
 
@@ -125,15 +135,15 @@ uartSendByte:
 # ---------------------------------------------------------------------------- 
 uartSendString: 
     li t1, UART_BASE 
-    add t2,zero,ra # save caller address to t2
-    add a1,zero,a0 # use a1 as index into string location
+    add t2,zero,ra                  // save caller address to t2
+    add a1,zero,a0                  // use a1 as index into string location
     /* Load first byte */ 
-    lb a0, 0(a1)    // Load byte from a1 into a0 to use as argument for uartSendByte
+    lb a0, 0(a1)                    // Load byte from a1 into a0 to use as argument for uartSendByte
 
 internalNextChar: 
-    call ra, uartSendByte   // Send out byte
-    addi a1, a1, 1          // Increment to next byte/char in string
-    lb a0, 0(a1)            // load next byte into a0 to use as arugment for uartSendByte
+    call ra, uartSendByte           // Send out byte
+    addi a1, a1, 1                  // Increment to next byte/char in string
+    lb a0, 0(a1)                    // load next byte into a0 to use as arugment for uartSendByte
     bne a0, zero, internalNextChar  // wrap around and send byte until there is no character loaded into a0
     
     add ra,zero,t2 # restore caller address 
@@ -142,4 +152,8 @@ internalNextChar:
 .section .data 
 
 WELCOME: 
-.string "\nHELLO TERMINAL !!!\n"
+.string "$$$"
+# .string "\nHELLO TERMINAL !!!\n"
+
+ECHO:
+.string "+\r\n"
