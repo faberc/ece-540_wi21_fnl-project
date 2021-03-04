@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_3" LaunchPart="xc7a100tcsg324-1" LaunchTime="1614808805">
+<GenRun Id="synth_3" LaunchPart="xc7a100tcsg324-1" LaunchTime="1614814941">
   <File Type="PA-TCL" Name="rvfpga.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="rvfpga_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="rvfpga_reports.tcl"/>
@@ -1717,9 +1717,10 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="clk_gen_75M"/>
-  <BlockFileSet Type="BlockSrcs" Name="ila_0"/>
 </GenRun>

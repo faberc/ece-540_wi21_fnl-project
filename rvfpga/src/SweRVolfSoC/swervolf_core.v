@@ -100,7 +100,7 @@ module swervolf_core
     // output wire         io_int_ack,
 
     // Debounced Switches Output
-    output reg [15:0]  sw_db,
+    output wire [15:0]  sw_db,
 
     // Rope Game Signals
     output wire [9:0]  rope_loc,
@@ -404,34 +404,34 @@ module swervolf_core
         .o_pmod_rstn(ble_rstn)              // pin 8
     );
 
-    wire zero;
-    wire [7:0] zeros8;
-    wire [31:0] zeros32;
-    assign zero = 1'b0;
-    assign zeros8 = 8'b0;
-    assign zeros32 = 32'b0;
+    // wire zero;
+    // wire [7:0] zeros8;
+    // wire [31:0] zeros32;
+    // assign zero = 1'b0;
+    // assign zeros8 = 8'b0;
+    // assign zeros32 = 32'b0;
 
-    ila_0 ila_test (
-        .clk(clk), // input wire clk
+    // ila_0 ila_test (
+    //     .clk(clk), // input wire clk
 
 
-        .probe0(rx_done),       // input wire [0:0]  probe0  
-        .probe1(drdy_tick),     // input wire [0:0]  probe1 
-        .probe2(parsed_tick),   // input wire [0:0]  probe2 
-        .probe3(zero),        // input wire [0:0]  probe3 
-        .probe4(zero),        // input wire [0:0]  probe4 
-        .probe5(zero),        // input wire [0:0]  probe5 
-        .probe6(zero),        // input wire [0:0]  probe6 
-        .probe7(zero),        // input wire [0:0]  probe7 
-        .probe8(rx_data),       // input wire [7:0]  probe8 
-        .probe9(zeros8),        // input wire [7:0]  probe9 
-        .probe10(zeros8),      // input wire [7:0]  probe10 
-        .probe11(zeros8),      // input wire [7:0]  probe11 
-        .probe12(ascii_out[31:0]),      // input wire [31:0]  probe12 
-        .probe13(ascii_out[63:32]),      // input wire [31:0]  probe13 
-        .probe14(ble_accel_val),      // input wire [31:0]  probe14 
-        .probe15(zeros32)       // input wire [31:0]  probe15
-    );
+    //     .probe0(rx_done),       // input wire [0:0]  probe0  
+    //     .probe1(drdy_tick),     // input wire [0:0]  probe1 
+    //     .probe2(parsed_tick),   // input wire [0:0]  probe2 
+    //     .probe3(zero),        // input wire [0:0]  probe3 
+    //     .probe4(zero),        // input wire [0:0]  probe4 
+    //     .probe5(zero),        // input wire [0:0]  probe5 
+    //     .probe6(zero),        // input wire [0:0]  probe6 
+    //     .probe7(zero),        // input wire [0:0]  probe7 
+    //     .probe8(rx_data),       // input wire [7:0]  probe8 
+    //     .probe9(zeros8),        // input wire [7:0]  probe9 
+    //     .probe10(zeros8),      // input wire [7:0]  probe10 
+    //     .probe11(zeros8),      // input wire [7:0]  probe11 
+    //     .probe12(ascii_out[31:0]),      // input wire [31:0]  probe12 
+    //     .probe13(ascii_out[63:32]),      // input wire [31:0]  probe13 
+    //     .probe14(ble_accel_val),      // input wire [31:0]  probe14 
+    //     .probe15(zeros32)       // input wire [31:0]  probe15
+    // );
 
 //    wire [7:0] 		       uart_2_rdt;
 //    assign wb_s2m_uart_2_dat = {24'd0, uart_2_rdt};

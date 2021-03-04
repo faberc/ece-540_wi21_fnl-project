@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_3" LaunchPart="xc7a100tcsg324-1" LaunchTime="1614808806">
+<GenRun Id="impl_3" LaunchPart="xc7a100tcsg324-1" LaunchTime="1614815762">
+  <File Type="OPT-HWDEF" Name="rvfpga.hwdef"/>
+  <File Type="ROUTE-BUS-SKEW" Name="rvfpga_bus_skew_routed.rpt"/>
+  <File Type="PA-DCP" Name="rvfpga.dcp"/>
   <File Type="BITSTR-BMM" Name="rvfpga_bd.bmm"/>
   <File Type="OPT-METHODOLOGY-DRC" Name="rvfpga_methodology_drc_opted.rpt"/>
   <File Type="INIT-TIMING" Name="rvfpga_timing_summary_init.rpt"/>
@@ -10,7 +13,6 @@
   <File Type="ROUTE-PWR-SUM" Name="rvfpga_power_summary_routed.pb"/>
   <File Type="REPORTS-TCL" Name="rvfpga_reports.tcl"/>
   <File Type="OPT-DRC" Name="rvfpga_drc_opted.rpt"/>
-  <File Type="OPT-HWDEF" Name="rvfpga.hwdef"/>
   <File Type="PWROPT-DCP" Name="rvfpga_pwropt.dcp"/>
   <File Type="PWROPT-DRC" Name="rvfpga_drc_pwropted.rpt"/>
   <File Type="PWROPT-TIMING" Name="rvfpga_timing_summary_pwropted.rpt"/>
@@ -48,7 +50,6 @@
   <File Type="ROUTE-TIMING-RPX" Name="rvfpga_timing_summary_routed.rpx"/>
   <File Type="ROUTE-SIMILARITY" Name="rvfpga_incremental_reuse_routed.rpt"/>
   <File Type="ROUTE-CLK" Name="rvfpga_clock_utilization_routed.rpt"/>
-  <File Type="ROUTE-BUS-SKEW" Name="rvfpga_bus_skew_routed.rpt"/>
   <File Type="ROUTE-BUS-SKEW-PB" Name="rvfpga_bus_skew_routed.pb"/>
   <File Type="ROUTE-BUS-SKEW-RPX" Name="rvfpga_bus_skew_routed.rpx"/>
   <File Type="POSTROUTE-PHYSOPT-DCP" Name="rvfpga_postroute_physopt.dcp"/>
@@ -1783,7 +1784,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019">
+      <Desc>Default settings for Implementation.</Desc>
+    </StratHandle>
     <Step Id="init_design"/>
     <Step Id="opt_design"/>
     <Step Id="power_opt_design"/>
@@ -1795,5 +1798,4 @@
     <Step Id="write_bitstream"/>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="clk_gen_75M"/>
-  <BlockFileSet Type="BlockSrcs" Name="ila_0"/>
 </GenRun>
