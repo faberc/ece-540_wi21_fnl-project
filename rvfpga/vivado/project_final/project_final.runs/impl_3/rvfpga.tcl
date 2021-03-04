@@ -68,8 +68,10 @@ set rc [catch {
   set_param tcl.collectionResultDisplayLimit 0
   set_param chipscope.maxJobs 2
   set_param xicom.use_bs_reader 1
-  reset_param project.defaultXPMLibraries 
-  open_checkpoint C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/impl_3/rvfpga.dcp
+  create_project -in_memory -part xc7a100tcsg324-1
+  set_property board_part digilentinc.com:nexys-a7-100t:part0:1.0 [current_project]
+  set_property design_mode GateLvl [current_fileset]
+  set_param project.singleFileAddWarning.threshold 0
   set_property webtalk.parent_dir C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.cache/wt [current_project]
   set_property parent.project_path C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.xpr [current_project]
   set_property ip_repo_paths {
@@ -80,6 +82,11 @@ set rc [catch {
   set_property ip_output_repo C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES XPM_CDC [current_project]
+  add_files -quiet C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/synth_3/rvfpga.dcp
+  read_ip -quiet C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/clk_gen_75M/clk_gen_75M.xci
+  read_xdc C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/liteDRAM.xdc
+  read_xdc C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/rvfpga.xdc
+  link_design -top rvfpga -part xc7a100tcsg324-1
   close_msg_db -file init_design.pb
 } RESULT]
 if {$rc} {

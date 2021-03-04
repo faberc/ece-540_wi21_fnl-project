@@ -328,20 +328,20 @@ module swervolf_core
       .dsr_pad_i (1'b0),
       .ri_pad_i  (1'b0),
       .dcd_pad_i (1'b0),
-      .baud_o (s_tick)
+      .baud_o (/*s_tick*/)
       );
 
     // Adding UART RX Interpreter
     wire        s_tick;
-    // wire [10:0] divisor;
-    // assign      divisor = 54;        // Divisor value for 115200 baud.
+    wire [10:0] divisor;
+    assign      divisor = 27;        // Divisor value for 115200 baud.
 
-    // baud_gen baud_115200 (
-    //     .clk(clk), 
-    //     .reset(~rst_n),         // system clock and reset
-    //     .dvsr(divisor),         // divisor for the clock divider -- [100MHz / (16 * 115200)] = 54
-    //     .tick(s_tick)        // one cycle sampling clock signal
-    // );
+    baud_gen baud_115200 (
+        .clk(clk), 
+        .reset(~rst_n),         // system clock and reset
+        .dvsr(divisor),         // divisor for the clock divider -- [100MHz / (16 * 115200)] = 54
+        .tick(s_tick)        // one cycle sampling clock signal
+    );
 
     wire rx_done;
     wire [7:0] rx_data;

@@ -77,6 +77,7 @@ read_verilog -library xil_defaultlib -sv {
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/PulpPlatform/pulp-platform.org__axi_0.23.0-r1/src/axi_intf.sv
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/PulpPlatform/pulp-platform.org__axi_0.23.0-r1/src/axi_mux.sv
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/PulpPlatform/pulp-platform.org__axi_0.23.0-r1/src/axi_xbar.sv
+  C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/OtherSources/uart_rx/baud_gen.sv
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/SweRVEh1CoreComplex/lib/beh_lib.sv
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/bscanTAP/bscan_tap.sv
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/PulpPlatform/pulp-platform.org__common_cells_1.16.4/src/cdc_fifo_gray.sv
