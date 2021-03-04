@@ -4,7 +4,7 @@
 <!-- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.        -->
 
 <hwsession version="1" minor="2">
-  <device name="xc7a100t_0" gui_info=""/>
+  <device name="xc7a100t_0" gui_info="dashboard1=hw_ila_1[xc7a100t_0/hw_ila_1/Settings=ILA_SETTINGS_1;xc7a100t_0/hw_ila_1/Trigger Setup=ILA_TRIGGER_1;xc7a100t_0/hw_ila_1/Capture Setup=ILA_CAPTURE_1;xc7a100t_0/hw_ila_1/Status=ILA_STATUS_1;xc7a100t_0/hw_ila_1/Waveform=ILA_WAVE_1;]"/>
   <ObjectList object_type="hw_device" gui_info="">
     <Object name="xc7a100t_0" gui_info="">
       <Properties Property="FULL_PROBES.FILE" value="$_project_name_.runs/impl_3/rvfpga.ltx"/>
@@ -18,12 +18,17 @@
       <Properties Property="CONTROL.TRIGGER_CONDITION" value="AND"/>
       <Properties Property="CORE_REFRESH_RATE_MS" value="500"/>
     </Object>
+    <Object name="u_ila_0" gui_info="">
+      <Properties Property="CONTROL.TRIGGER_CONDITION" value="AND"/>
+      <Properties Property="CORE_REFRESH_RATE_MS" value="500"/>
+    </Object>
   </ObjectList>
   <ObjectList object_type="hw_probe" gui_info="">
-    <Object name="swervolf/rx_done" gui_info="Trigger Setup=0"/>
+    <Object name="swervolf/rx_done" gui_info=""/>
+    <Object name="swervolf/s_tick" gui_info="Trigger Setup=0"/>
   </ObjectList>
   <probeset name="hw project" active="false">
-    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
         <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
@@ -76,6 +81,90 @@
       </nets>
     </probe>
     <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq64&apos;hXXXX_XXXX_XXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq64&apos;hXXXX_XXXX_XXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe1[63:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq64&apos;hXXXX_XXXX_XXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="swervolf/ascii_out[63]"/>
+        <net name="swervolf/ascii_out[62]"/>
+        <net name="swervolf/ascii_out[61]"/>
+        <net name="swervolf/ascii_out[60]"/>
+        <net name="swervolf/ascii_out[59]"/>
+        <net name="swervolf/ascii_out[58]"/>
+        <net name="swervolf/ascii_out[57]"/>
+        <net name="swervolf/ascii_out[56]"/>
+        <net name="swervolf/ascii_out[55]"/>
+        <net name="swervolf/ascii_out[54]"/>
+        <net name="swervolf/ascii_out[53]"/>
+        <net name="swervolf/ascii_out[52]"/>
+        <net name="swervolf/ascii_out[51]"/>
+        <net name="swervolf/ascii_out[50]"/>
+        <net name="swervolf/ascii_out[49]"/>
+        <net name="swervolf/ascii_out[48]"/>
+        <net name="swervolf/ascii_out[47]"/>
+        <net name="swervolf/ascii_out[46]"/>
+        <net name="swervolf/ascii_out[45]"/>
+        <net name="swervolf/ascii_out[44]"/>
+        <net name="swervolf/ascii_out[43]"/>
+        <net name="swervolf/ascii_out[42]"/>
+        <net name="swervolf/ascii_out[41]"/>
+        <net name="swervolf/ascii_out[40]"/>
+        <net name="swervolf/ascii_out[39]"/>
+        <net name="swervolf/ascii_out[38]"/>
+        <net name="swervolf/ascii_out[37]"/>
+        <net name="swervolf/ascii_out[36]"/>
+        <net name="swervolf/ascii_out[35]"/>
+        <net name="swervolf/ascii_out[34]"/>
+        <net name="swervolf/ascii_out[33]"/>
+        <net name="swervolf/ascii_out[32]"/>
+        <net name="swervolf/ascii_out[31]"/>
+        <net name="swervolf/ascii_out[30]"/>
+        <net name="swervolf/ascii_out[29]"/>
+        <net name="swervolf/ascii_out[28]"/>
+        <net name="swervolf/ascii_out[27]"/>
+        <net name="swervolf/ascii_out[26]"/>
+        <net name="swervolf/ascii_out[25]"/>
+        <net name="swervolf/ascii_out[24]"/>
+        <net name="swervolf/ascii_out[23]"/>
+        <net name="swervolf/ascii_out[22]"/>
+        <net name="swervolf/ascii_out[21]"/>
+        <net name="swervolf/ascii_out[20]"/>
+        <net name="swervolf/ascii_out[19]"/>
+        <net name="swervolf/ascii_out[18]"/>
+        <net name="swervolf/ascii_out[17]"/>
+        <net name="swervolf/ascii_out[16]"/>
+        <net name="swervolf/ascii_out[15]"/>
+        <net name="swervolf/ascii_out[14]"/>
+        <net name="swervolf/ascii_out[13]"/>
+        <net name="swervolf/ascii_out[12]"/>
+        <net name="swervolf/ascii_out[11]"/>
+        <net name="swervolf/ascii_out[10]"/>
+        <net name="swervolf/ascii_out[9]"/>
+        <net name="swervolf/ascii_out[8]"/>
+        <net name="swervolf/ascii_out[7]"/>
+        <net name="swervolf/ascii_out[6]"/>
+        <net name="swervolf/ascii_out[5]"/>
+        <net name="swervolf/ascii_out[4]"/>
+        <net name="swervolf/ascii_out[3]"/>
+        <net name="swervolf/ascii_out[2]"/>
+        <net name="swervolf/ascii_out[1]"/>
+        <net name="swervolf/ascii_out[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
         <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
@@ -137,7 +226,7 @@
         <Option Id="DISPLAY_VISIBILITY" value=""/>
         <Option Id="HW_ILA" value="hw_ila_1"/>
         <Option Id="LINK_TO_WAVEFORM" value="1"/>
-        <Option Id="MAP" value="probe14[31:0]"/>
+        <Option Id="MAP" value="probe0[31:0]"/>
         <Option Id="NAME.CUSTOM" value=""/>
         <Option Id="NAME.SELECT" value="Long"/>
         <Option Id="SOURCE" value="netlist"/>
@@ -189,7 +278,7 @@
         <Option Id="DISPLAY_VISIBILITY" value=""/>
         <Option Id="HW_ILA" value="hw_ila_1"/>
         <Option Id="LINK_TO_WAVEFORM" value="1"/>
-        <Option Id="MAP" value="probe1[0]"/>
+        <Option Id="MAP" value="probe3[0]"/>
         <Option Id="NAME.CUSTOM" value=""/>
         <Option Id="NAME.SELECT" value="Long"/>
         <Option Id="SOURCE" value="netlist"/>
@@ -231,7 +320,7 @@
         <Option Id="DISPLAY_VISIBILITY" value=""/>
         <Option Id="HW_ILA" value="hw_ila_1"/>
         <Option Id="LINK_TO_WAVEFORM" value="1"/>
-        <Option Id="MAP" value="probe8[7:0]"/>
+        <Option Id="MAP" value="probe2[7:0]"/>
         <Option Id="NAME.CUSTOM" value=""/>
         <Option Id="NAME.SELECT" value="Long"/>
         <Option Id="SOURCE" value="netlist"/>
@@ -252,6 +341,27 @@
     <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_1"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe4[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="swervolf/rx_done"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
         <Option Id="COMPARE_VALUE.0" value="eq1&apos;b1"/>
         <Option Id="DISPLAY_AS_ENUM" value="1"/>
         <Option Id="DISPLAY_HINT" value=""/>
@@ -259,7 +369,7 @@
         <Option Id="DISPLAY_VISIBILITY" value=""/>
         <Option Id="HW_ILA" value="hw_ila_1"/>
         <Option Id="LINK_TO_WAVEFORM" value="1"/>
-        <Option Id="MAP" value="probe0[0]"/>
+        <Option Id="MAP" value="probe5[0]"/>
         <Option Id="NAME.CUSTOM" value=""/>
         <Option Id="NAME.SELECT" value="Long"/>
         <Option Id="SOURCE" value="netlist"/>
@@ -267,7 +377,7 @@
         <Option Id="WAVEFORM_STYLE" value="Digital"/>
       </probeOptions>
       <nets>
-        <net name="swervolf/rx_done"/>
+        <net name="swervolf/s_tick"/>
       </nets>
     </probe>
     <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
@@ -375,7 +485,7 @@
         <net name="swervolf/zero_4"/>
       </nets>
     </probe>
-    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
         <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
@@ -427,7 +537,7 @@
         <net name="swervolf/zeros32[0]"/>
       </nets>
     </probe>
-    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq8&apos;hXX"/>
         <Option Id="COMPARE_VALUE.0" value="eq8&apos;hXX"/>
@@ -455,7 +565,7 @@
         <net name="swervolf/zeros8[0]"/>
       </nets>
     </probe>
-    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq8&apos;hXX"/>
         <Option Id="COMPARE_VALUE.0" value="eq8&apos;hXX"/>
@@ -483,7 +593,7 @@
         <net name="swervolf/zeros8_1[0]"/>
       </nets>
     </probe>
-    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq8&apos;hXX"/>
         <Option Id="COMPARE_VALUE.0" value="eq8&apos;hXX"/>

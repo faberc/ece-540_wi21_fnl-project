@@ -2,8 +2,8 @@
 # Vivado v2019.2 (64-bit)
 # SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
 # IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
-# Start of session at: Wed Mar  3 15:42:24 2021
-# Process ID: 93564
+# Start of session at: Wed Mar  3 16:59:43 2021
+# Process ID: 60488
 # Current directory: C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/synth_3
 # Command line: vivado.exe -log rvfpga.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source rvfpga.tcl
 # Log file: C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/synth_3/rvfpga.vds
@@ -22,7 +22,7 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 32132 
+INFO: Helper process launched with PID 26860 
 WARNING: [Synth 8-1921] elaboration system task error violates IEEE 1800 syntax [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/SweRVEh1CoreComplex/lib/beh_lib.sv:162]
 WARNING: [Synth 8-2507] parameter declaration becomes local in axi2wb with formal parameter declaration list [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/AxiToWb/axi2wb.v:71]
 WARNING: [Synth 8-2507] parameter declaration becomes local in axi2wb with formal parameter declaration list [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/AxiToWb/axi2wb.v:81]
@@ -32,7 +32,7 @@ WARNING: [Synth 8-2369] multiple packed dimensions are not allowed in this mode 
 WARNING: [Synth 8-2369] multiple packed dimensions are not allowed in this mode of verilog [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Peripherals/SystemController/swervolf_syscon.v:385]
 WARNING: [Synth 8-2507] parameter declaration becomes local in wb_mux with formal parameter declaration list [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon_1.2.2/wb_mux.v:87]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1031.941 ; gain = 241.508
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1031.148 ; gain = 241.406
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'rvfpga' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/rvfpga.sv:28]
 	Parameter bootrom_file bound to: (null) - type: string 
@@ -66,8 +66,8 @@ INFO: [Synth 8-6157] synthesizing module 'PLLE2_BASE' [C:/Xilinx/Vivado/2019.2/s
 	Parameter STARTUP_WAIT bound to: FALSE - type: string 
 INFO: [Synth 8-6155] done synthesizing module 'PLLE2_BASE' (1#1) [C:/Xilinx/Vivado/2019.2/scripts/rt/data/unisim_comp.v:61495]
 INFO: [Synth 8-6155] done synthesizing module 'clk_gen_nexys' (2#1) [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/clk_gen_nexys.v:24]
-INFO: [Synth 8-6157] synthesizing module 'clk_gen_75M' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/synth_3/.Xil/Vivado-93564-DESKTOP-HHTTKMG/realtime/clk_gen_75M_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'clk_gen_75M' (3#1) [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/synth_3/.Xil/Vivado-93564-DESKTOP-HHTTKMG/realtime/clk_gen_75M_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'clk_gen_75M' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/synth_3/.Xil/Vivado-60488-DESKTOP-HHTTKMG/realtime/clk_gen_75M_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_gen_75M' (3#1) [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/synth_3/.Xil/Vivado-60488-DESKTOP-HHTTKMG/realtime/clk_gen_75M_stub.v:5]
 WARNING: [Synth 8-7023] instance 'clk_gen_75M' of module 'clk_gen_75M' has 5 connections declared, but only 3 given [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/rvfpga.sv:102]
 INFO: [Synth 8-6157] synthesizing module 'AXI_BUS' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/PulpPlatform/pulp-platform.org__axi_0.23.0-r1/src/axi_intf.sv:19]
 	Parameter AXI_ADDR_WIDTH bound to: 32 - type: integer 
@@ -1912,7 +1912,7 @@ WARNING: [Synth 8-3331] design dma_ctrl has unconnected port dma_axi_arburst[1]
 WARNING: [Synth 8-3331] design dma_ctrl has unconnected port dma_axi_arburst[0]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1529.668 ; gain = 739.234
+Finished RTL Elaboration : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1527.613 ; gain = 737.871
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1925,12 +1925,12 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1529.668 ; gain = 739.234
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1548.930 ; gain = 759.188
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1529.668 ; gain = 739.234
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1548.930 ; gain = 759.188
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1529.668 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1548.930 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 57 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -1953,7 +1953,7 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/rvfpga_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.040 . Memory (MB): peak = 1804.516 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.040 . Memory (MB): peak = 1803.180 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 20 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 16 instances
@@ -1961,9 +1961,9 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS(x2)): 1 instance 
   PLLE2_BASE => PLLE2_ADV: 1 instance 
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.387 . Memory (MB): peak = 1804.516 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.378 . Memory (MB): peak = 1803.180 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:01:00 ; elapsed = 00:00:59 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished Constraint Validation : Time (s): cpu = 00:01:00 ; elapsed = 00:01:00 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5580] Multithreading enabled for synth_design using a maximum of 2 processes.
 ---------------------------------------------------------------------------------
@@ -1971,7 +1971,7 @@ Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:01:00 ; elapsed = 00:00:59 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:00 ; elapsed = 00:01:00 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -1986,7 +1986,7 @@ Applied set_property MARK_DEBUG = true for swervolf/s_tick. (constraint file  C:
 Applied set_property MARK_DEBUG = true for swervolf/drdy_tick. (constraint file  C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/rvfpga.xdc, line 316).
 Applied set_property DONT_TOUCH = true for clk_gen_75M. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:00 ; elapsed = 00:01:00 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:00 ; elapsed = 00:01:00 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/LiteDRAM/litedram_core.v:4591]
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/LiteDRAM/litedram_core.v:7071]
@@ -2152,7 +2152,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'vgaRed_reg' [C:/Users/Chuck
 WARNING: [Synth 8-327] inferring latch for variable 'vgaGreen_reg' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/final_proj/colorizer2.sv:36]
 WARNING: [Synth 8-327] inferring latch for variable 'vgaBlue_reg' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/final_proj/colorizer2.sv:36]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:29 ; elapsed = 00:01:30 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:31 ; elapsed = 00:01:33 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'swervolf/swerv_eh1/swerv/dbg/axi_bready_ff' (rvdffs) to 'swervolf/swerv_eh1/swerv/dbg/axi_rready_ff'
 INFO: [Synth 8-223] decloning instance 'swervolf/swerv_eh1/swerv/exu/div_e1/dividend_c' (rvtwoscomp) to 'swervolf/swerv_eh1/swerv/exu/div_e1/q_ff_c'
@@ -16221,7 +16221,7 @@ WARNING: [Synth 8-3332] Sequential element (i_atop_filter/FSM_sequential_w_state
 WARNING: [Synth 8-3332] Sequential element (i_atop_filter/FSM_sequential_w_state_q_reg[1]) is unused and will be removed from module axi_err_slv__1.
 WARNING: [Synth 8-3332] Sequential element (i_atop_filter/FSM_sequential_w_state_q_reg[0]) is unused and will be removed from module axi_err_slv__1.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:05:56 ; elapsed = 00:07:17 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:05:49 ; elapsed = 00:07:16 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -16348,7 +16348,7 @@ Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-3321] set_false_path : Empty from list for constraint at line 8 of C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/rvfpga.xdc. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/rvfpga.xdc:8]
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:06:16 ; elapsed = 00:07:39 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:06:29 ; elapsed = 00:07:58 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
@@ -16356,7 +16356,7 @@ Start Timing Optimization
 WARNING: [Synth 8-3332] Sequential element (axi_clk/clkhdr/en_ff_reg) is unused and will be removed from module ifu_mem_ctl.
 WARNING: [Synth 8-3332] Sequential element (dma_bus_cgc/clkhdr/en_ff_reg) is unused and will be removed from module dma_ctrl.
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:07:19 ; elapsed = 00:08:42 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished Timing Optimization : Time (s): cpu = 00:08:12 ; elapsed = 00:09:43 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -16540,7 +16540,7 @@ INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM bloc
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/SweRVEh1CoreComplex/lib/beh_lib.sv:37]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/SweRVEh1CoreComplex/lib/beh_lib.sv:37]
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:07:58 ; elapsed = 00:09:40 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished Technology Mapping : Time (s): cpu = 00:08:54 ; elapsed = 00:10:44 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -16617,13 +16617,13 @@ WARNING: [Synth 8-3295] tying undriven pin swervolfi_35119:en to constant 0
 WARNING: [Synth 8-3295] tying undriven pin swervolfi_35120:a to constant 0
 WARNING: [Synth 8-3295] tying undriven pin swervolfi_35120:en to constant 0
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:08:13 ; elapsed = 00:09:55 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished IO Insertion : Time (s): cpu = 00:09:08 ; elapsed = 00:10:58 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:08:13 ; elapsed = 00:09:55 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished Renaming Generated Instances : Time (s): cpu = 00:09:08 ; elapsed = 00:10:58 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -16642,25 +16642,25 @@ Report Check Netlist:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:08:28 ; elapsed = 00:10:11 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:09:29 ; elapsed = 00:11:20 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:08:30 ; elapsed = 00:10:12 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished Renaming Generated Ports : Time (s): cpu = 00:09:30 ; elapsed = 00:11:21 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:08:31 ; elapsed = 00:10:14 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished Handling Custom Attributes : Time (s): cpu = 00:09:32 ; elapsed = 00:11:23 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:08:32 ; elapsed = 00:10:14 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished Renaming Generated Nets : Time (s): cpu = 00:09:33 ; elapsed = 00:11:24 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -19873,19 +19873,19 @@ Report Instance Areas:
 |3120  |  tap                                                                 |bscan_tap                           |   229|
 +------+----------------------------------------------------------------------+------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:08:32 ; elapsed = 00:10:15 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Finished Writing Synthesis Report : Time (s): cpu = 00:09:33 ; elapsed = 00:11:24 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 254 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:07:39 ; elapsed = 00:09:53 . Memory (MB): peak = 1804.516 ; gain = 739.234
-Synthesis Optimization Complete : Time (s): cpu = 00:08:32 ; elapsed = 00:10:16 . Memory (MB): peak = 1804.516 ; gain = 1014.082
+Synthesis Optimization Runtime : Time (s): cpu = 00:08:40 ; elapsed = 00:11:02 . Memory (MB): peak = 1803.180 ; gain = 759.188
+Synthesis Optimization Complete : Time (s): cpu = 00:09:33 ; elapsed = 00:11:26 . Memory (MB): peak = 1803.180 ; gain = 1013.438
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1804.516 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1803.180 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 1697 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers.
 INFO: [Opt 31-138] Pushed 4 inverter(s) to 83 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.038 . Memory (MB): peak = 1804.516 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 1803.180 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 170 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 32 instances
@@ -19900,13 +19900,13 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 728 Infos, 410 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:09:02 ; elapsed = 00:10:47 . Memory (MB): peak = 1804.516 ; gain = 1298.746
+synth_design: Time (s): cpu = 00:10:05 ; elapsed = 00:11:59 . Memory (MB): peak = 1803.180 ; gain = 1297.137
 INFO: [Common 17-600] The following parameters have non-default value.
 tcl.collectionResultDisplayLimit
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.033 . Memory (MB): peak = 1804.516 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.045 . Memory (MB): peak = 1803.180 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/synth_3/rvfpga.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:22 ; elapsed = 00:00:16 . Memory (MB): peak = 1804.516 ; gain = 0.000
+write_checkpoint: Time (s): cpu = 00:00:29 ; elapsed = 00:00:19 . Memory (MB): peak = 1803.180 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_utilization -file rvfpga_utilization_synth.rpt -pb rvfpga_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Mar  3 15:53:37 2021...
+INFO: [Common 17-206] Exiting Vivado at Wed Mar  3 17:12:12 2021...
