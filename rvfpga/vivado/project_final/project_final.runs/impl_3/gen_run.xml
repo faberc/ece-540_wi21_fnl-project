@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_3" LaunchPart="xc7a100tcsg324-1" LaunchTime="1614808806">
+<GenRun Id="impl_3" LaunchPart="xc7a100tcsg324-1" LaunchTime="1614881969">
   <File Type="BITSTR-BMM" Name="rvfpga_bd.bmm"/>
   <File Type="OPT-METHODOLOGY-DRC" Name="rvfpga_methodology_drc_opted.rpt"/>
   <File Type="INIT-TIMING" Name="rvfpga_timing_summary_init.rpt"/>
@@ -509,6 +509,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../src/SweRVolfSoC/OtherSources/uart_rx/baud_gen.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../../src/SweRVolfSoC/SweRVEh1CoreComplex/lib/beh_lib.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -886,14 +893,6 @@
     </File>
     <File Path="$PPRDIR/../../src/rvfpga.sv">
       <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../../src/SweRVolfSoC/OtherSources/uart_rx/baud_gen.sv">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -1783,7 +1782,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019">
+      <Desc>Default settings for Implementation.</Desc>
+    </StratHandle>
     <Step Id="init_design"/>
     <Step Id="opt_design"/>
     <Step Id="power_opt_design"/>
@@ -1795,5 +1796,4 @@
     <Step Id="write_bitstream"/>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="clk_gen_75M"/>
-  <BlockFileSet Type="BlockSrcs" Name="ila_0"/>
 </GenRun>

@@ -17,6 +17,7 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_param tcl.collectionResultDisplayLimit 0
 set_param chipscope.maxJobs 2
 set_param xicom.use_bs_reader 1
 create_project -in_memory -part xc7a100tcsg324-1
@@ -27,7 +28,7 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.cache/wt [current_project]
 set_property parent.project_path C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.xpr [current_project]
-set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
+set_property XPM_LIBRARIES XPM_CDC [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part digilentinc.com:nexys-a7-100t:part0:1.0 [current_project]
@@ -76,6 +77,7 @@ read_verilog -library xil_defaultlib -sv {
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/PulpPlatform/pulp-platform.org__axi_0.23.0-r1/src/axi_intf.sv
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/PulpPlatform/pulp-platform.org__axi_0.23.0-r1/src/axi_mux.sv
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/PulpPlatform/pulp-platform.org__axi_0.23.0-r1/src/axi_xbar.sv
+  C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/OtherSources/uart_rx/baud_gen.sv
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/SweRVEh1CoreComplex/lib/beh_lib.sv
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/bscanTAP/bscan_tap.sv
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/PulpPlatform/pulp-platform.org__common_cells_1.16.4/src/cdc_fifo_gray.sv
@@ -176,12 +178,6 @@ read_ip -quiet C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_fina
 set_property used_in_implementation false [get_files -all c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/clk_gen_75M/clk_gen_75M_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/clk_gen_75M/clk_gen_75M.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/clk_gen_75M/clk_gen_75M_ooc.xdc]
-
-read_ip -quiet C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/ila_0/ila_0.xci
-set_property used_in_synthesis false [get_files -all c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila_impl.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila_impl.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/ila_0/ila_0_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date         : Wed Mar  3 14:15:29 2021
+| Date         : Thu Mar  4 10:35:04 2021
 | Host         : DESKTOP-HHTTKMG running 64-bit major release  (build 9200)
 | Command      : report_drc -file rvfpga_drc_opted.rpt -pb rvfpga_drc_opted.pb -rpx rvfpga_drc_opted.rpx
 | Design       : rvfpga
@@ -24,7 +24,7 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 126
+             Violations found: 127
 +-------------+----------+-------------------------------------------------------------+------------+
 | Rule        | Severity | Description                                                 | Violations |
 +-------------+----------+-------------------------------------------------------------+------------+
@@ -36,7 +36,7 @@ Table of Contents
 | DPOP-1      | Warning  | PREG Output pipelining                                      | 4          |
 | DPOP-2      | Warning  | MREG Output pipelining                                      | 4          |
 | DPOR-1      | Warning  | Asynchronous load check                                     | 16         |
-| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 47         |
+| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 48         |
 | REQP-1839   | Warning  | RAMB36 async control check                                  | 20         |
 | REQP-1840   | Warning  | RAMB18 async control check                                  | 20         |
 | RPBF-3      | Warning  | IO port buffering is incomplete                             | 1          |
@@ -360,166 +360,172 @@ Related violations: <none>
 PLHOLDVIO-2#20 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT clk_gen/dout[1]_i_2__221 is driving clock pin of 32 cells. This could lead to large hold time violations. Involved cells are:
-swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[4].BHT_CLK_GROUP[0].BHT_FLOPS[1].bht_bank/dffs/dout_reg[0] (the first 15 of 32 listed)
+swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[1].bht_bank/dffs/dout_reg[0] (the first 15 of 32 listed)
 Related violations: <none>
 
 PLHOLDVIO-2#21 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT clk_gen/dout[1]_i_2__222 is driving clock pin of 32 cells. This could lead to large hold time violations. Involved cells are:
-swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[1].bht_bank/dffs/dout_reg[0] (the first 15 of 32 listed)
+swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[1].bht_bank/dffs/dout_reg[0] (the first 15 of 32 listed)
 Related violations: <none>
 
 PLHOLDVIO-2#22 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT clk_gen/dout[1]_i_2__223 is driving clock pin of 32 cells. This could lead to large hold time violations. Involved cells are:
-swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[1].bht_bank/dffs/dout_reg[0] (the first 15 of 32 listed)
+swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[1].bht_bank/dffs/dout_reg[0] (the first 15 of 32 listed)
 Related violations: <none>
 
 PLHOLDVIO-2#23 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT clk_gen/dout[1]_i_2__224 is driving clock pin of 32 cells. This could lead to large hold time violations. Involved cells are:
-swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[1].bht_bank/dffs/dout_reg[0] (the first 15 of 32 listed)
+swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[1].bht_bank/dffs/dout_reg[0] (the first 15 of 32 listed)
 Related violations: <none>
 
 PLHOLDVIO-2#24 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT clk_gen/dout[1]_i_2__225 is driving clock pin of 32 cells. This could lead to large hold time violations. Involved cells are:
+swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[14].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[15].bht_bank/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[1].bht_bank/dffs/dout_reg[0] (the first 15 of 32 listed)
+Related violations: <none>
+
+PLHOLDVIO-2#25 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT clk_gen/dout[1]_i_2__94 is driving clock pin of 2 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/swerv/dbg/axi_bresp_ff/dout_reg[1], swervolf/swerv_eh1/swerv/dbg/axi_rresp_ff/dout_reg[1]
 Related violations: <none>
 
-PLHOLDVIO-2#25 Warning
+PLHOLDVIO-2#26 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT clk_gen/dout[2]_i_2__105 is driving clock pin of 24 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[1].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[1].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[2].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[2].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[2].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[3].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[3].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[3].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[4].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[4].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[4].ic_way_status/dffs/dout_reg[2] (the first 15 of 24 listed)
 Related violations: <none>
 
-PLHOLDVIO-2#26 Warning
+PLHOLDVIO-2#27 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT clk_gen/dout[2]_i_2__106 is driving clock pin of 24 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[1].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[1].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[2].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[2].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[2].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[3].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[3].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[3].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[4].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[4].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[4].ic_way_status/dffs/dout_reg[2] (the first 15 of 24 listed)
 Related violations: <none>
 
-PLHOLDVIO-2#27 Warning
+PLHOLDVIO-2#28 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT clk_gen/dout[2]_i_2__107 is driving clock pin of 24 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[1].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[1].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[2].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[2].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[2].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[3].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[3].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[3].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[4].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[4].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[4].ic_way_status/dffs/dout_reg[2] (the first 15 of 24 listed)
 Related violations: <none>
 
-PLHOLDVIO-2#28 Warning
+PLHOLDVIO-2#29 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT clk_gen/dout[2]_i_2__108 is driving clock pin of 24 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[1].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[1].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[2].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[2].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[2].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[3].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[3].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[3].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[4].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[4].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[4].ic_way_status/dffs/dout_reg[2] (the first 15 of 24 listed)
 Related violations: <none>
 
-PLHOLDVIO-2#29 Warning
+PLHOLDVIO-2#30 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT clk_gen/dout[2]_i_2__109 is driving clock pin of 24 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[1].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[1].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[2].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[2].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[2].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[3].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[3].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[3].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[4].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[4].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[4].ic_way_status/dffs/dout_reg[2] (the first 15 of 24 listed)
 Related violations: <none>
 
-PLHOLDVIO-2#30 Warning
+PLHOLDVIO-2#31 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT clk_gen/dout[2]_i_2__110 is driving clock pin of 24 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[1].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[1].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[2].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[2].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[2].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[3].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[3].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[3].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[4].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[4].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[4].ic_way_status/dffs/dout_reg[2] (the first 15 of 24 listed)
 Related violations: <none>
 
-PLHOLDVIO-2#31 Warning
+PLHOLDVIO-2#32 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT clk_gen/dout[2]_i_2__111 is driving clock pin of 24 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[1].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[1].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[2].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[2].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[2].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[3].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[3].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[3].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[4].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[4].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[4].ic_way_status/dffs/dout_reg[2] (the first 15 of 24 listed)
 Related violations: <none>
 
-PLHOLDVIO-2#32 Warning
+PLHOLDVIO-2#33 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT clk_gen/dout[2]_i_2__112 is driving clock pin of 24 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[1].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[1].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[2].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[2].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[2].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[3].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[3].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[3].ic_way_status/dffs/dout_reg[2], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[4].ic_way_status/dffs/dout_reg[0], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[4].ic_way_status/dffs/dout_reg[1], swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[4].ic_way_status/dffs/dout_reg[2] (the first 15 of 24 listed)
 Related violations: <none>
 
-PLHOLDVIO-2#33 Warning
+PLHOLDVIO-2#34 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT clk_gen/rptc_hrc[31]_i_3 is driving clock pin of 32 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/timer_ptc/rptc_hrc_reg[0], swervolf/timer_ptc/rptc_hrc_reg[10], swervolf/timer_ptc/rptc_hrc_reg[11], swervolf/timer_ptc/rptc_hrc_reg[12], swervolf/timer_ptc/rptc_hrc_reg[13], swervolf/timer_ptc/rptc_hrc_reg[14], swervolf/timer_ptc/rptc_hrc_reg[15], swervolf/timer_ptc/rptc_hrc_reg[16], swervolf/timer_ptc/rptc_hrc_reg[17], swervolf/timer_ptc/rptc_hrc_reg[18], swervolf/timer_ptc/rptc_hrc_reg[19], swervolf/timer_ptc/rptc_hrc_reg[1], swervolf/timer_ptc/rptc_hrc_reg[20], swervolf/timer_ptc/rptc_hrc_reg[21], swervolf/timer_ptc/rptc_hrc_reg[22] (the first 15 of 32 listed)
 Related violations: <none>
 
-PLHOLDVIO-2#34 Warning
+PLHOLDVIO-2#35 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT swervolf/swerv_eh1/mem/ram_core_reg_0_i_1 is driving clock pin of 3 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_0, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_1, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2
 Related violations: <none>
 
-PLHOLDVIO-2#35 Warning
+PLHOLDVIO-2#36 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__0 is driving clock pin of 3 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[1].dccm_bank/ram_core_reg_0, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[1].dccm_bank/ram_core_reg_1, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[1].dccm_bank/ram_core_reg_2
 Related violations: <none>
 
-PLHOLDVIO-2#36 Warning
+PLHOLDVIO-2#37 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__1 is driving clock pin of 3 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[2].dccm_bank/ram_core_reg_0, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[2].dccm_bank/ram_core_reg_1, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[2].dccm_bank/ram_core_reg_2
 Related violations: <none>
 
-PLHOLDVIO-2#37 Warning
+PLHOLDVIO-2#38 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__2 is driving clock pin of 3 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[3].dccm_bank/ram_core_reg_0, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[3].dccm_bank/ram_core_reg_1, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[3].dccm_bank/ram_core_reg_2
 Related violations: <none>
 
-PLHOLDVIO-2#38 Warning
+PLHOLDVIO-2#39 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__3 is driving clock pin of 3 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[4].dccm_bank/ram_core_reg_0, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[4].dccm_bank/ram_core_reg_1, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[4].dccm_bank/ram_core_reg_2
 Related violations: <none>
 
-PLHOLDVIO-2#39 Warning
+PLHOLDVIO-2#40 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__4 is driving clock pin of 3 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[5].dccm_bank/ram_core_reg_0, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[5].dccm_bank/ram_core_reg_1, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[5].dccm_bank/ram_core_reg_2
 Related violations: <none>
 
-PLHOLDVIO-2#40 Warning
+PLHOLDVIO-2#41 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__5 is driving clock pin of 3 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[6].dccm_bank/ram_core_reg_0, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[6].dccm_bank/ram_core_reg_1, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[6].dccm_bank/ram_core_reg_2
 Related violations: <none>
 
-PLHOLDVIO-2#41 Warning
+PLHOLDVIO-2#42 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__6 is driving clock pin of 3 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[7].dccm_bank/ram_core_reg_0, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[7].dccm_bank/ram_core_reg_1, swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[7].dccm_bank/ram_core_reg_2
 Related violations: <none>
 
-PLHOLDVIO-2#42 Warning
+PLHOLDVIO-2#43 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT swervolf/swerv_eh1/mem/ram_core_reg_i_1__15 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/mem/icm/ic_tag_inst/WAYS[0].ICACHE_SZ_16.ic_way_tag/ram_core_reg
 Related violations: <none>
 
-PLHOLDVIO-2#43 Warning
+PLHOLDVIO-2#44 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT swervolf/swerv_eh1/mem/ram_core_reg_i_1__16 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/mem/icm/ic_tag_inst/WAYS[1].ICACHE_SZ_16.ic_way_tag/ram_core_reg
 Related violations: <none>
 
-PLHOLDVIO-2#44 Warning
+PLHOLDVIO-2#45 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT swervolf/swerv_eh1/mem/ram_core_reg_i_1__17 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/mem/icm/ic_tag_inst/WAYS[2].ICACHE_SZ_16.ic_way_tag/ram_core_reg
 Related violations: <none>
 
-PLHOLDVIO-2#45 Warning
+PLHOLDVIO-2#46 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT swervolf/swerv_eh1/mem/ram_core_reg_i_1__18 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/swerv_eh1/mem/icm/ic_tag_inst/WAYS[3].ICACHE_SZ_16.ic_way_tag/ram_core_reg
 Related violations: <none>
 
-PLHOLDVIO-2#46 Warning
+PLHOLDVIO-2#47 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT swervolf/timer_ptc/rptc_cntr[31]_i_3 is driving clock pin of 32 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/timer_ptc/rptc_cntr_reg[0], swervolf/timer_ptc/rptc_cntr_reg[10], swervolf/timer_ptc/rptc_cntr_reg[11], swervolf/timer_ptc/rptc_cntr_reg[12], swervolf/timer_ptc/rptc_cntr_reg[13], swervolf/timer_ptc/rptc_cntr_reg[14], swervolf/timer_ptc/rptc_cntr_reg[15], swervolf/timer_ptc/rptc_cntr_reg[16], swervolf/timer_ptc/rptc_cntr_reg[17], swervolf/timer_ptc/rptc_cntr_reg[18], swervolf/timer_ptc/rptc_cntr_reg[19], swervolf/timer_ptc/rptc_cntr_reg[1], swervolf/timer_ptc/rptc_cntr_reg[20], swervolf/timer_ptc/rptc_cntr_reg[21], swervolf/timer_ptc/rptc_cntr_reg[22] (the first 15 of 32 listed)
 Related violations: <none>
 
-PLHOLDVIO-2#47 Warning
+PLHOLDVIO-2#48 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT swervolf/timer_ptc/rptc_lrc[31]_i_3 is driving clock pin of 32 cells. This could lead to large hold time violations. Involved cells are:
 swervolf/timer_ptc/rptc_lrc_reg[0], swervolf/timer_ptc/rptc_lrc_reg[10], swervolf/timer_ptc/rptc_lrc_reg[11], swervolf/timer_ptc/rptc_lrc_reg[12], swervolf/timer_ptc/rptc_lrc_reg[13], swervolf/timer_ptc/rptc_lrc_reg[14], swervolf/timer_ptc/rptc_lrc_reg[15], swervolf/timer_ptc/rptc_lrc_reg[16], swervolf/timer_ptc/rptc_lrc_reg[17], swervolf/timer_ptc/rptc_lrc_reg[18], swervolf/timer_ptc/rptc_lrc_reg[19], swervolf/timer_ptc/rptc_lrc_reg[1], swervolf/timer_ptc/rptc_lrc_reg[20], swervolf/timer_ptc/rptc_lrc_reg[21], swervolf/timer_ptc/rptc_lrc_reg[22] (the first 15 of 32 listed)
@@ -687,42 +693,42 @@ Related violations: <none>
 
 REQP-1840#13 Warning
 RAMB18 async control check  
-The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[11]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[10]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#14 Warning
 RAMB18 async control check  
-The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[12]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[11]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#15 Warning
 RAMB18 async control check  
-The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[13]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[12]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#16 Warning
 RAMB18 async control check  
-The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[14]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[13]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#17 Warning
 RAMB18 async control check  
-The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[16]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[14]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#18 Warning
 RAMB18 async control check  
-The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[17]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[16]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#19 Warning
 RAMB18 async control check  
-The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[18]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[5]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#20 Warning
 RAMB18 async control check  
-The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[19]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[8]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 RPBF-3#1 Warning
