@@ -4,7 +4,7 @@
  * Created Date: Tuesday, March 2nd 2021, 11:04:06 am
  * Author: Chuck Faber
  * -----
- * Last Modified: Wed Mar 03 2021
+ * Last Modified: Thu Mar 04 2021
  * Modified By: Chuck Faber
  * -----
  * Copyright (c) 2021 Portland State University
@@ -37,6 +37,7 @@ module uart_parse(
     logic [39:0] pr_reg, pr_next;       // Preamble
     logic [63:0] d_reg, d_next;         // Data Result
     logic err;
+    reg [63:0] ascii_val;
     
     // FSMD state & data registers
     always_ff @(posedge clk, posedge reset) begin: seq_block
@@ -73,8 +74,8 @@ module uart_parse(
             end
             if (pr_reg == "%NOTI") begin
                 // $display("Preamble Match!\n");
+                pr_next = 40'b0;
                 ns = skip;
-                sk_next = 1'b0;
             end
         end: idle_state
 
@@ -85,35 +86,37 @@ module uart_parse(
             end
             if (sk_reg == 6) begin
                 ns = store;
-                st_next = 1'b0;
-                d_next = 64'b0;
-                err = 1'b0;
+                sk_next = 2'b0;
+                // d_next = 64'b0;
             end
         end: skip_state
 
         store: begin: store_state
             if (brcv_tick) begin
                 // $display("Storing Byte: %c", byte_in);
-                d_next = {d_reg[55:0],byte_in};
-                if (byte_in < "0" || (byte_in > "9" && byte_in < "A") || byte_in > "F" ) begin    // Not a valid hex value
-                    err = 1'b1;
-                    $display("Value is invalid!");
+                if (st_reg == 8) begin
+                    st_next = 3'b0;
+                    if (~err) begin
+                        // $display("Outputing: %s", d_reg);
+                        drdy_tick = 1'b1;
+                        ascii_val = d_reg;
+                    end else begin
+                        err = 1'b0;
+                    end
+                    ns = idle;
+                end else begin
+                    d_next = {d_reg[55:0],byte_in};
+                    if ((byte_in < "0") || ((byte_in > "9") && (byte_in < "A")) || (byte_in > "F") ) begin    // Not a valid hex value
+                        err = 1'b1;
+                        $display("Value is invalid!");
+                    end
+                    st_next = st_reg + 1;
                 end
-                st_next = st_reg + 1;
-            end
-            if (st_reg == 8) begin
-                if (~err) begin
-                    // $display("Outputing: %s", d_reg);
-                    drdy_tick = 1'b1;
-                    // ascii_out = d_reg;
-                end
-                ns = idle;
-                pr_next = 40'b0;
             end
         end: store_state
     endcase
     end: next_state_logic
 
-assign ascii_out = d_reg;
+assign ascii_out = ascii_val;
 
 endmodule
