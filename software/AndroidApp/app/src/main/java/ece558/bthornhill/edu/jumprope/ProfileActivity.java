@@ -22,9 +22,9 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        mSave = (Button) findViewById(R.id.button_save);
+        mSave = findViewById(R.id.button_save);
         mSave.setOnClickListener(ButtonListener);
-        mCancel = (Button) findViewById(R.id.button_cancel);
+        mCancel = findViewById(R.id.button_cancel);
         mCancel.setOnClickListener(ButtonListener);
 
     }

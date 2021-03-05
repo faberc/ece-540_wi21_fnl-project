@@ -114,7 +114,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         }
         else {
-            //mBlueImage.setImageResource(R.drawable.blueon);
+            //mBlueImage.setImageResource(R.drawable.blue_on);
 
         }
 
@@ -142,19 +142,18 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         BluetoothGattService service =new BluetoothGattService(DeviceProfile.SERVICE_UUID,
                 BluetoothGattService.SERVICE_TYPE_PRIMARY);
 
-        BluetoothGattCharacteristic elapsedCharacteristic =
-                new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_ELAPSED_UUID,
+        BluetoothGattCharacteristic rxCharacteristic =
+                new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_RX_UUID,
                         //Read-only characteristic, supports notifications
-                        BluetoothGattCharacteristic.PROPERTY_READ | BluetoothGattCharacteristic.PROPERTY_NOTIFY,
-                        BluetoothGattCharacteristic.PERMISSION_READ);
-        BluetoothGattCharacteristic offsetCharacteristic =
-                new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_OFFSET_UUID,
-                        //Read+write permissions
-                        BluetoothGattCharacteristic.PROPERTY_READ | BluetoothGattCharacteristic.PROPERTY_WRITE,
-                        BluetoothGattCharacteristic.PERMISSION_READ | BluetoothGattCharacteristic.PERMISSION_WRITE);
+                        BluetoothGattCharacteristic.PROPERTY_WRITE, BluetoothGattCharacteristic.PERMISSION_WRITE);
 
-        service.addCharacteristic(elapsedCharacteristic);
-        service.addCharacteristic(offsetCharacteristic);
+        BluetoothGattCharacteristic txCharacteristic =
+                new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_TX_UUID,
+                        //Notify
+                        BluetoothGattCharacteristic.PROPERTY_NOTIFY, BluetoothGattCharacteristic.PERMISSION_READ);
+
+        service.addCharacteristic(rxCharacteristic);
+        service.addCharacteristic(txCharacteristic);
 
         mGattServer.addService(service);
     }
@@ -257,17 +256,17 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
     private Object mLock = new Object();
 
-    private int mTimeOffset;
+    private float mtxPacket;
 
     private byte[] getStoredValue() {
         synchronized (mLock) {
-            return DeviceProfile.getShiftedTimeValue(mTimeOffset);
+            return DeviceProfile.getDataValue(mtxPacket);
         }
     }
 
-    private void setStoredValue(int newOffset) {
+    private void setStoredValue(float newOffset) {
         synchronized (mLock) {
-            mTimeOffset = newOffset;
+            mtxPacket = newOffset;
         }
     }
 
@@ -275,10 +274,10 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
     private void notifyConnectedDevices() {
         for (BluetoothDevice device : mConnectedDevices) {
-            BluetoothGattCharacteristic readCharacteristic = mGattServer.getService(DeviceProfile.SERVICE_UUID)
-                    .getCharacteristic(DeviceProfile.CHARACTERISTIC_ELAPSED_UUID);
-            readCharacteristic.setValue(getStoredValue());
-            mGattServer.notifyCharacteristicChanged(device, readCharacteristic, false);
+            BluetoothGattCharacteristic txCharacteristic = mGattServer.getService(DeviceProfile.SERVICE_UUID)
+                    .getCharacteristic(DeviceProfile.CHARACTERISTIC_TX_UUID);
+            txCharacteristic.setValue(getStoredValue());
+            mGattServer.notifyCharacteristicChanged(device, txCharacteristic, false);
         }
     }
 
@@ -325,6 +324,9 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         // If we send raw data over bluetooth
         raw_data = event.values[0] + event.values[1] + event.values[2];
+        // I think this is how to send the data but I am not sure
+        setStoredValue(raw_data);
+        notifyConnectedDevices();
 
     }
 
