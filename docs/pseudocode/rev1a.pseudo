@@ -4,7 +4,7 @@
  * Created Date: Friday, February 19th 2021, 8:52:47 pm
  * Author: Chuck Faber
  * -----
- * Last Modified: Sat Feb 20 2021
+ * Last Modified: Thu Mar 04 2021
  * Modified By: Chuck Faber
  * -----
  * Copyright (c) 2021 Portland State University
@@ -21,8 +21,8 @@ vga_width = 768
 half_vga_width = vga_width / 2 = 384
 
 bpm = 150           // beats per minute -- defined by song
-mpb = 1 / mpb       // minutes per beat
-spb = bpm / 60.0    // seconds per beat
+mpb = 1 / bpm       // minutes per beat
+spb = mpb / 60.0    // seconds per beat
 hbd = spb / 2.0     // half-beat delay
 
 // At which row from critical point do we start checking for jumps and stop checking for landings?

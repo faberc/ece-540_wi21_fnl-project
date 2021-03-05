@@ -523,23 +523,23 @@ module swervolf_core
 
 
    // New Instantiation of GPIO A for SimpleBot
-    // gpio_top gpio_module_a(
-    //     .wb_clk_i     (clk), 
-    //     .wb_rst_i     (wb_rst), 
-    //     .wb_cyc_i     (wb_m2s_gpio_a_cyc), 
-    //     .wb_adr_i     ({2'b0,wb_m2s_gpio_a_adr[5:2],2'b0}), 
-    //     .wb_dat_i     (wb_m2s_gpio_a_dat), 
-    //     .wb_sel_i     (4'b1111),
-    //     .wb_we_i      (wb_m2s_gpio_a_we), 
-    //     .wb_stb_i     (wb_m2s_gpio_a_stb), 
-    //     .wb_dat_o     (wb_s2m_gpio_a_dat),
-    //     .wb_ack_o     (wb_s2m_gpio_a_ack), 
-    //     .wb_err_o     (wb_s2m_gpio_a_err),
-    //     .wb_inta_o    (gpio_a_irq),
-    //     // External GPIO Interface
-    //     .ext_pad_i     ({i_gpio_a[31:5],pbtn_db[4:0]}),
-    //     .ext_pad_o     (o_gpio_a[31:0]),
-    //     .ext_padoe_o   (en_gpio_a));
+    gpio_top gpio_module_a(
+        .wb_clk_i     (clk), 
+        .wb_rst_i     (wb_rst), 
+        .wb_cyc_i     (wb_m2s_gpio_a_cyc), 
+        .wb_adr_i     ({2'b0,wb_m2s_gpio_a_adr[5:2],2'b0}), 
+        .wb_dat_i     (wb_m2s_gpio_a_dat), 
+        .wb_sel_i     (4'b1111),
+        .wb_we_i      (wb_m2s_gpio_a_we), 
+        .wb_stb_i     (wb_m2s_gpio_a_stb), 
+        .wb_dat_o     (wb_s2m_gpio_a_dat),
+        .wb_ack_o     (wb_s2m_gpio_a_ack), 
+        .wb_err_o     (wb_s2m_gpio_a_err),
+        .wb_inta_o    (gpio_a_irq),
+        // External GPIO Interface
+        .ext_pad_i     ({i_gpio_a[31:5],pbtn_db[4:0]}),
+        .ext_pad_o     (o_gpio_a[31:0]),
+        .ext_padoe_o   (en_gpio_a));
 
 
     // Instantiation of RojoBot Peripheral

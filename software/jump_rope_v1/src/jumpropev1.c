@@ -4,8 +4,8 @@
  * Created Date: Tuesday, February 23th 2021, 6:19:47 pm
  * Author: Brett Thornhill
  * -----
- * Last Modified: 
- * Modified By: 
+ * Last Modified: Thu Mar 04 2021
+ * Modified By: Chuck Faber
  * -----
  * Copyright (c) 2021 Portland State University
  * 
@@ -17,10 +17,10 @@
 #include <time.h>
 
 // Nexys Port Addresses
-#define PORT_LEDS       0x80001404      // (o) LEDs
 #define PORT_SLSWTCH    0x80001400      // (i) slide switches
+#define PORT_LEDS       0x80001404      // (o) LEDs
+#define PORT_GPIO_EN    0x80001408      // (i) enable LEDs for output
 #define PORT_PBTNS      0x80001500      // (i) pushbuttons inputs
-#define PORT_GPIO_EN    0x80001408      // (o) enable LEDs for output
 
 #define ROPE_REG        0x80001704
 
@@ -41,7 +41,7 @@
 #define WRITE_GPIO(dir, value) { (*(volatile unsigned *)dir) = (value); }
 
 #define VGA_WIDTH 768
-#define HALF_VGA_WIDTH  VGA_WIDTH / 2       // = 384 
+#define HALF_VGA_WIDTH  (VGA_WIDTH / 2)       // = 384 
 
 // Global variables
 int global_score = 0;
