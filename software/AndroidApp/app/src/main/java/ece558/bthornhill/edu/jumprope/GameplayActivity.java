@@ -25,6 +25,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.ParcelUuid;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -35,6 +36,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+/**
+ *  Add words here about this activity
+ *
+ *  Bluetooth code created by Dave Smith
+ */
 
 public class GameplayActivity extends AppCompatActivity implements SensorEventListener {
     private static final String TAG = "GameplayActivity";
@@ -191,7 +198,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         }
     };
 
-    private Handler mHandler = new Handler();
+    private Handler mHandler = new Handler(Looper.myLooper());
     private void postStatusMessage(final String message) {
         mHandler.post(new Runnable() {
             @Override
@@ -289,6 +296,9 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
     };
 
+    /*
+    Acceleration data processing
+     */
     @Override
     public void onSensorChanged(SensorEvent event) {
         x_axis.setText(Float.toString(deltaX));
