@@ -14,27 +14,30 @@ import android.bluetooth.le.AdvertiseCallback;
 import android.bluetooth.le.AdvertiseData;
 import android.bluetooth.le.AdvertiseSettings;
 import android.bluetooth.le.BluetoothLeAdvertiser;
-import android.bluetooth.le.BluetoothLeScanner;
-import android.bluetooth.le.ScanCallback;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.ColorSpace;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.ParcelUuid;
 import android.util.Log;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Objects;
+
+
+/**
+ *  Add words here about this activity
+ *
+ *  Bluetooth code created by Dave Smith
+ */
 
 public class GameplayActivity extends AppCompatActivity implements SensorEventListener {
     private static final String TAG = "GameplayActivity";
@@ -52,6 +55,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
     // Variables for Acceleration
     private TextView x_axis, y_axis, z_axis;
+    private float raw_data;
     private float lastX, lastY, lastZ;
     private float deltaX = 0;
     private float deltaY = 0;
@@ -66,21 +70,21 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         setContentView(R.layout.activity_gameplay);
 
         // Bluetooth initialization
-        mStatusBluetooth = (TextView)findViewById(R.id.statusBluetooth);
-        mBlueImage = (ImageView) findViewById(R.id.bluetoothIcon);
+        mStatusBluetooth = findViewById(R.id.statusBluetooth);
+        mBlueImage = findViewById(R.id.bluetoothIcon);
 
         // Bluetooth adapter
         mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        mConnectedDevices = new ArrayList<BluetoothDevice>();
-        mConnectedDevicesAdapter = new ArrayAdapter<BluetoothDevice>(this,
+        mConnectedDevices = new ArrayList<>();
+        mConnectedDevicesAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, mConnectedDevices);
 
 
         // Acceleration initialization
-        x_axis = (TextView) findViewById(R.id.xvalue);
-        y_axis = (TextView) findViewById(R.id.yvalue);
-        z_axis = (TextView) findViewById(R.id.zvalue);
+        x_axis = findViewById(R.id.xvalue);
+        y_axis = findViewById(R.id.yvalue);
+        z_axis = findViewById(R.id.zvalue);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 
@@ -110,7 +114,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         }
         else {
-            //mBlueImage.setImageResource(R.drawable.blueon);
+            //mBlueImage.setImageResource(R.drawable.blue_on);
 
         }
 
@@ -122,6 +126,14 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        stopAdvertising();
+        shutdownServer();
+        sensorManager.unregisterListener(this);
+    }
+
     /*
      * Create the GATT server instance, attaching all services and
      * characteristics that should be exposed
@@ -130,19 +142,18 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         BluetoothGattService service =new BluetoothGattService(DeviceProfile.SERVICE_UUID,
                 BluetoothGattService.SERVICE_TYPE_PRIMARY);
 
-        BluetoothGattCharacteristic elapsedCharacteristic =
-                new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_ELAPSED_UUID,
+        BluetoothGattCharacteristic rxCharacteristic =
+                new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_RX_UUID,
                         //Read-only characteristic, supports notifications
-                        BluetoothGattCharacteristic.PROPERTY_READ | BluetoothGattCharacteristic.PROPERTY_NOTIFY,
-                        BluetoothGattCharacteristic.PERMISSION_READ);
-        BluetoothGattCharacteristic offsetCharacteristic =
-                new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_OFFSET_UUID,
-                        //Read+write permissions
-                        BluetoothGattCharacteristic.PROPERTY_READ | BluetoothGattCharacteristic.PROPERTY_WRITE,
-                        BluetoothGattCharacteristic.PERMISSION_READ | BluetoothGattCharacteristic.PERMISSION_WRITE);
+                        BluetoothGattCharacteristic.PROPERTY_WRITE, BluetoothGattCharacteristic.PERMISSION_WRITE);
 
-        service.addCharacteristic(elapsedCharacteristic);
-        service.addCharacteristic(offsetCharacteristic);
+        BluetoothGattCharacteristic txCharacteristic =
+                new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_TX_UUID,
+                        //Notify
+                        BluetoothGattCharacteristic.PROPERTY_NOTIFY, BluetoothGattCharacteristic.PERMISSION_READ);
+
+        service.addCharacteristic(rxCharacteristic);
+        service.addCharacteristic(txCharacteristic);
 
         mGattServer.addService(service);
     }
@@ -191,7 +202,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         }
     };
 
-    private Handler mHandler = new Handler();
+    private Handler mHandler = new Handler(Looper.myLooper());
     private void postStatusMessage(final String message) {
         mHandler.post(new Runnable() {
             @Override
@@ -241,59 +252,61 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
             });
         }
 
-        /*
-         * Terminate the server and any running callbacks
-         */
-        private void shutdownServer() {
-            mHandler.removeCallbacks(mNotifyRunnable);
-
-            if (mGattServer == null) return;
-
-            mGattServer.close();
-        }
-
-        private Runnable mNotifyRunnable = new Runnable() {
-            @Override
-            public void run() {
-                notifyConnectedDevices();
-                mHandler.postDelayed(this, 2000);
-            }
-        };
-
-        /* Storage and access to local characteristic data */
-
-        private void notifyConnectedDevices() {
-            for (BluetoothDevice device : mConnectedDevices) {
-                BluetoothGattCharacteristic readCharacteristic = mGattServer.getService(DeviceProfile.SERVICE_UUID)
-                        .getCharacteristic(DeviceProfile.CHARACTERISTIC_ELAPSED_UUID);
-                readCharacteristic.setValue(getStoredValue());
-                mGattServer.notifyCharacteristicChanged(device, readCharacteristic, false);
-            }
-        }
-
-        private Object mLock = new Object();
-
-        private int mTimeOffset;
-
-        private byte[] getStoredValue() {
-            synchronized (mLock) {
-                return DeviceProfile.getShiftedTimeValue(mTimeOffset);
-            }
-        }
-
-        private void setStoredValue(int newOffset) {
-            synchronized (mLock) {
-                mTimeOffset = newOffset;
-            }
-        }
-
     };
 
+    private Object mLock = new Object();
+
+    private float mtxPacket;
+
+    private byte[] getStoredValue() {
+        synchronized (mLock) {
+            return DeviceProfile.getDataValue(mtxPacket);
+        }
+    }
+
+    private void setStoredValue(float newOffset) {
+        synchronized (mLock) {
+            mtxPacket = newOffset;
+        }
+    }
+
+    /* Storage and access to local characteristic data */
+
+    private void notifyConnectedDevices() {
+        for (BluetoothDevice device : mConnectedDevices) {
+            BluetoothGattCharacteristic txCharacteristic = mGattServer.getService(DeviceProfile.SERVICE_UUID)
+                    .getCharacteristic(DeviceProfile.CHARACTERISTIC_TX_UUID);
+            txCharacteristic.setValue(getStoredValue());
+            mGattServer.notifyCharacteristicChanged(device, txCharacteristic, false);
+        }
+    }
+
+    /*
+     * Terminate the server and any running callbacks
+     */
+    private void shutdownServer() {
+        mHandler.removeCallbacks(mNotifyRunnable);
+
+        if (mGattServer == null) return;
+
+        mGattServer.close();
+    }
+    private Runnable mNotifyRunnable = new Runnable() {
+        @Override
+        public void run() {
+            notifyConnectedDevices();
+            mHandler.postDelayed(this, 2000);
+        }
+    };
+
+    /*
+    Acceleration data processing
+     */
     @Override
     public void onSensorChanged(SensorEvent event) {
-        x_axis.setText(Float.toString(deltaX));
-        y_axis.setText(Float.toString(deltaY));
-        z_axis.setText(Float.toString(deltaZ));
+        x_axis.setText(String.valueOf(deltaX));
+        y_axis.setText(String.valueOf(deltaY));
+        z_axis.setText(String.valueOf(deltaZ));
 
         deltaX = Math.abs(lastX - event.values[0]);     // x value
         deltaY = Math.abs(lastY - event.values[1]);    // y value
@@ -308,6 +321,13 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         lastX = event.values[0];
         lastY = event.values[1];
         lastZ = event.values[2];
+
+        // If we send raw data over bluetooth
+        raw_data = event.values[0] + event.values[1] + event.values[2];
+        // I think this is how to send the data but I am not sure
+        setStoredValue(raw_data);
+        notifyConnectedDevices();
+
     }
 
     @Override
@@ -316,9 +336,5 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     }
 
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        sensorManager.unregisterListener(this);
-    }
+
 }
