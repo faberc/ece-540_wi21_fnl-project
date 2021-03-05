@@ -227,7 +227,7 @@ void loop()
         Serial.println(txValue);
 
         // Delay
-        delay(10); // bluetooth stack will go into congestion, if too many packets are sent
+        delay(5000); // bluetooth stack will go into congestion, if too many packets are sent
     }
 
     // disconnecting

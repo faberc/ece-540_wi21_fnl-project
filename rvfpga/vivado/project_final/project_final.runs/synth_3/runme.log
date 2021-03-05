@@ -9,10 +9,12 @@
     ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 
 source rvfpga.tcl -notrace
+create_project: Time (s): cpu = 00:00:03 ; elapsed = 00:00:06 . Memory (MB): peak = 464.391 ; gain = 178.012
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/ece540_ip_repo'.
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/Chuck/vivado-library'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'.
+update_ip_catalog: Time (s): cpu = 00:00:01 ; elapsed = 00:00:07 . Memory (MB): peak = 489.227 ; gain = 24.836
 WARNING: [IP_Flow 19-4995] The host OS only allows 260 characters in a normal path. The IP cache path is more than 80 characters. If you experience issues with IP caching, please consider changing the IP cache to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. 
 Current IP cache path is c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.cache/ip 
 Command: synth_design -top rvfpga -part xc7a100tcsg324-1
@@ -21,7 +23,7 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 71540 
+INFO: Helper process launched with PID 78488 
 WARNING: [Synth 8-1921] elaboration system task error violates IEEE 1800 syntax [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/SweRVEh1CoreComplex/lib/beh_lib.sv:162]
 WARNING: [Synth 8-2507] parameter declaration becomes local in axi2wb with formal parameter declaration list [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/AxiToWb/axi2wb.v:71]
 WARNING: [Synth 8-2507] parameter declaration becomes local in axi2wb with formal parameter declaration list [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/AxiToWb/axi2wb.v:81]
@@ -31,7 +33,7 @@ WARNING: [Synth 8-2369] multiple packed dimensions are not allowed in this mode 
 WARNING: [Synth 8-2369] multiple packed dimensions are not allowed in this mode of verilog [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Peripherals/SystemController/swervolf_syscon.v:385]
 WARNING: [Synth 8-2507] parameter declaration becomes local in wb_mux with formal parameter declaration list [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon_1.2.2/wb_mux.v:87]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1031.312 ; gain = 241.012
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1032.152 ; gain = 242.238
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'rvfpga' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/rvfpga.sv:28]
 	Parameter bootrom_file bound to: (null) - type: string 
@@ -65,8 +67,8 @@ INFO: [Synth 8-6157] synthesizing module 'PLLE2_BASE' [C:/Xilinx/Vivado/2019.2/s
 	Parameter STARTUP_WAIT bound to: FALSE - type: string 
 INFO: [Synth 8-6155] done synthesizing module 'PLLE2_BASE' (1#1) [C:/Xilinx/Vivado/2019.2/scripts/rt/data/unisim_comp.v:61495]
 INFO: [Synth 8-6155] done synthesizing module 'clk_gen_nexys' (2#1) [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/clk_gen_nexys.v:24]
-INFO: [Synth 8-6157] synthesizing module 'clk_gen_75M' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/synth_3/.Xil/Vivado-73020-DESKTOP-HHTTKMG/realtime/clk_gen_75M_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'clk_gen_75M' (3#1) [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/synth_3/.Xil/Vivado-73020-DESKTOP-HHTTKMG/realtime/clk_gen_75M_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'clk_gen_75M' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/synth_3/.Xil/Vivado-14172-DESKTOP-HHTTKMG/realtime/clk_gen_75M_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_gen_75M' (3#1) [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/synth_3/.Xil/Vivado-14172-DESKTOP-HHTTKMG/realtime/clk_gen_75M_stub.v:5]
 WARNING: [Synth 8-7023] instance 'clk_gen_75M' of module 'clk_gen_75M' has 5 connections declared, but only 3 given [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/rvfpga.sv:102]
 INFO: [Synth 8-6157] synthesizing module 'AXI_BUS' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/PulpPlatform/pulp-platform.org__axi_0.23.0-r1/src/axi_intf.sv:19]
 	Parameter AXI_ADDR_WIDTH bound to: 32 - type: integer 
@@ -899,9 +901,9 @@ INFO: [Synth 8-6157] synthesizing module 'wb_intercon' [C:/Users/Chuck/ECE540/fn
 INFO: [Synth 8-6157] synthesizing module 'wb_mux' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon_1.2.2/wb_mux.v:45]
 	Parameter dw bound to: 32 - type: integer 
 	Parameter aw bound to: 32 - type: integer 
-	Parameter num_slaves bound to: 11 - type: integer 
-	Parameter MATCH_ADDR bound to: 352'b0000000000000000000000000000000000000000000000000001000000000000000000000000000000010000010000000000000000000000000100010000000000000000000000000001001000000000000000000000000000010100000000000000000000000000000101010000000000000000000000000001011000000000000000000000000000010111000000000000000000000000000110000000000000000000000000000010000000000000 
-	Parameter MATCH_MASK bound to: 352'b1111111111111111111100000000000011111111111111111111111111000000111111111111111111111111110000001111111111111111111111111100000011111111111111111111111111000000111111111111111111111111110000001111111111111111111111111100000011111111111111111111111111000000111111111111111111111111110000001111111111111111111111111100000011111111111111111111000000000000 
+	Parameter num_slaves bound to: 10 - type: integer 
+	Parameter MATCH_ADDR bound to: 320'b00000000000000000000000000000000000000000000000000010000000000000000000000000000000100000100000000000000000000000001000100000000000000000000000000010010000000000000000000000000000101000000000000000000000000000001010100000000000000000000000000010110000000000000000000000000000101110000000000000000000000000010000000000000 
+	Parameter MATCH_MASK bound to: 320'b11111111111111111111000000000000111111111111111111111111110000001111111111111111111111111100000011111111111111111111111111000000111111111111111111111111110000001111111111111111111111111100000011111111111111111111111111000000111111111111111111111111110000001111111111111111111111111100000011111111111111111111000000000000 
 	Parameter slave_sel_bits bound to: 4 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'wb_mux' (56#1) [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon_1.2.2/wb_mux.v:45]
 INFO: [Synth 8-6155] done synthesizing module 'wb_intercon' (57#1) [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.v:1]
@@ -1045,12 +1047,12 @@ INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Chuc
 	Parameter gw bound to: 32 - type: integer 
 INFO: [Synth 8-3536] HDL ADVISOR - Pragma parallel_case detected. Simulation mismatch may occur [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Peripherals/gpio/gpio_top.v:987]
 INFO: [Synth 8-3536] HDL ADVISOR - Pragma full_case detected. Simulation mismatch may occur [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Peripherals/gpio/gpio_top.v:987]
-WARNING: [Synth 8-7023] instance 'gpio_module' of module 'gpio_top' has 17 connections declared, but only 15 given [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/swervolf_core.v:564]
+WARNING: [Synth 8-7023] instance 'gpio_module' of module 'gpio_top' has 17 connections declared, but only 15 given [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/swervolf_core.v:506]
 INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Peripherals/custom/periph_top.v:89]
 INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Peripherals/custom/periph_top.v:107]
 WARNING: [Synth 8-3848] Net wb_err_o in module/entity periph_top does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Peripherals/custom/periph_top.v:51]
 WARNING: [Synth 8-3848] Net wb_inta_o in module/entity periph_top does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Peripherals/custom/periph_top.v:52]
-WARNING: [Synth 8-689] width (10) of port connection 'o_reg_a' does not match port width (32) of module 'periph_top' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/swervolf_core.v:643]
+WARNING: [Synth 8-689] width (10) of port connection 'o_reg_a' does not match port width (32) of module 'periph_top' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/swervolf_core.v:585]
 	Parameter dw bound to: 32 - type: integer 
 	Parameter aw bound to: 16 - type: integer 
 	Parameter cw bound to: 32 - type: integer 
@@ -1765,9 +1767,9 @@ WARNING: [Synth 8-3848] Net exu_mp_pkt[prett] in module/entity exu does not have
 WARNING: [Synth 8-3848] Net ble_rts in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/swervolf_core.v:110]
 WARNING: [Synth 8-3848] Net io_bresp in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/AxiInterconnect/axi_intercon.vh:129]
 WARNING: [Synth 8-3848] Net io_rresp in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/AxiInterconnect/axi_intercon.vh:134]
-WARNING: [Synth 8-3848] Net en_gpio_a in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/swervolf_core.v:472]
-WARNING: [Synth 8-3848] Net o_gpio_a in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/swervolf_core.v:474]
-WARNING: [Synth 8-3848] Net gpio_a_irq in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/swervolf_core.v:475]
+WARNING: [Synth 8-3848] Net en_gpio_a in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/swervolf_core.v:414]
+WARNING: [Synth 8-3848] Net o_gpio_a in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/swervolf_core.v:416]
+WARNING: [Synth 8-3848] Net gpio_a_irq in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/swervolf_core.v:417]
 WARNING: [Synth 8-3848] Net wb_m2s_io_cti in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:7]
 WARNING: [Synth 8-3848] Net wb_m2s_io_bte in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:8]
 WARNING: [Synth 8-3848] Net wb_s2m_rom_err in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:23]
@@ -1778,23 +1780,19 @@ WARNING: [Synth 8-3848] Net wb_s2m_sys_err in module/entity swervolf_core does n
 WARNING: [Synth 8-3848] Net wb_s2m_sys_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:52]
 WARNING: [Synth 8-3848] Net wb_s2m_uart_err in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:65]
 WARNING: [Synth 8-3848] Net wb_s2m_uart_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:66]
-WARNING: [Synth 8-3848] Net wb_s2m_uart_2_dat in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:77]
-WARNING: [Synth 8-3848] Net wb_s2m_uart_2_ack in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:78]
-WARNING: [Synth 8-3848] Net wb_s2m_uart_2_err in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:79]
-WARNING: [Synth 8-3848] Net wb_s2m_uart_2_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:80]
-WARNING: [Synth 8-3848] Net wb_s2m_gpio_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:94]
-WARNING: [Synth 8-3848] Net wb_s2m_gpio_a_dat in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:105]
-WARNING: [Synth 8-3848] Net wb_s2m_gpio_a_ack in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:106]
-WARNING: [Synth 8-3848] Net wb_s2m_gpio_a_err in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:107]
-WARNING: [Synth 8-3848] Net wb_s2m_gpio_a_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:108]
-WARNING: [Synth 8-3848] Net wb_s2m_per1_dat in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:119]
-WARNING: [Synth 8-3848] Net wb_s2m_per1_ack in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:120]
-WARNING: [Synth 8-3848] Net wb_s2m_per1_err in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:121]
-WARNING: [Synth 8-3848] Net wb_s2m_per1_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:122]
-WARNING: [Synth 8-3848] Net wb_s2m_per2_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:136]
-WARNING: [Synth 8-3848] Net wb_s2m_ptc_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:150]
-WARNING: [Synth 8-3848] Net wb_s2m_spi_accel_err in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:163]
-WARNING: [Synth 8-3848] Net wb_s2m_spi_accel_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:164]
+WARNING: [Synth 8-3848] Net wb_s2m_gpio_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:80]
+WARNING: [Synth 8-3848] Net wb_s2m_gpio_a_dat in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:91]
+WARNING: [Synth 8-3848] Net wb_s2m_gpio_a_ack in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:92]
+WARNING: [Synth 8-3848] Net wb_s2m_gpio_a_err in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:93]
+WARNING: [Synth 8-3848] Net wb_s2m_gpio_a_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:94]
+WARNING: [Synth 8-3848] Net wb_s2m_per1_dat in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:105]
+WARNING: [Synth 8-3848] Net wb_s2m_per1_ack in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:106]
+WARNING: [Synth 8-3848] Net wb_s2m_per1_err in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:107]
+WARNING: [Synth 8-3848] Net wb_s2m_per1_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:108]
+WARNING: [Synth 8-3848] Net wb_s2m_per2_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:122]
+WARNING: [Synth 8-3848] Net wb_s2m_ptc_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:136]
+WARNING: [Synth 8-3848] Net wb_s2m_spi_accel_err in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:149]
+WARNING: [Synth 8-3848] Net wb_s2m_spi_accel_rty in module/entity swervolf_core does not have driver. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.vh:150]
 	Parameter HORIZ_PIXELS bound to: 1024 - type: integer 
 	Parameter HCNT_MAX bound to: 1327 - type: integer 
 	Parameter HSYNC_START bound to: 1053 - type: integer 
@@ -1912,7 +1910,7 @@ WARNING: [Synth 8-3331] design dma_ctrl has unconnected port dma_axi_arburst[1]
 WARNING: [Synth 8-3331] design dma_ctrl has unconnected port dma_axi_arburst[0]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1529.137 ; gain = 738.836
+Finished RTL Elaboration : Time (s): cpu = 00:00:26 ; elapsed = 00:00:28 . Memory (MB): peak = 1521.938 ; gain = 732.023
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1925,12 +1923,12 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:28 . Memory (MB): peak = 1529.137 ; gain = 738.836
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:37 ; elapsed = 00:00:41 . Memory (MB): peak = 1542.273 ; gain = 752.359
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:26 ; elapsed = 00:00:28 . Memory (MB): peak = 1529.137 ; gain = 738.836
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:37 ; elapsed = 00:00:41 . Memory (MB): peak = 1542.273 ; gain = 752.359
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1529.137 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1542.273 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 57 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -1953,7 +1951,7 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/rvfpga_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.039 . Memory (MB): peak = 1803.605 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.045 . Memory (MB): peak = 1804.977 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 20 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 16 instances
@@ -1961,16 +1959,15 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS(x2)): 1 instance 
   PLLE2_BASE => PLLE2_ADV: 1 instance 
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.358 . Memory (MB): peak = 1803.605 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.441 . Memory (MB): peak = 1804.977 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:58 ; elapsed = 00:00:58 . Memory (MB): peak = 1803.605 ; gain = 1013.305
+Finished Constraint Validation : Time (s): cpu = 00:01:12 ; elapsed = 00:01:14 . Memory (MB): peak = 1804.977 ; gain = 1015.062
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5580] Multithreading enabled for synth_design using a maximum of 2 processes.
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
----------------------------------------------------------------------------------
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/LiteDRAM/litedram_core.v:4591]
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/LiteDRAM/litedram_core.v:7071]
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/LiteDRAM/litedram_core.v:7691]
@@ -2131,7 +2128,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'vgaRed_reg' [C:/Users/Chuck
 WARNING: [Synth 8-327] inferring latch for variable 'vgaGreen_reg' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/final_proj/colorizer2.sv:36]
 WARNING: [Synth 8-327] inferring latch for variable 'vgaBlue_reg' [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/final_proj/colorizer2.sv:36]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:28 ; elapsed = 00:01:29 . Memory (MB): peak = 1803.605 ; gain = 1013.305
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:45 ; elapsed = 00:01:51 . Memory (MB): peak = 1804.977 ; gain = 1015.062
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'swervolf/swerv_eh1/swerv/dbg/axi_bready_ff' (rvdffs) to 'swervolf/swerv_eh1/swerv/dbg/axi_rready_ff'
 INFO: [Synth 8-223] decloning instance 'swervolf/swerv_eh1/swerv/exu/div_e1/dividend_c' (rvtwoscomp) to 'swervolf/swerv_eh1/swerv/exu/div_e1/q_ff_c'
@@ -2151,7 +2148,7 @@ Report RTL Partitions:
 |7     |swerv__GCB0         |           1|     40572|
 |8     |exu                 |           1|     22017|
 |9     |mem                 |           1|      3303|
-|10    |swervolf_core__GCB0 |           1|     32183|
+|10    |swervolf_core__GCB0 |           1|     32143|
 |11    |swervolf_core__GCB1 |           1|     23465|
 |12    |rvfpga__GC0         |           1|      3668|
 +------+--------------------+------------+----------+
@@ -2338,8 +2335,9 @@ Detailed RTL Component Info :
 	   6 Input      5 Bit        Muxes := 1     
 	   2 Input      4 Bit        Muxes := 242   
 	   6 Input      4 Bit        Muxes := 2     
-	  11 Input      4 Bit        Muxes := 5     
+	  11 Input      4 Bit        Muxes := 4     
 	   4 Input      4 Bit        Muxes := 9     
+	  10 Input      4 Bit        Muxes := 1     
 	   8 Input      4 Bit        Muxes := 1     
 	   3 Input      4 Bit        Muxes := 3     
 	   7 Input      4 Bit        Muxes := 3     
@@ -13561,7 +13559,7 @@ Detailed RTL Component Info :
 	                1 Bit    Registers := 1     
 +---Muxes : 
 	   2 Input     32 Bit        Muxes := 1     
-	  11 Input      4 Bit        Muxes := 1     
+	  10 Input      4 Bit        Muxes := 1     
 Module dpram64 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -16060,8 +16058,8 @@ INFO: [Synth 8-3886] merging instance 'uart16550_0/regs/delayed_modem_signals_re
 INFO: [Synth 8-3886] merging instance 'uart16550_0/regs/delayed_modem_signals_reg[1]' (FDC) to 'uart16550_0/regs/delayed_modem_signals_reg[2]'
 INFO: [Synth 8-3886] merging instance 'uart16550_0/regs/delayed_modem_signals_reg[2]' (FDC) to 'uart16550_0/regs/delayed_modem_signals_reg[3]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (gpio_module/wb_err_o_reg)
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (spi/\spcr_reg[4] )
 INFO: [Synth 8-3333] propagating constant 1 across sequential element (spi2/\spcr_reg[4] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (spi/\spcr_reg[4] )
 INFO: [Synth 8-3886] merging instance 'gpio_module/clk_s_reg' (FDC) to 'gpio_module/clk_r_reg'
 INFO: [Synth 8-3886] merging instance 'gpio_module/wb_err_o_reg' (FDC) to 'gpio_module/clk_r_reg'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (gpio_module/clk_r_reg)
@@ -16207,7 +16205,7 @@ WARNING: [Synth 8-3332] Sequential element (i_atop_filter/FSM_sequential_w_state
 WARNING: [Synth 8-3332] Sequential element (i_atop_filter/FSM_sequential_w_state_q_reg[1]) is unused and will be removed from module axi_err_slv__1.
 WARNING: [Synth 8-3332] Sequential element (i_atop_filter/FSM_sequential_w_state_q_reg[0]) is unused and will be removed from module axi_err_slv__1.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:06:37 ; elapsed = 00:07:58 . Memory (MB): peak = 1803.605 ; gain = 1013.305
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:06:17 ; elapsed = 00:07:48 . Memory (MB): peak = 1804.977 ; gain = 1015.062
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -16325,7 +16323,7 @@ Report RTL Partitions:
 |7     |swerv__GCB0         |           1|     35285|
 |8     |exu                 |           1|     18127|
 |9     |mem                 |           1|      3266|
-|10    |swervolf_core__GCB0 |           1|      6743|
+|10    |swervolf_core__GCB0 |           1|      6908|
 |11    |swervolf_core__GCB1 |           1|     10210|
 |12    |rvfpga__GC0         |           1|      3198|
 +------+--------------------+------------+----------+
@@ -16334,7 +16332,7 @@ Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-3321] set_false_path : Empty from list for constraint at line 8 of C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/rvfpga.xdc. [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/rvfpga.xdc:8]
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:06:56 ; elapsed = 00:08:18 . Memory (MB): peak = 1803.605 ; gain = 1013.305
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:06:37 ; elapsed = 00:08:09 . Memory (MB): peak = 1804.977 ; gain = 1015.062
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
@@ -16342,7 +16340,7 @@ Start Timing Optimization
 WARNING: [Synth 8-3332] Sequential element (axi_clk/clkhdr/en_ff_reg) is unused and will be removed from module ifu_mem_ctl.
 WARNING: [Synth 8-3332] Sequential element (dma_bus_cgc/clkhdr/en_ff_reg) is unused and will be removed from module dma_ctrl.
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:08:10 ; elapsed = 00:09:34 . Memory (MB): peak = 1803.605 ; gain = 1013.305
+Finished Timing Optimization : Time (s): cpu = 00:07:58 ; elapsed = 00:09:31 . Memory (MB): peak = 1804.977 ; gain = 1015.062
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -16429,7 +16427,7 @@ Report RTL Partitions:
 |7     |swerv__GCB0         |           1|     34210|
 |8     |exu                 |           1|     17849|
 |9     |mem                 |           1|      3266|
-|10    |swervolf_core__GCB0 |           1|      6743|
+|10    |swervolf_core__GCB0 |           1|      6908|
 |11    |swervolf_core__GCB1 |           1|      8448|
 |12    |rvfpga__GC0         |           1|      2998|
 +------+--------------------+------------+----------+
@@ -16526,7 +16524,7 @@ INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM bloc
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/SweRVEh1CoreComplex/lib/beh_lib.sv:37]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/SweRVEh1CoreComplex/lib/beh_lib.sv:37]
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:09:03 ; elapsed = 00:10:53 . Memory (MB): peak = 1803.605 ; gain = 1013.305
+Finished Technology Mapping : Time (s): cpu = 00:09:02 ; elapsed = 00:10:58 . Memory (MB): peak = 1804.977 ; gain = 1015.062
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -16542,7 +16540,7 @@ Report RTL Partitions:
 |7     |swerv__GCB0         |           1|     11407|
 |8     |exu                 |           1|      6412|
 |9     |mem                 |           1|      1059|
-|10    |swervolf_core__GCB0 |           1|      3603|
+|10    |swervolf_core__GCB0 |           1|      3609|
 |11    |swervolf_core__GCB1 |           1|      4182|
 |12    |rvfpga__GC0         |           1|      1777|
 +------+--------------------+------------+----------+
@@ -16592,24 +16590,24 @@ INFO: [Synth 8-5365] Flop disp1/video_on_reg is being inverted and renamed to di
 ---------------------------------------------------------------------------------
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-3295] tying undriven pin swervolfi_35713:a to constant 0
-WARNING: [Synth 8-3295] tying undriven pin swervolfi_35713:en to constant 0
-WARNING: [Synth 8-3295] tying undriven pin swervolfi_35714:a to constant 0
-WARNING: [Synth 8-3295] tying undriven pin swervolfi_35714:en to constant 0
-WARNING: [Synth 8-3295] tying undriven pin swervolfi_35715:a to constant 0
-WARNING: [Synth 8-3295] tying undriven pin swervolfi_35715:en to constant 0
-WARNING: [Synth 8-3295] tying undriven pin swervolfi_35716:a to constant 0
-WARNING: [Synth 8-3295] tying undriven pin swervolfi_35716:en to constant 0
-WARNING: [Synth 8-3295] tying undriven pin swervolfi_35717:a to constant 0
-WARNING: [Synth 8-3295] tying undriven pin swervolfi_35717:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin swervolfi_35729:a to constant 0
+WARNING: [Synth 8-3295] tying undriven pin swervolfi_35729:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin swervolfi_35730:a to constant 0
+WARNING: [Synth 8-3295] tying undriven pin swervolfi_35730:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin swervolfi_35731:a to constant 0
+WARNING: [Synth 8-3295] tying undriven pin swervolfi_35731:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin swervolfi_35732:a to constant 0
+WARNING: [Synth 8-3295] tying undriven pin swervolfi_35732:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin swervolfi_35733:a to constant 0
+WARNING: [Synth 8-3295] tying undriven pin swervolfi_35733:en to constant 0
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:09:21 ; elapsed = 00:11:12 . Memory (MB): peak = 1803.605 ; gain = 1013.305
+Finished IO Insertion : Time (s): cpu = 00:09:18 ; elapsed = 00:11:14 . Memory (MB): peak = 1804.977 ; gain = 1015.062
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:09:21 ; elapsed = 00:11:12 . Memory (MB): peak = 1803.605 ; gain = 1013.305
+Finished Renaming Generated Instances : Time (s): cpu = 00:09:18 ; elapsed = 00:11:14 . Memory (MB): peak = 1804.977 ; gain = 1015.062
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -16628,25 +16626,25 @@ Report Check Netlist:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:09:40 ; elapsed = 00:11:31 . Memory (MB): peak = 1803.605 ; gain = 1013.305
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:09:36 ; elapsed = 00:11:33 . Memory (MB): peak = 1804.977 ; gain = 1015.062
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:09:42 ; elapsed = 00:11:33 . Memory (MB): peak = 1803.605 ; gain = 1013.305
+Finished Renaming Generated Ports : Time (s): cpu = 00:09:38 ; elapsed = 00:11:35 . Memory (MB): peak = 1804.977 ; gain = 1015.062
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:09:44 ; elapsed = 00:11:35 . Memory (MB): peak = 1803.605 ; gain = 1013.305
+Finished Handling Custom Attributes : Time (s): cpu = 00:09:40 ; elapsed = 00:11:37 . Memory (MB): peak = 1804.977 ; gain = 1015.062
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:09:45 ; elapsed = 00:11:36 . Memory (MB): peak = 1803.605 ; gain = 1013.305
+Finished Renaming Generated Nets : Time (s): cpu = 00:09:41 ; elapsed = 00:11:37 . Memory (MB): peak = 1804.977 ; gain = 1015.062
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -16689,11 +16687,11 @@ Report Cell Usage:
 |8     |IDELAYE2_1  |    16|
 |9     |ISERDESE2   |    16|
 |10    |LUT1        |   479|
-|11    |LUT2        |  2386|
+|11    |LUT2        |  2375|
 |12    |LUT3        |  4761|
-|13    |LUT4        |  6515|
-|14    |LUT5        |  7689|
-|15    |LUT6        | 17333|
+|13    |LUT4        |  6516|
+|14    |LUT5        |  7687|
+|15    |LUT6        | 17348|
 |16    |MUXF7       |   508|
 |17    |MUXF8       |    66|
 |18    |OSERDESE2   |    44|
@@ -16721,7 +16719,7 @@ Report Cell Usage:
 |40    |STARTUPE2   |     1|
 |41    |FDCE        | 16005|
 |42    |FDPE        |    50|
-|43    |FDRE        |  3252|
+|43    |FDRE        |  3249|
 |44    |FDSE        |   138|
 |45    |LD          |   146|
 |46    |LDC         |     1|
@@ -16800,14 +16798,14 @@ Report Instance Areas:
 |61    |  rope_0                                                              |rope                                |     6|
 |62    |  swervolf                                                            |swervolf_core                       | 53362|
 |63    |    a2h                                                               |ascii_2_hex                         |    33|
-|64    |    axi2wb                                                            |axi2wb                              |   586|
-|65    |    axi_intercon                                                      |axi_intercon                        |  3479|
-|66    |      axi_xbar                                                        |axi_xbar                            |  3359|
-|67    |        \gen_mst_port_mux[0].i_axi_mux                                |axi_mux                             |   312|
+|64    |    axi2wb                                                            |axi2wb                              |   614|
+|65    |    axi_intercon                                                      |axi_intercon                        |  3477|
+|66    |      axi_xbar                                                        |axi_xbar                            |  3357|
+|67    |        \gen_mst_port_mux[0].i_axi_mux                                |axi_mux                             |   310|
 |68    |          \gen_mux.i_ar_arbiter                                       |rr_arb_tree__parameterized2_2858    |    24|
 |69    |          \gen_mux.i_ar_spill_reg                                     |spill_register__parameterized9_2859 |    71|
 |70    |          \gen_mux.i_aw_arbiter                                       |rr_arb_tree__parameterized1_2860    |     9|
-|71    |          \gen_mux.i_aw_spill_reg                                     |spill_register__parameterized7_2861 |    75|
+|71    |          \gen_mux.i_aw_spill_reg                                     |spill_register__parameterized7_2861 |    73|
 |72    |          \gen_mux.i_w_fifo                                           |fifo_v3__parameterized4_2862        |   132|
 |73    |        \gen_mst_port_mux[1].i_axi_mux                                |axi_mux_2747                        |   399|
 |74    |          \gen_mux.i_ar_arbiter                                       |rr_arb_tree__parameterized2         |    24|
@@ -19839,7 +19837,7 @@ Report Instance Areas:
 |3100  |            sync_ff1                                                  |rvdff__parameterized14_36           |     4|
 |3101  |            sync_ff2                                                  |rvdff__parameterized14_37           |     4|
 |3102  |          wake_up_ff                                                  |rvdff_35                            |     1|
-|3103  |    syscon                                                            |swervolf_syscon                     |   562|
+|3103  |    syscon                                                            |swervolf_syscon                     |   535|
 |3104  |      SegDispl_Ctr                                                    |SevSegDisplays_Controller           |    60|
 |3105  |        counter20                                                     |counter__parameterized0             |    60|
 |3106  |          i_counter                                                   |delta_counter__parameterized1       |    60|
@@ -19855,24 +19853,24 @@ Report Instance Areas:
 |3116  |            tfifo                                                     |raminfr                             |    12|
 |3117  |      wb_interface                                                    |uart_wb                             |    54|
 |3118  |    up0                                                               |uart_parse                          |   280|
-|3119  |    wb_intercon0                                                      |wb_intercon                         |   129|
-|3120  |      wb_mux_io                                                       |wb_mux                              |   129|
+|3119  |    wb_intercon0                                                      |wb_intercon                         |   130|
+|3120  |      wb_mux_io                                                       |wb_mux                              |   130|
 |3121  |  tap                                                                 |bscan_tap                           |   229|
 +------+----------------------------------------------------------------------+------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:09:45 ; elapsed = 00:11:36 . Memory (MB): peak = 1803.605 ; gain = 1013.305
+Finished Writing Synthesis Report : Time (s): cpu = 00:09:41 ; elapsed = 00:11:38 . Memory (MB): peak = 1804.977 ; gain = 1015.062
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 255 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:08:54 ; elapsed = 00:11:16 . Memory (MB): peak = 1803.605 ; gain = 738.836
-Synthesis Optimization Complete : Time (s): cpu = 00:09:45 ; elapsed = 00:11:38 . Memory (MB): peak = 1803.605 ; gain = 1013.305
+Synthesis Optimization Runtime : Time (s): cpu = 00:08:36 ; elapsed = 00:11:14 . Memory (MB): peak = 1804.977 ; gain = 752.359
+Synthesis Optimization Complete : Time (s): cpu = 00:09:41 ; elapsed = 00:11:40 . Memory (MB): peak = 1804.977 ; gain = 1015.062
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1803.605 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1804.977 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 1762 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers.
 INFO: [Opt 31-138] Pushed 4 inverter(s) to 83 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.049 . Memory (MB): peak = 1803.605 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.047 . Memory (MB): peak = 1804.977 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 234 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 32 instances
@@ -19885,15 +19883,15 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 51 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-723 Infos, 412 Warnings, 0 Critical Warnings and 0 Errors encountered.
+723 Infos, 408 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:10:19 ; elapsed = 00:12:13 . Memory (MB): peak = 1803.605 ; gain = 1299.070
+synth_design: Time (s): cpu = 00:10:16 ; elapsed = 00:12:16 . Memory (MB): peak = 1804.977 ; gain = 1299.070
 INFO: [Common 17-600] The following parameters have non-default value.
 tcl.collectionResultDisplayLimit
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.062 . Memory (MB): peak = 1803.605 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.044 . Memory (MB): peak = 1804.977 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/synth_3/rvfpga.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:42 ; elapsed = 00:00:33 . Memory (MB): peak = 1803.605 ; gain = 0.000
+write_checkpoint: Time (s): cpu = 00:00:28 ; elapsed = 00:00:19 . Memory (MB): peak = 1804.977 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_utilization -file rvfpga_utilization_synth.rpt -pb rvfpga_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu Mar  4 10:32:28 2021...
+INFO: [Common 17-206] Exiting Vivado at Thu Mar  4 14:39:30 2021...

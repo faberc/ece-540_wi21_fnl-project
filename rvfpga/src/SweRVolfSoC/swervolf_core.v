@@ -404,64 +404,6 @@ module swervolf_core
         .o_pmod_rstn(ble_rstn)              // pin 8
     );
 
-    // wire zero;
-    // wire [7:0] zeros8;
-    // wire [31:0] zeros32;
-    // assign zero = 1'b0;
-    // assign zeros8 = 8'b0;
-    // assign zeros32 = 32'b0;
-
-    // ila_0 ila_test (
-    //     .clk(clk), // input wire clk
-
-
-    //     .probe0(rx_done),       // input wire [0:0]  probe0  
-    //     .probe1(drdy_tick),     // input wire [0:0]  probe1 
-    //     .probe2(parsed_tick),   // input wire [0:0]  probe2 
-    //     .probe3(zero),        // input wire [0:0]  probe3 
-    //     .probe4(zero),        // input wire [0:0]  probe4 
-    //     .probe5(zero),        // input wire [0:0]  probe5 
-    //     .probe6(zero),        // input wire [0:0]  probe6 
-    //     .probe7(zero),        // input wire [0:0]  probe7 
-    //     .probe8(rx_data),       // input wire [7:0]  probe8 
-    //     .probe9(zeros8),        // input wire [7:0]  probe9 
-    //     .probe10(zeros8),      // input wire [7:0]  probe10 
-    //     .probe11(zeros8),      // input wire [7:0]  probe11 
-    //     .probe12(ascii_out[31:0]),      // input wire [31:0]  probe12 
-    //     .probe13(ascii_out[63:32]),      // input wire [31:0]  probe13 
-    //     .probe14(ble_accel_val),      // input wire [31:0]  probe14 
-    //     .probe15(zeros32)       // input wire [31:0]  probe15
-    // );
-
-//    wire [7:0] 		       uart_2_rdt;
-//    assign wb_s2m_uart_2_dat = {24'd0, uart_2_rdt};
-
-//    uart_top uart16550_1
-//      (// Wishbone slave interface
-//       .wb_clk_i	(clk),
-//       .wb_rst_i	(~rst_n),
-//       .wb_adr_i	(wb_m2s_uart_2_adr[4:2]),
-//       .wb_dat_i	(wb_m2s_uart_2_dat[7:0]),
-//       .wb_we_i	(wb_m2s_uart_2_we),
-//       .wb_cyc_i	(wb_m2s_uart_2_cyc),
-//       .wb_stb_i	(wb_m2s_uart_2_stb),
-//       .wb_sel_i	(4'b0), // Not used in 8-bit mode
-//       .wb_dat_o	(uart_2_rdt),
-//       .wb_ack_o	(wb_s2m_uart_2_ack),
-
-//       // Outputs
-//       .int_o     (uart_irq),
-//       .stx_pad_o (o_uart_tx_conn),
-//       .rts_pad_o (),
-//       .dtr_pad_o (),
-
-//       // Inputs
-//       .srx_pad_i (i_uart_rx_conn),
-//       .cts_pad_i (1'b0),
-//       .dsr_pad_i (1'b0),
-//       .ri_pad_i  (1'b0),
-//       .dcd_pad_i (1'b0));
-
     // GPIO - Leds and Switches
     wire [31:0] en_gpio;
     wire        gpio_irq;

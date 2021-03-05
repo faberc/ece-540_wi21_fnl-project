@@ -9,6 +9,7 @@
     ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 
 source rvfpga.tcl -notrace
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 464.402 ; gain = 175.926
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/OtherSources/ece540_ip_repo'.
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/Chuck/vivado-library'.
@@ -20,9 +21,9 @@ Design is defaulting to srcset: sources_1
 Design is defaulting to constrset: constrs_1
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Project 1-454] Reading design checkpoint 'c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/clk_gen_75M/clk_gen_75M.dcp' for cell 'clk_gen_75M'
-Netlist sorting complete. Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 973.695 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 972.430 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 1616 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-479] Netlist was created with Vivado 2019.2
 INFO: [Project 1-570] Preparing netlist for logic optimization
 WARNING: [Opt 31-35] Removing redundant IBUF, clk_gen_75M/inst/clkin1_ibufg, from the path connected to top-level port: clk 
@@ -33,7 +34,7 @@ Finished Parsing XDC File [c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/
 Parsing XDC File [c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/clk_gen_75M/clk_gen_75M.xdc] for cell 'clk_gen_75M/inst'
 INFO: [Timing 38-35] Done setting XDC timing constraints. [c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/clk_gen_75M/clk_gen_75M.xdc:57]
 INFO: [Timing 38-2] Deriving generated clocks [c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/clk_gen_75M/clk_gen_75M.xdc:57]
-get_clocks: Time (s): cpu = 00:00:18 ; elapsed = 00:00:17 . Memory (MB): peak = 1786.094 ; gain = 608.133
+get_clocks: Time (s): cpu = 00:00:16 ; elapsed = 00:00:15 . Memory (MB): peak = 1786.008 ; gain = 609.059
 Finished Parsing XDC File [c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/clk_gen_75M/clk_gen_75M.xdc] for cell 'clk_gen_75M/inst'
 Parsing XDC File [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/liteDRAM.xdc]
 Finished Parsing XDC File [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/liteDRAM.xdc]
@@ -41,7 +42,7 @@ Parsing XDC File [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/rvfpga.xdc]
 INFO: [Timing 38-2] Deriving generated clocks [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/rvfpga.xdc:173]
 Finished Parsing XDC File [C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/rvfpga.xdc]
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.051 . Memory (MB): peak = 1786.094 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.095 . Memory (MB): peak = 1786.008 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 86 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 32 instances
@@ -51,7 +52,7 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 
 15 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
 link_design completed successfully
-link_design: Time (s): cpu = 00:00:47 ; elapsed = 00:00:46 . Memory (MB): peak = 1786.094 ; gain = 1280.125
+link_design: Time (s): cpu = 00:00:45 ; elapsed = 00:00:44 . Memory (MB): peak = 1786.008 ; gain = 1279.961
 INFO: [Common 17-600] The following parameters have non-default value.
 tcl.collectionResultDisplayLimit
 Command: opt_design
@@ -65,36 +66,36 @@ WARNING: [DRC RPBF-3] IO port buffering is incomplete: Device port JA8 expects b
 INFO: [Project 1-461] DRC finished with 0 Errors, 1 Warnings
 INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
 
-Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 1786.094 ; gain = 0.000
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:04 . Memory (MB): peak = 1786.008 ; gain = 0.000
 
 Starting Cache Timing Information Task
 INFO: [Timing 38-35] Done setting XDC timing constraints.
-Ending Cache Timing Information Task | Checksum: ce88c597
+Ending Cache Timing Information Task | Checksum: 1aee9f40d
 
-Time (s): cpu = 00:00:10 ; elapsed = 00:00:07 . Memory (MB): peak = 1791.219 ; gain = 5.125
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:04 . Memory (MB): peak = 1791.270 ; gain = 5.262
 
 Starting Logic Optimization Task
 
 Phase 1 Retarget
 INFO: [Opt 31-138] Pushed 17 inverter(s) to 18 load pin(s).
 INFO: [Opt 31-49] Retargeted 0 cell(s).
-Phase 1 Retarget | Checksum: 127d32d7d
+Phase 1 Retarget | Checksum: 11ce37913
 
-Time (s): cpu = 00:00:10 ; elapsed = 00:00:08 . Memory (MB): peak = 1983.098 ; gain = 0.000
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:07 . Memory (MB): peak = 1983.770 ; gain = 0.000
 INFO: [Opt 31-389] Phase Retarget created 1 cells and removed 95 cells
 INFO: [Opt 31-1021] In phase Retarget, 1 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
 
 Phase 2 Constant propagation
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Phase 2 Constant propagation | Checksum: 10352f303
+Phase 2 Constant propagation | Checksum: 94926c73
 
-Time (s): cpu = 00:00:11 ; elapsed = 00:00:09 . Memory (MB): peak = 1983.098 ; gain = 0.000
+Time (s): cpu = 00:00:11 ; elapsed = 00:00:08 . Memory (MB): peak = 1983.770 ; gain = 0.000
 INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
 
 Phase 3 Sweep
-Phase 3 Sweep | Checksum: 1410a1123
+Phase 3 Sweep | Checksum: 1dd755bf1
 
-Time (s): cpu = 00:00:15 ; elapsed = 00:00:13 . Memory (MB): peak = 1983.098 ; gain = 0.000
+Time (s): cpu = 00:00:12 ; elapsed = 00:00:10 . Memory (MB): peak = 1983.770 ; gain = 0.000
 INFO: [Opt 31-389] Phase Sweep created 2 cells and removed 5 cells
 INFO: [Opt 31-1021] In phase Sweep, 25 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
 
@@ -102,22 +103,22 @@ Phase 4 BUFG optimization
 INFO: [Opt 31-1112] Starts optimizing BUFG(s) with a common MMCM/DPLL/XPLL driver.
 INFO: [Opt 31-1112] Starts optimizing BUFG(s) with a common driver.
 INFO: [Opt 31-1092] Phase BUFG optimization transformed 0 BUFG(s) to MBUFG(s).
-Phase 4 BUFG optimization | Checksum: 1410a1123
+Phase 4 BUFG optimization | Checksum: 1dd755bf1
 
-Time (s): cpu = 00:00:17 ; elapsed = 00:00:14 . Memory (MB): peak = 1983.098 ; gain = 0.000
+Time (s): cpu = 00:00:14 ; elapsed = 00:00:12 . Memory (MB): peak = 1983.770 ; gain = 0.000
 INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
 
 Phase 5 Shift Register Optimization
 INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
-Phase 5 Shift Register Optimization | Checksum: 1410a1123
+Phase 5 Shift Register Optimization | Checksum: 1dd755bf1
 
-Time (s): cpu = 00:00:18 ; elapsed = 00:00:16 . Memory (MB): peak = 1983.098 ; gain = 0.000
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:14 . Memory (MB): peak = 1983.770 ; gain = 0.000
 INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
 
 Phase 6 Post Processing Netlist
-Phase 6 Post Processing Netlist | Checksum: 11d990051
+Phase 6 Post Processing Netlist | Checksum: 11578ada1
 
-Time (s): cpu = 00:00:18 ; elapsed = 00:00:16 . Memory (MB): peak = 1983.098 ; gain = 0.000
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:16 . Memory (MB): peak = 1983.770 ; gain = 0.000
 INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
 Opt_design Change Summary
 =========================
@@ -138,10 +139,10 @@ Opt_design Change Summary
 
 Starting Connectivity Check Task
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.230 . Memory (MB): peak = 1983.098 ; gain = 0.000
-Ending Logic Optimization Task | Checksum: 1d571e696
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.448 . Memory (MB): peak = 1983.770 ; gain = 0.000
+Ending Logic Optimization Task | Checksum: 16953164c
 
-Time (s): cpu = 00:00:19 ; elapsed = 00:00:17 . Memory (MB): peak = 1983.098 ; gain = 0.000
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:18 . Memory (MB): peak = 1983.770 ; gain = 0.000
 
 Starting Power Optimization Task
 INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
@@ -159,44 +160,44 @@ Starting PowerOpt Patch Enables Task
 INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 58 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
 INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
 Number of BRAM Ports augmented: 0 newly gated: 0 Total Ports: 116
-Ending PowerOpt Patch Enables Task | Checksum: 1d571e696
+Ending PowerOpt Patch Enables Task | Checksum: 16953164c
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.390 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Ending Power Optimization Task | Checksum: 1d571e696
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.604 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Ending Power Optimization Task | Checksum: 16953164c
 
-Time (s): cpu = 00:00:52 ; elapsed = 00:00:26 . Memory (MB): peak = 2507.273 ; gain = 524.176
+Time (s): cpu = 00:01:18 ; elapsed = 00:00:40 . Memory (MB): peak = 2509.402 ; gain = 525.633
 
 Starting Final Cleanup Task
-Ending Final Cleanup Task | Checksum: 1d571e696
+Ending Final Cleanup Task | Checksum: 16953164c
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Starting Netlist Obfuscation Task
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Ending Netlist Obfuscation Task | Checksum: 1d571e696
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.045 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Ending Netlist Obfuscation Task | Checksum: 16953164c
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.045 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [Common 17-83] Releasing license: Implementation
 45 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
 opt_design completed successfully
-opt_design: Time (s): cpu = 00:01:34 ; elapsed = 00:01:00 . Memory (MB): peak = 2507.273 ; gain = 721.180
+opt_design: Time (s): cpu = 00:01:58 ; elapsed = 00:01:13 . Memory (MB): peak = 2509.402 ; gain = 723.395
 INFO: [Timing 38-35] Done setting XDC timing constraints.
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.032 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.041 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [Timing 38-480] Writing timing data to binary archive.
 Writing placer database...
 Writing XDEF routing.
 Writing XDEF routing logical nets.
 Writing XDEF routing special nets.
-Write XDEF Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.092 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Write XDEF Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.143 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/impl_3/rvfpga_opt.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:36 ; elapsed = 00:00:23 . Memory (MB): peak = 2507.273 ; gain = 0.000
+write_checkpoint: Time (s): cpu = 00:00:37 ; elapsed = 00:00:23 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_drc -file rvfpga_drc_opted.rpt -pb rvfpga_drc_opted.pb -rpx rvfpga_drc_opted.rpx
 Command: report_drc -file rvfpga_drc_opted.rpt -pb rvfpga_drc_opted.pb -rpx rvfpga_drc_opted.rpx
 INFO: [IP_Flow 19-1839] IP Catalog is up to date.
 INFO: [DRC 23-27] Running DRC with 2 threads
 INFO: [Coretcl 2-168] The results of DRC are in file C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/impl_3/rvfpga_drc_opted.rpt.
 report_drc completed successfully
-report_drc: Time (s): cpu = 00:00:12 ; elapsed = 00:00:06 . Memory (MB): peak = 2507.273 ; gain = 0.000
+report_drc: Time (s): cpu = 00:00:18 ; elapsed = 00:00:10 . Memory (MB): peak = 2509.402 ; gain = 0.000
 Command: place_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a100t'
@@ -246,7 +247,7 @@ WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv
 WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[12]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[13]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[14]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[16]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[24]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[5]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[8]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 WARNING: [DRC RPBF-3] IO port buffering is incomplete: Device port JA8 expects both input and output buffering but the buffers are incomplete.
@@ -259,282 +260,282 @@ INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 
 Phase 1 Placer Initialization
 
 Phase 1.1 Placer Initialization Netlist Sorting
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.041 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 1bcd461d5
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.065 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 1320a7603
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.065 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.040 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.120 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.151 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__135' is driving clock pin of 5 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/lsu/clkdomain/lsu_freeze_c1_dc2_clkenff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/lsu/dccm_ctl/Gen_dccm_enable.dccm_rden_dc2ff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/addrcheck/is_sideeffects_dc2ff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/lsu_pkt_vlddc2ff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/lsu/lsu_i0_valid_dc2ff/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[1]_i_2__220' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[0].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[0].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[0].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[0].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[0].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[2]_i_2__105' is driving clock pin of 24 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[7].ic_way_status/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[7].ic_way_status/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[6].ic_way_status/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[6].ic_way_status/dffs/dout_reg[2] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[6].ic_way_status/dffs/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/rptc_hrc[31]_i_3' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/timer_ptc/rptc_hrc_reg[27] {FDCE}
-	swervolf/timer_ptc/rptc_hrc_reg[11] {FDCE}
-	swervolf/timer_ptc/rptc_hrc_reg[21] {FDCE}
-	swervolf/timer_ptc/rptc_hrc_reg[18] {FDCE}
-	swervolf/timer_ptc/rptc_hrc_reg[14] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__300' is driving clock pin of 9 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/mb_rep_wayf2_ff/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/mb_rep_wayf2_ff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/mb_rep_wayf2_ff/dout_reg[2] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/mb_tagv_ff/dout_reg[2] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/mb_tagv_ff/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__304' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[13].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[14].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[15].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[16].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[17].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
 WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__133' is driving clock pin of 7 registers. This could lead to large hold time violations. First few involved registers are:
 	swervolf/swerv_eh1/swerv/lsu/bus_intf/ldst_dual_dc2ff/dout_reg[0] {FDCE}
 	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/access_fault_dc2ff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/addr_in_pic_dc2ff/dout_reg[0] {FDCE}
 	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/addr_external_dc2ff/dout_reg[0] {FDCE}
 	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/addr_in_dccm_dc2ff/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__306' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[0].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[10].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[11].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[12].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[13].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[1]_i_2__221' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[2]_i_2__111' is driving clock pin of 24 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[3].ic_way_status/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[3].ic_way_status/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[3].ic_way_status/dffs/dout_reg[2] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[5].ic_way_status/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[5].ic_way_status/dffs/dout_reg[1] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[1]_i_2__225' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[3].bht_bank/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[4].bht_bank/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[4].bht_bank/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[2].bht_bank/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[3].bht_bank/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/addr_in_pic_dc2ff/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__300' is driving clock pin of 9 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/mb_rep_wayf2_ff/dout_reg[2] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/mb_rep_wayf2_ff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/mb_rep_wayf2_ff/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/mb_tagv_ff/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/mb_tagv_ff/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_1__138' is driving clock pin of 1 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/exu/mul_e1/low_e3_ff/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__304' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[27].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[28].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[29].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[0].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[10].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
 WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__301' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[14].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[15].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[16].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[17].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[18].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__136' is driving clock pin of 2 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/lsu/clkdomain/lsu_freeze_c1_dc4_clkenff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/lsu/lsu_i0_valid_dc4ff/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[2]_i_2__106' is driving clock pin of 24 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[1].ic_way_status/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[1].ic_way_status/dffs/dout_reg[2] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_1__137' is driving clock pin of 1 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/exu/mul_e1/low_e2_ff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[28].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[29].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[2].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[0].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[10].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
 WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__303' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[13].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[14].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[16].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[15].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[17].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[28].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[29].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[0].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[10].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[11].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__302' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[28].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[29].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[2].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[0].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[10].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
 WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_1__399' is driving clock pin of 7 registers. This could lead to large hold time violations. First few involved registers are:
 	swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/dec_nonblock_load_freeze_dc3ff/dout_reg[0] {FDCE}
 	swervolf/swerv_eh1/swerv/lsu/bus_intf/lsu_full_hit_dc3ff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/lsu/dccm_ctl/Gen_dccm_enable.dccm_rden_dc3ff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/lsu/clkdomain/lsu_freeze_c1_dc3_clkenff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/lsu_pkt_vlddc3ff/dout_reg[0] {FDCE}
 	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/addrcheck/is_sideeffects_dc3ff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/lsu/clkdomain/lsu_freeze_c1_dc3_clkenff/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_1__137' is driving clock pin of 1 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/exu/mul_e1/low_e2_ff/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_1__398' is driving clock pin of 18 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/lsu/bus_intf/ldst_dual_dc3ff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/lsu/bus_intf/lsu_byten_dc3ff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/lsu/bus_intf/lsu_byten_dc3ff/dout_reg[3] {FDCE}
+	swervolf/swerv_eh1/swerv/lsu/bus_intf/lsu_byten_dc3ff/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/addr_external_dc3ff/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__134' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/lsu_pkt_vlddc1ff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/lsu/clkdomain/lsu_freeze_c1_dc1_clkenff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/lsu/lsu_i0_valid_dc1ff/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__135' is driving clock pin of 5 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/addrcheck/is_sideeffects_dc2ff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/lsu_pkt_vlddc2ff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/lsu/clkdomain/lsu_freeze_c1_dc2_clkenff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/lsu/dccm_ctl/Gen_dccm_enable.dccm_rden_dc2ff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/lsu/lsu_i0_valid_dc2ff/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__136' is driving clock pin of 2 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/lsu/clkdomain/lsu_freeze_c1_dc4_clkenff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/lsu/lsu_i0_valid_dc4ff/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[2]_i_2__110' is driving clock pin of 24 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[2].ic_way_status/dffs/dout_reg[2] {FDCE}
 WARNING: [Place 30-568] A LUT 'clk_gen/dout[2]_i_2__107' is driving clock pin of 24 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2] {FDCE}
 	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[1].ic_way_status/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2] {FDCE}
 	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1] {FDCE}
 	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[1].ic_way_status/dffs/dout_reg[2] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[2].WAY_STATUS[1].ic_way_status/dffs/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__302' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[14].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[15].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[16].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[17].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[0].TAG_VALID[18].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[1]_i_2__224' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[2]_i_2__112' is driving clock pin of 24 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[2].ic_way_status/dffs/dout_reg[2] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[2].ic_way_status/dffs/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[2]_i_2__108' is driving clock pin of 24 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[1].ic_way_status/dffs/dout_reg[2] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1] {FDCE}
 WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__46' is driving clock pin of 5 registers. This could lead to large hold time violations. First few involved registers are:
 	swervolf/swerv_eh1/swerv/exu/mul_e1/ld_rs1_byp_e1_ff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/exu/mul_e1/low_e1_ff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/exu/mul_e1/rs1_sign_e1_ff/dout_reg[0] {FDCE}
 	swervolf/swerv_eh1/swerv/exu/mul_e1/ld_rs2_byp_e1_ff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/exu/mul_e1/rs1_sign_e1_ff/dout_reg[0] {FDCE}
 	swervolf/swerv_eh1/swerv/exu/mul_e1/rs2_sign_e1_ff/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/exu/mul_e1/low_e1_ff/dout_reg[0] {FDCE}
 WARNING: [Place 30-568] A LUT 'clk_gen/dout[1]_i_2__222' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
 	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0] {FDCE}
 	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[0] {FDCE}
 	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[1]_i_2__223' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_1__398' is driving clock pin of 18 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/lsu/bus_intf/lsu_byten_dc3ff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/lsu/bus_intf/lsu_byten_dc3ff/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/lsu/bus_intf/lsu_byten_dc3ff/dout_reg[3] {FDCE}
-	swervolf/swerv_eh1/swerv/lsu/bus_intf/ldst_dual_dc3ff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/addr_external_dc3ff/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__307' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[0].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[10].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[11].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[12].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[13].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[2]_i_2__108' is driving clock pin of 24 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[4].ic_way_status/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[4].ic_way_status/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[4].ic_way_status/dffs/dout_reg[2] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[5].ic_way_status/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[3].WAY_STATUS[5].ic_way_status/dffs/dout_reg[2] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[2]_i_2__112' is driving clock pin of 24 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[1].ic_way_status/dffs/dout_reg[2] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[7].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[3].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[1] {FDCE}
 WARNING: [Place 30-568] A LUT 'clk_gen/dout[2]_i_2__109' is driving clock pin of 24 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[1].ic_way_status/dffs/dout_reg[0] {FDCE}
 	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2] {FDCE}
 	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1] {FDCE}
 	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[1].ic_way_status/dffs/dout_reg[2] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[4].WAY_STATUS[2].ic_way_status/dffs/dout_reg[1] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_1__138' is driving clock pin of 1 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/exu/mul_e1/low_e3_ff/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__134' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/lsu/clkdomain/lsu_freeze_c1_dc1_clkenff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/lsu_pkt_vlddc1ff/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/lsu/lsu_i0_valid_dc1ff/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[1]_i_2__94' is driving clock pin of 2 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/dbg/axi_bresp_ff/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/dbg/axi_rresp_ff/dout_reg[1] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__305' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[0].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[11].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[10].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[12].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[13].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
-WARNING: [Place 30-568] A LUT 'clk_gen/dout[2]_i_2__110' is driving clock pin of 24 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1] {FDCE}
-	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[5].WAY_STATUS[2].ic_way_status/dffs/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[1]_i_2__223' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[5].BHT_CLK_GROUP[0].BHT_FLOPS[12].bht_bank/dffs/dout_reg[1] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[1]_i_2__224' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[6].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1] {FDCE}
 WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__308' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
 	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[0].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
 	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[10].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
 	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[11].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
 	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[12].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
 	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[13].ic_way3_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/rptc_hrc[31]_i_3' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/timer_ptc/rptc_hrc_reg[0] {FDCE}
+	swervolf/timer_ptc/rptc_hrc_reg[10] {FDCE}
+	swervolf/timer_ptc/rptc_hrc_reg[11] {FDCE}
+	swervolf/timer_ptc/rptc_hrc_reg[13] {FDCE}
+	swervolf/timer_ptc/rptc_hrc_reg[14] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__305' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[0].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[10].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[11].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[12].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[13].ic_way0_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[1]_i_2__225' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[7].BHT_CLK_GROUP[0].BHT_FLOPS[11].bht_bank/dffs/dout_reg[1] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[2]_i_2__111' is driving clock pin of 24 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[3].ic_way_status/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[3].ic_way_status/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[3].ic_way_status/dffs/dout_reg[2] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[4].ic_way_status/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[6].WAY_STATUS[5].ic_way_status/dffs/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[2]_i_2__106' is driving clock pin of 24 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[1].ic_way_status/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[1].ic_way_status/dffs/dout_reg[2] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[1].ic_way_status/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[1].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[2]_i_2__105' is driving clock pin of 24 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[0].ic_way_status/dffs/dout_reg[2] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[1].ic_way_status/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[0].ic_way_status/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[0].ic_way_status/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_WAY_STATUS[0].WAY_STATUS[2].ic_way_status/dffs/dout_reg[1] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[1]_i_2__220' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[0].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[0].BHT_CLK_GROUP[0].BHT_FLOPS[0].bht_bank/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[0].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[0].BHT_CLK_GROUP[0].BHT_FLOPS[10].bht_bank/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[0].BHT_CLK_GROUP[0].BHT_FLOPS[13].bht_bank/dffs/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[1]_i_2__94' is driving clock pin of 2 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/dbg/axi_bresp_ff/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/dbg/axi_rresp_ff/dout_reg[1] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__307' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[0].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[10].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[11].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[12].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[13].ic_way2_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[1]_i_2__221' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[3].bht_bank/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[4].bht_bank/dffs/dout_reg[1] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[3].bht_bank/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[2].bht_bank/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/bp/BANKS[1].BHT_CLK_GROUP[0].BHT_FLOPS[4].bht_bank/dffs/dout_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'clk_gen/dout[0]_i_2__306' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[0].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[10].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[11].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[12].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
+	swervolf/swerv_eh1/swerv/ifu/mem_ctl/CLK_GRP_TAG_VALID[1].TAG_VALID[13].ic_way1_tagvalid_dup/dffs/dout_reg[0] {FDCE}
 WARNING: [Place 30-568] A LUT 'swervolf/timer_ptc/rptc_cntr[31]_i_3' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/timer_ptc/rptc_cntr_reg[23] {FDCE}
-	swervolf/timer_ptc/rptc_cntr_reg[24] {FDCE}
-	swervolf/timer_ptc/rptc_cntr_reg[7] {FDCE}
-	swervolf/timer_ptc/rptc_cntr_reg[2] {FDCE}
-	swervolf/timer_ptc/rptc_cntr_reg[30] {FDCE}
+	swervolf/timer_ptc/rptc_cntr_reg[0] {FDCE}
+	swervolf/timer_ptc/rptc_cntr_reg[10] {FDCE}
+	swervolf/timer_ptc/rptc_cntr_reg[11] {FDCE}
+	swervolf/timer_ptc/rptc_cntr_reg[12] {FDCE}
+	swervolf/timer_ptc/rptc_cntr_reg[13] {FDCE}
 WARNING: [Place 30-568] A LUT 'swervolf/timer_ptc/rptc_lrc[31]_i_3' is driving clock pin of 32 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/timer_ptc/rptc_lrc_reg[13] {FDCE}
+	swervolf/timer_ptc/rptc_lrc_reg[18] {FDCE}
+	swervolf/timer_ptc/rptc_lrc_reg[20] {FDCE}
+	swervolf/timer_ptc/rptc_lrc_reg[25] {FDCE}
 	swervolf/timer_ptc/rptc_lrc_reg[27] {FDCE}
-	swervolf/timer_ptc/rptc_lrc_reg[19] {FDCE}
-	swervolf/timer_ptc/rptc_lrc_reg[15] {FDCE}
-	swervolf/timer_ptc/rptc_lrc_reg[28] {FDCE}
-	swervolf/timer_ptc/rptc_lrc_reg[29] {FDCE}
-WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_0_i_1' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_0 {RAMB36E1}
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_1 {RAMB36E1}
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 {RAMB18E1}
-WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__2' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[3].dccm_bank/ram_core_reg_1 {RAMB36E1}
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[3].dccm_bank/ram_core_reg_0 {RAMB36E1}
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[3].dccm_bank/ram_core_reg_2 {RAMB18E1}
 WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__0' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
 	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[1].dccm_bank/ram_core_reg_1 {RAMB36E1}
 	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[1].dccm_bank/ram_core_reg_0 {RAMB36E1}
 	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[1].dccm_bank/ram_core_reg_2 {RAMB18E1}
-WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__3' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[4].dccm_bank/ram_core_reg_2 {RAMB18E1}
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[4].dccm_bank/ram_core_reg_0 {RAMB36E1}
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[4].dccm_bank/ram_core_reg_1 {RAMB36E1}
-WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__5' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[6].dccm_bank/ram_core_reg_0 {RAMB36E1}
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[6].dccm_bank/ram_core_reg_2 {RAMB18E1}
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[6].dccm_bank/ram_core_reg_1 {RAMB36E1}
+WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__1' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[2].dccm_bank/ram_core_reg_0 {RAMB36E1}
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[2].dccm_bank/ram_core_reg_1 {RAMB36E1}
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[2].dccm_bank/ram_core_reg_2 {RAMB18E1}
+WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__2' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[3].dccm_bank/ram_core_reg_0 {RAMB36E1}
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[3].dccm_bank/ram_core_reg_1 {RAMB36E1}
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[3].dccm_bank/ram_core_reg_2 {RAMB18E1}
 WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__4' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
 	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[5].dccm_bank/ram_core_reg_0 {RAMB36E1}
 	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[5].dccm_bank/ram_core_reg_2 {RAMB18E1}
 	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[5].dccm_bank/ram_core_reg_1 {RAMB36E1}
-WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__1' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[2].dccm_bank/ram_core_reg_1 {RAMB36E1}
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[2].dccm_bank/ram_core_reg_2 {RAMB18E1}
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[2].dccm_bank/ram_core_reg_0 {RAMB36E1}
+WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__3' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[4].dccm_bank/ram_core_reg_1 {RAMB36E1}
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[4].dccm_bank/ram_core_reg_2 {RAMB18E1}
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[4].dccm_bank/ram_core_reg_0 {RAMB36E1}
+WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__5' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[6].dccm_bank/ram_core_reg_2 {RAMB18E1}
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[6].dccm_bank/ram_core_reg_0 {RAMB36E1}
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[6].dccm_bank/ram_core_reg_1 {RAMB36E1}
 WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_0_i_1__6' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
 	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[7].dccm_bank/ram_core_reg_2 {RAMB18E1}
-	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[7].dccm_bank/ram_core_reg_1 {RAMB36E1}
 	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[7].dccm_bank/ram_core_reg_0 {RAMB36E1}
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[7].dccm_bank/ram_core_reg_1 {RAMB36E1}
+WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_0_i_1' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_0 {RAMB36E1}
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 {RAMB18E1}
+	swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_1 {RAMB36E1}
 WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_i_1__15' is driving clock pin of 1 registers. This could lead to large hold time violations. First few involved registers are:
 	swervolf/swerv_eh1/mem/icm/ic_tag_inst/WAYS[0].ICACHE_SZ_16.ic_way_tag/ram_core_reg {RAMB18E1}
+WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_i_1__17' is driving clock pin of 1 registers. This could lead to large hold time violations. First few involved registers are:
+	swervolf/swerv_eh1/mem/icm/ic_tag_inst/WAYS[2].ICACHE_SZ_16.ic_way_tag/ram_core_reg {RAMB18E1}
 WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_i_1__18' is driving clock pin of 1 registers. This could lead to large hold time violations. First few involved registers are:
 	swervolf/swerv_eh1/mem/icm/ic_tag_inst/WAYS[3].ICACHE_SZ_16.ic_way_tag/ram_core_reg {RAMB18E1}
 WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_i_1__16' is driving clock pin of 1 registers. This could lead to large hold time violations. First few involved registers are:
 	swervolf/swerv_eh1/mem/icm/ic_tag_inst/WAYS[1].ICACHE_SZ_16.ic_way_tag/ram_core_reg {RAMB18E1}
-WARNING: [Place 30-568] A LUT 'swervolf/swerv_eh1/mem/ram_core_reg_i_1__17' is driving clock pin of 1 registers. This could lead to large hold time violations. First few involved registers are:
-	swervolf/swerv_eh1/mem/icm/ic_tag_inst/WAYS[2].ICACHE_SZ_16.ic_way_tag/ram_core_reg {RAMB18E1}
-Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 6b6ced86
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 72235d3e
 
-Time (s): cpu = 00:00:16 ; elapsed = 00:00:11 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:20 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 1.3 Build Placer Netlist Model
-Phase 1.3 Build Placer Netlist Model | Checksum: c92b1d48
+Phase 1.3 Build Placer Netlist Model | Checksum: 78b1de07
 
-Time (s): cpu = 00:00:45 ; elapsed = 00:00:29 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:47 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 1.4 Constrain Clocks/Macros
-Phase 1.4 Constrain Clocks/Macros | Checksum: c92b1d48
+Phase 1.4 Constrain Clocks/Macros | Checksum: 78b1de07
 
-Time (s): cpu = 00:00:45 ; elapsed = 00:00:30 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Phase 1 Placer Initialization | Checksum: c92b1d48
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:47 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Phase 1 Placer Initialization | Checksum: 78b1de07
 
-Time (s): cpu = 00:00:45 ; elapsed = 00:00:30 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:48 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 2 Global Placement
 
 Phase 2.1 Floorplanning
-Phase 2.1 Floorplanning | Checksum: 14993b62e
+Phase 2.1 Floorplanning | Checksum: 91901693
 
-Time (s): cpu = 00:00:52 ; elapsed = 00:00:34 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:01:21 ; elapsed = 00:00:54 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 2.2 Global Placement Core
 
 Phase 2.2.1 Physical Synthesis In Placer
-INFO: [Physopt 32-1018] Found 1456 candidate LUT instances to create LUTNM shape
-INFO: [Physopt 32-775] End 1 Pass. Optimized 13 nets or cells. Created 12 new cells, deleted 1 existing cell and moved 0 existing cell
+INFO: [Physopt 32-1018] Found 1511 candidate LUT instances to create LUTNM shape
+INFO: [Physopt 32-775] End 1 Pass. Optimized 19 nets or cells. Created 18 new cells, deleted 1 existing cell and moved 0 existing cell
 INFO: [Physopt 32-65] No nets found for high-fanout optimization.
 INFO: [Physopt 32-232] Optimized 0 net. Created 0 new instance.
 INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
@@ -547,7 +548,7 @@ INFO: [Physopt 32-526] No candidate cells for BRAM register optimization found i
 INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
 INFO: [Physopt 32-949] No candidate nets found for HD net replication
 INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.030 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.044 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Summary of Physical Synthesis Optimizations
 ============================================
@@ -556,76 +557,71 @@ Summary of Physical Synthesis Optimizations
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 |  Optimization                                     |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
-|  LUT Combining                                    |           12  |              1  |                    13  |           0  |           1  |  00:00:00  |
+|  LUT Combining                                    |           18  |              1  |                    19  |           0  |           1  |  00:00:01  |
 |  Very High Fanout                                 |            0  |              0  |                     0  |           0  |           1  |  00:00:01  |
 |  DSP Register                                     |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
 |  Shift Register to Pipeline                       |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
 |  Shift Register                                   |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
 |  BRAM Register                                    |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
 |  Dynamic/Static Region Interface Net Replication  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
-|  Total                                            |           12  |              1  |                    13  |           0  |           7  |  00:00:01  |
+|  Total                                            |           18  |              1  |                    19  |           0  |           7  |  00:00:03  |
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Phase 2.2.1 Physical Synthesis In Placer | Checksum: 1ad50a41a
+Phase 2.2.1 Physical Synthesis In Placer | Checksum: 18163f3c4
 
-Time (s): cpu = 00:02:12 ; elapsed = 00:01:24 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Phase 2.2 Global Placement Core | Checksum: e83b4956
+Time (s): cpu = 00:03:41 ; elapsed = 00:02:23 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Phase 2.2 Global Placement Core | Checksum: 7048e162
 
-Time (s): cpu = 00:02:20 ; elapsed = 00:01:29 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Phase 2 Global Placement | Checksum: e83b4956
+Time (s): cpu = 00:03:47 ; elapsed = 00:02:28 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Phase 2 Global Placement | Checksum: 7048e162
 
-Time (s): cpu = 00:02:20 ; elapsed = 00:01:29 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:03:47 ; elapsed = 00:02:28 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 3 Detail Placement
 
 Phase 3.1 Commit Multi Column Macros
-Phase 3.1 Commit Multi Column Macros | Checksum: e4996df6
+Phase 3.1 Commit Multi Column Macros | Checksum: b81eda52
 
-Time (s): cpu = 00:02:28 ; elapsed = 00:01:35 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:04:00 ; elapsed = 00:02:36 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 3.2 Commit Most Macros & LUTRAMs
-Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 144f4fd35
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: c292c382
 
-Time (s): cpu = 00:02:41 ; elapsed = 00:01:43 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:04:24 ; elapsed = 00:02:51 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 3.3 Area Swap Optimization
-Phase 3.3 Area Swap Optimization | Checksum: 130a5cb94
+Phase 3.3 Area Swap Optimization | Checksum: 12b90f84c
 
-Time (s): cpu = 00:02:42 ; elapsed = 00:01:44 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:04:25 ; elapsed = 00:02:52 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 3.4 Pipeline Register Optimization
-Phase 3.4 Pipeline Register Optimization | Checksum: 1d17fa0ad
+Phase 3.4 Pipeline Register Optimization | Checksum: d63681ac
 
-Time (s): cpu = 00:02:42 ; elapsed = 00:01:44 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:04:26 ; elapsed = 00:02:52 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 3.5 Fast Optimization
-Phase 3.5 Fast Optimization | Checksum: 1af6dcf33
+Phase 3.5 Fast Optimization | Checksum: 371deb1a
 
-Time (s): cpu = 00:02:56 ; elapsed = 00:01:54 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:04:52 ; elapsed = 00:03:09 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 3.6 Small Shape Detail Placement
-Phase 3.6 Small Shape Detail Placement | Checksum: a2d9ebbd
+Phase 3.6 Small Shape Detail Placement | Checksum: 141379ba5
 
-Time (s): cpu = 00:03:27 ; elapsed = 00:02:27 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:05:27 ; elapsed = 00:03:44 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 3.7 Re-assign LUT pins
-Phase 3.7 Re-assign LUT pins | Checksum: 1648e6485
+Phase 3.7 Re-assign LUT pins | Checksum: 16d7ff837
 
-Time (s): cpu = 00:03:31 ; elapsed = 00:02:32 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:05:35 ; elapsed = 00:03:53 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 3.8 Pipeline Register Optimization
-Phase 3.8 Pipeline Register Optimization | Checksum: 1fbdae46e
+Phase 3.8 Pipeline Register Optimization | Checksum: 1d4a98924
 
-Time (s): cpu = 00:03:31 ; elapsed = 00:02:32 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:05:35 ; elapsed = 00:03:53 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Phase 3 Detail Placement | Checksum: 1d4a98924
 
-Phase 3.9 Fast Optimization
-Phase 3.9 Fast Optimization | Checksum: 1a7becb91
-
-Time (s): cpu = 00:03:54 ; elapsed = 00:02:49 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Phase 3 Detail Placement | Checksum: 1a7becb91
-
-Time (s): cpu = 00:03:54 ; elapsed = 00:02:49 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:05:36 ; elapsed = 00:03:54 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 4 Post Placement Optimization and Clean-Up
 
@@ -633,7 +629,7 @@ Phase 4.1 Post Commit Optimization
 INFO: [Timing 38-35] Done setting XDC timing constraints.
 
 Phase 4.1.1 Post Placement Optimization
-Post Placement Optimization Initialization | Checksum: 120d7b049
+Post Placement Optimization Initialization | Checksum: 21bae857a
 
 Phase 4.1.1.1 BUFG Insertion
 INFO: [Place 46-33] Processed net clk_gen/o_rst_core_reg_1, BUFG insertion was skipped due to placement/routing conflicts.
@@ -641,85 +637,85 @@ INFO: [Place 46-33] Processed net clk_gen/o_rst_core_reg_2, BUFG insertion was s
 INFO: [Place 46-33] Processed net clk_gen/rst_core, BUFG insertion was skipped due to placement/routing conflicts.
 INFO: [Place 46-33] Processed net ddr2/ldc/FDPE_1_0, BUFG insertion was skipped due to placement/routing conflicts.
 INFO: [Place 46-56] BUFG insertion identified 4 candidate nets. Inserted BUFG: 0, Replicated BUFG Driver: 0, Skipped due to Placement/Routing Conflicts: 4, Skipped due to Timing Degradation: 0, Skipped due to Illegal Netlist: 0.
-Phase 4.1.1.1 BUFG Insertion | Checksum: 120d7b049
+Phase 4.1.1.1 BUFG Insertion | Checksum: 21bae857a
 
-Time (s): cpu = 00:04:18 ; elapsed = 00:03:04 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:06:21 ; elapsed = 00:04:23 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [Place 30-746] Post Placement Timing Summary WNS=0.000. For the most accurate timing information please run report_timing.
-Phase 4.1.1 Post Placement Optimization | Checksum: b499a239
+Phase 4.1.1 Post Placement Optimization | Checksum: 1f4cc5bf3
 
-Time (s): cpu = 00:04:46 ; elapsed = 00:03:24 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Phase 4.1 Post Commit Optimization | Checksum: b499a239
+Time (s): cpu = 00:07:19 ; elapsed = 00:04:59 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Phase 4.1 Post Commit Optimization | Checksum: 1f4cc5bf3
 
-Time (s): cpu = 00:04:46 ; elapsed = 00:03:24 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:07:20 ; elapsed = 00:05:00 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 4.2 Post Placement Cleanup
-Phase 4.2 Post Placement Cleanup | Checksum: b499a239
+Phase 4.2 Post Placement Cleanup | Checksum: 1f4cc5bf3
 
-Time (s): cpu = 00:04:47 ; elapsed = 00:03:25 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:07:22 ; elapsed = 00:05:02 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 4.3 Placer Reporting
-Phase 4.3 Placer Reporting | Checksum: b499a239
+Phase 4.3 Placer Reporting | Checksum: 1f4cc5bf3
 
-Time (s): cpu = 00:04:47 ; elapsed = 00:03:25 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:07:23 ; elapsed = 00:05:03 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 4.4 Final Placement Cleanup
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Phase 4.4 Final Placement Cleanup | Checksum: 137cdb1a8
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.100 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Phase 4.4 Final Placement Cleanup | Checksum: 259d66943
 
-Time (s): cpu = 00:04:48 ; elapsed = 00:03:26 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Phase 4 Post Placement Optimization and Clean-Up | Checksum: 137cdb1a8
+Time (s): cpu = 00:07:24 ; elapsed = 00:05:03 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 259d66943
 
-Time (s): cpu = 00:04:48 ; elapsed = 00:03:26 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Ending Placer Task | Checksum: f1d0d469
+Time (s): cpu = 00:07:25 ; elapsed = 00:05:04 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Ending Placer Task | Checksum: 1ae88cb4f
 
-Time (s): cpu = 00:04:48 ; elapsed = 00:03:26 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:07:25 ; elapsed = 00:05:04 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [Common 17-83] Releasing license: Implementation
 82 Infos, 96 Warnings, 0 Critical Warnings and 0 Errors encountered.
 place_design completed successfully
-place_design: Time (s): cpu = 00:04:56 ; elapsed = 00:03:31 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 2507.273 ; gain = 0.000
+place_design: Time (s): cpu = 00:07:40 ; elapsed = 00:05:13 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.056 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [Timing 38-480] Writing timing data to binary archive.
 Writing placer database...
 Writing XDEF routing.
 Writing XDEF routing logical nets.
 Writing XDEF routing special nets.
-Write XDEF Complete: Time (s): cpu = 00:00:18 ; elapsed = 00:00:06 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Write XDEF Complete: Time (s): cpu = 00:00:31 ; elapsed = 00:00:11 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/impl_3/rvfpga_placed.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:29 ; elapsed = 00:00:17 . Memory (MB): peak = 2507.273 ; gain = 0.000
+write_checkpoint: Time (s): cpu = 00:00:47 ; elapsed = 00:00:25 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_io -file rvfpga_io_placed.rpt
-report_io: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.110 . Memory (MB): peak = 2507.273 ; gain = 0.000
+report_io: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.159 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_utilization -file rvfpga_utilization_placed.rpt -pb rvfpga_utilization_placed.pb
 INFO: [runtcl-4] Executing : report_control_sets -verbose -file rvfpga_control_sets_placed.rpt
-report_control_sets: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.122 . Memory (MB): peak = 2507.273 ; gain = 0.000
+report_control_sets: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.160 . Memory (MB): peak = 2509.402 ; gain = 0.000
 Command: phys_opt_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a100t'
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.033 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.034 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Starting Physical Synthesis Task
 
 Phase 1 Physical Synthesis Initialization
 INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 2 CPUs
 INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.000 | TNS=0.000 |
-Phase 1 Physical Synthesis Initialization | Checksum: 102286526
+Phase 1 Physical Synthesis Initialization | Checksum: 18005a94e
 
-Time (s): cpu = 00:00:23 ; elapsed = 00:00:10 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:17 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.000 | TNS=0.000 |
 
 Phase 2 DSP Register Optimization
 INFO: [Physopt 32-456] No candidate cells for DSP register optimization found in the design.
 INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
-Phase 2 DSP Register Optimization | Checksum: 102286526
+Phase 2 DSP Register Optimization | Checksum: 18005a94e
 
-Time (s): cpu = 00:00:23 ; elapsed = 00:00:10 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:17 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 3 Critical Path Optimization
 INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.000 | TNS=0.000 |
 INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.000 | TNS=0.000 |
-Phase 3 Critical Path Optimization | Checksum: 102286526
+Phase 3 Critical Path Optimization | Checksum: 18005a94e
 
-Time (s): cpu = 00:00:24 ; elapsed = 00:00:10 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.036 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:00:40 ; elapsed = 00:00:17 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [Physopt 32-603] Post Physical Optimization Timing Summary | WNS=0.000 | TNS=0.000 |
 
 Summary of Physical Synthesis Optimizations
@@ -735,23 +731,23 @@ Summary of Physical Synthesis Optimizations
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.035 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Ending Physical Synthesis Task | Checksum: 102286526
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.041 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Ending Physical Synthesis Task | Checksum: 18005a94e
 
-Time (s): cpu = 00:00:24 ; elapsed = 00:00:11 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Time (s): cpu = 00:00:41 ; elapsed = 00:00:18 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [Common 17-83] Releasing license: Implementation
 97 Infos, 96 Warnings, 0 Critical Warnings and 0 Errors encountered.
 phys_opt_design completed successfully
-phys_opt_design: Time (s): cpu = 00:00:49 ; elapsed = 00:00:25 . Memory (MB): peak = 2507.273 ; gain = 0.000
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 2507.273 ; gain = 0.000
+phys_opt_design: Time (s): cpu = 00:01:23 ; elapsed = 00:00:40 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.038 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [Timing 38-480] Writing timing data to binary archive.
 Writing placer database...
 Writing XDEF routing.
 Writing XDEF routing logical nets.
 Writing XDEF routing special nets.
-Write XDEF Complete: Time (s): cpu = 00:00:16 ; elapsed = 00:00:05 . Memory (MB): peak = 2507.273 ; gain = 0.000
+Write XDEF Complete: Time (s): cpu = 00:00:28 ; elapsed = 00:00:09 . Memory (MB): peak = 2509.402 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/impl_3/rvfpga_physopt.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:28 ; elapsed = 00:00:16 . Memory (MB): peak = 2507.273 ; gain = 0.000
+write_checkpoint: Time (s): cpu = 00:00:42 ; elapsed = 00:00:22 . Memory (MB): peak = 2509.402 ; gain = 0.000
 Command: route_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a100t'
@@ -765,201 +761,156 @@ INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more in
 
 Starting Routing Task
 INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 2 CPUs
-Checksum: PlaceDB: 6a41d68b ConstDB: 0 ShapeSum: fb35c468 RouteDB: 0
+Checksum: PlaceDB: c3f6810c ConstDB: 0 ShapeSum: 8ff2f84d RouteDB: 0
 
 Phase 1 Build RT Design
-Phase 1 Build RT Design | Checksum: 17bae37aa
+Phase 1 Build RT Design | Checksum: e856bdcc
 
-Time (s): cpu = 00:00:45 ; elapsed = 00:00:32 . Memory (MB): peak = 2508.234 ; gain = 0.961
-Post Restoration Checksum: NetGraph: bb48e1a6 NumContArr: c0655604 Constraints: 0 Timing: 0
+Time (s): cpu = 00:01:22 ; elapsed = 00:00:59 . Memory (MB): peak = 2509.402 ; gain = 0.000
+Post Restoration Checksum: NetGraph: b17d61ab NumContArr: 36d95c21 Constraints: 0 Timing: 0
 
 Phase 2 Router Initialization
 
 Phase 2.1 Create Timer
-Phase 2.1 Create Timer | Checksum: 17bae37aa
+Phase 2.1 Create Timer | Checksum: e856bdcc
 
-Time (s): cpu = 00:00:46 ; elapsed = 00:00:33 . Memory (MB): peak = 2508.234 ; gain = 0.961
+Time (s): cpu = 00:01:23 ; elapsed = 00:01:01 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 2.2 Fix Topology Constraints
-Phase 2.2 Fix Topology Constraints | Checksum: 17bae37aa
+Phase 2.2 Fix Topology Constraints | Checksum: e856bdcc
 
-Time (s): cpu = 00:00:47 ; elapsed = 00:00:33 . Memory (MB): peak = 2509.809 ; gain = 2.535
+Time (s): cpu = 00:01:24 ; elapsed = 00:01:02 . Memory (MB): peak = 2509.402 ; gain = 0.000
 
 Phase 2.3 Pre Route Cleanup
-Phase 2.3 Pre Route Cleanup | Checksum: 17bae37aa
+Phase 2.3 Pre Route Cleanup | Checksum: e856bdcc
 
-Time (s): cpu = 00:00:47 ; elapsed = 00:00:33 . Memory (MB): peak = 2509.809 ; gain = 2.535
+Time (s): cpu = 00:01:25 ; elapsed = 00:01:03 . Memory (MB): peak = 2509.402 ; gain = 0.000
  Number of Nodes with overlaps = 0
 
 Phase 2.4 Update Timing
-Phase 2.4 Update Timing | Checksum: 1423c11a6
+Phase 2.4 Update Timing | Checksum: 120c6a46a
 
-Time (s): cpu = 00:01:15 ; elapsed = 00:00:53 . Memory (MB): peak = 2554.613 ; gain = 47.340
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.000  | TNS=0.000  | WHS=-2.462 | THS=-1498.143|
+Time (s): cpu = 00:02:28 ; elapsed = 00:01:44 . Memory (MB): peak = 2529.926 ; gain = 20.523
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.000  | TNS=0.000  | WHS=-2.561 | THS=-1278.754|
 
-Phase 2 Router Initialization | Checksum: 139e26f62
+Phase 2 Router Initialization | Checksum: 141550c17
 
-Time (s): cpu = 00:01:29 ; elapsed = 00:01:01 . Memory (MB): peak = 2575.621 ; gain = 68.348
+Time (s): cpu = 00:02:56 ; elapsed = 00:02:00 . Memory (MB): peak = 2550.926 ; gain = 41.523
 
 Router Utilization Summary
-  Global Vertical Routing Utilization    = 0.213997 %
-  Global Horizontal Routing Utilization  = 0.122975 %
+  Global Vertical Routing Utilization    = 0.167472 %
+  Global Horizontal Routing Utilization  = 0.110685 %
   Routable Net Status*
   *Does not include unroutable nets such as driverless and loadless.
   Run report_route_status for detailed report.
-  Number of Failed Nets               = 50317
+  Number of Failed Nets               = 50284
     (Failed Nets is the sum of unrouted and partially routed nets)
-  Number of Unrouted Nets             = 50282
-  Number of Partially Routed Nets     = 35
-  Number of Node Overlaps             = 78
+  Number of Unrouted Nets             = 50248
+  Number of Partially Routed Nets     = 36
+  Number of Node Overlaps             = 103
 
 
 Phase 3 Initial Routing
-Phase 3 Initial Routing | Checksum: 2185c6e72
+Phase 3 Initial Routing | Checksum: 2344df00b
 
-Time (s): cpu = 00:03:07 ; elapsed = 00:01:53 . Memory (MB): peak = 2597.855 ; gain = 90.582
+Time (s): cpu = 00:07:21 ; elapsed = 00:04:18 . Memory (MB): peak = 2588.461 ; gain = 79.059
+INFO: [Route 35-580] Design has 1 pins with tight setup and hold constraints.
+
+The top 5 pins with tight setup and hold constraints:
+
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|       Launch Clock       |      Capture Clock       |                                                 Pin                                                      |
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|                 clk_core |                 clk_core |                                    swervolf/swerv_eh1/swerv/lsu/clkdomain/lsu_free_cgc/clkhdr/en_ff_reg/D|
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+
+File with complete list of pins: tight_setup_hold_pins.txt
+
 
 Phase 4 Rip-up And Reroute
 
 Phase 4.1 Global Iteration 0
- Number of Nodes with overlaps = 21080
- Number of Nodes with overlaps = 3783
- Number of Nodes with overlaps = 1022
- Number of Nodes with overlaps = 258
- Number of Nodes with overlaps = 131
- Number of Nodes with overlaps = 58
- Number of Nodes with overlaps = 30
- Number of Nodes with overlaps = 7
+ Number of Nodes with overlaps = 16952
+ Number of Nodes with overlaps = 2963
+ Number of Nodes with overlaps = 740
+ Number of Nodes with overlaps = 271
+ Number of Nodes with overlaps = 105
+ Number of Nodes with overlaps = 55
+ Number of Nodes with overlaps = 13
+ Number of Nodes with overlaps = 6
+ Number of Nodes with overlaps = 1
  Number of Nodes with overlaps = 2
- Number of Nodes with overlaps = 1
- Number of Nodes with overlaps = 1
- Number of Nodes with overlaps = 3
- Number of Nodes with overlaps = 1
  Number of Nodes with overlaps = 0
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=-1.449 | TNS=-233.422| WHS=N/A    | THS=N/A    |
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-0.328 | TNS=-4.906 | WHS=N/A    | THS=N/A    |
 
-Phase 4.1 Global Iteration 0 | Checksum: 12ee1f70f
+Phase 4.1 Global Iteration 0 | Checksum: 17d40f018
 
-Time (s): cpu = 00:09:07 ; elapsed = 00:05:58 . Memory (MB): peak = 2704.844 ; gain = 197.570
+Time (s): cpu = 00:13:21 ; elapsed = 00:07:55 . Memory (MB): peak = 2588.461 ; gain = 79.059
 
 Phase 4.2 Global Iteration 1
- Number of Nodes with overlaps = 3462
- Number of Nodes with overlaps = 1094
- Number of Nodes with overlaps = 397
- Number of Nodes with overlaps = 152
- Number of Nodes with overlaps = 57
- Number of Nodes with overlaps = 34
- Number of Nodes with overlaps = 23
- Number of Nodes with overlaps = 3
- Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 1949
+ Number of Nodes with overlaps = 409
+ Number of Nodes with overlaps = 196
+ Number of Nodes with overlaps = 107
+ Number of Nodes with overlaps = 25
+ Number of Nodes with overlaps = 25
+ Number of Nodes with overlaps = 6
  Number of Nodes with overlaps = 0
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=-1.261 | TNS=-294.338| WHS=N/A    | THS=N/A    |
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.000  | TNS=0.000  | WHS=N/A    | THS=N/A    |
 
-Phase 4.2 Global Iteration 1 | Checksum: 10a9690ff
+Phase 4.2 Global Iteration 1 | Checksum: 1381ceb4a
 
-Time (s): cpu = 00:10:27 ; elapsed = 00:06:55 . Memory (MB): peak = 2704.844 ; gain = 197.570
+Time (s): cpu = 00:14:19 ; elapsed = 00:08:38 . Memory (MB): peak = 2588.461 ; gain = 79.059
 
 Phase 4.3 Global Iteration 2
- Number of Nodes with overlaps = 2231
- Number of Nodes with overlaps = 1099
- Number of Nodes with overlaps = 486
- Number of Nodes with overlaps = 206
- Number of Nodes with overlaps = 64
- Number of Nodes with overlaps = 54
- Number of Nodes with overlaps = 16
- Number of Nodes with overlaps = 6
- Number of Nodes with overlaps = 2
- Number of Nodes with overlaps = 1
- Number of Nodes with overlaps = 2
- Number of Nodes with overlaps = 1
- Number of Nodes with overlaps = 1
- Number of Nodes with overlaps = 0
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=-0.639 | TNS=-8.140 | WHS=N/A    | THS=N/A    |
-
-Phase 4.3 Global Iteration 2 | Checksum: 14710a8ab
-
-Time (s): cpu = 00:12:07 ; elapsed = 00:08:09 . Memory (MB): peak = 2704.844 ; gain = 197.570
-
-Phase 4.4 Global Iteration 3
- Number of Nodes with overlaps = 3093
- Number of Nodes with overlaps = 524
- Number of Nodes with overlaps = 264
- Number of Nodes with overlaps = 173
- Number of Nodes with overlaps = 44
- Number of Nodes with overlaps = 35
- Number of Nodes with overlaps = 24
- Number of Nodes with overlaps = 6
  Number of Nodes with overlaps = 2
  Number of Nodes with overlaps = 0
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=-0.901 | TNS=-42.354| WHS=N/A    | THS=N/A    |
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.000  | TNS=0.000  | WHS=N/A    | THS=N/A    |
 
-Phase 4.4 Global Iteration 3 | Checksum: 111b6ef6e
+Phase 4.3 Global Iteration 2 | Checksum: 1f17aaf7f
 
-Time (s): cpu = 00:13:19 ; elapsed = 00:09:01 . Memory (MB): peak = 2704.844 ; gain = 197.570
-Phase 4 Rip-up And Reroute | Checksum: 111b6ef6e
+Time (s): cpu = 00:14:22 ; elapsed = 00:08:40 . Memory (MB): peak = 2588.461 ; gain = 79.059
+Phase 4 Rip-up And Reroute | Checksum: 1f17aaf7f
 
-Time (s): cpu = 00:13:19 ; elapsed = 00:09:01 . Memory (MB): peak = 2704.844 ; gain = 197.570
+Time (s): cpu = 00:14:22 ; elapsed = 00:08:41 . Memory (MB): peak = 2588.461 ; gain = 79.059
 
 Phase 5 Delay and Skew Optimization
 
 Phase 5.1 Delay CleanUp
+Phase 5.1 Delay CleanUp | Checksum: 1f17aaf7f
 
-Phase 5.1.1 Update Timing
-Phase 5.1.1 Update Timing | Checksum: 14c0ba944
-
-Time (s): cpu = 00:13:27 ; elapsed = 00:09:06 . Memory (MB): peak = 2704.844 ; gain = 197.570
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=-0.639 | TNS=-8.140 | WHS=N/A    | THS=N/A    |
-
- Number of Nodes with overlaps = 0
-Phase 5.1 Delay CleanUp | Checksum: 3998a54b
-
-Time (s): cpu = 00:13:28 ; elapsed = 00:09:07 . Memory (MB): peak = 2704.844 ; gain = 197.570
+Time (s): cpu = 00:14:22 ; elapsed = 00:08:41 . Memory (MB): peak = 2588.461 ; gain = 79.059
 
 Phase 5.2 Clock Skew Optimization
-Phase 5.2 Clock Skew Optimization | Checksum: 3998a54b
+Phase 5.2 Clock Skew Optimization | Checksum: 1f17aaf7f
 
-Time (s): cpu = 00:13:28 ; elapsed = 00:09:07 . Memory (MB): peak = 2704.844 ; gain = 197.570
-Phase 5 Delay and Skew Optimization | Checksum: 3998a54b
+Time (s): cpu = 00:14:22 ; elapsed = 00:08:41 . Memory (MB): peak = 2588.461 ; gain = 79.059
+Phase 5 Delay and Skew Optimization | Checksum: 1f17aaf7f
 
-Time (s): cpu = 00:13:28 ; elapsed = 00:09:07 . Memory (MB): peak = 2704.844 ; gain = 197.570
+Time (s): cpu = 00:14:23 ; elapsed = 00:08:41 . Memory (MB): peak = 2588.461 ; gain = 79.059
 
 Phase 6 Post Hold Fix
 
 Phase 6.1 Hold Fix Iter
 
 Phase 6.1.1 Update Timing
-Phase 6.1.1 Update Timing | Checksum: 891bc609
+Phase 6.1.1 Update Timing | Checksum: 21ab10e94
 
-Time (s): cpu = 00:13:37 ; elapsed = 00:09:12 . Memory (MB): peak = 2704.844 ; gain = 197.570
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=-0.639 | TNS=-7.402 | WHS=-1.694 | THS=-8.913 |
+Time (s): cpu = 00:14:32 ; elapsed = 00:08:47 . Memory (MB): peak = 2588.461 ; gain = 79.059
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.000  | TNS=0.000  | WHS=-1.120 | THS=-6.983 |
 
+Phase 6.1 Hold Fix Iter | Checksum: 2046e44ee
 
-Phase 6.1.2 Lut RouteThru Assignment for hold
-Phase 6.1.2 Lut RouteThru Assignment for hold | Checksum: 1b3e4cf7a
+Time (s): cpu = 00:14:33 ; elapsed = 00:08:48 . Memory (MB): peak = 2588.461 ; gain = 79.059
+Phase 6 Post Hold Fix | Checksum: 171936078
 
-Time (s): cpu = 00:13:38 ; elapsed = 00:09:13 . Memory (MB): peak = 2704.844 ; gain = 197.570
-Phase 6.1 Hold Fix Iter | Checksum: 1b3e4cf7a
-
-Time (s): cpu = 00:13:38 ; elapsed = 00:09:14 . Memory (MB): peak = 2704.844 ; gain = 197.570
-WARNING: [Route 35-468] The router encountered 8 pins that are both setup-critical and hold-critical and tried to fix hold violations at the expense of setup slack. Such pins are:
-	swervolf/swerv_eh1/swerv/dec/instbuff/ib0ff/genblock.dff/dffs/i__i_1/I0
-	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/lsu_pkt_dc1ff/genblock.dff/dffs/dout[10]_i_1__187/I1
-	swervolf/swerv_eh1/swerv/lsu/lsu_lsc_ctl/lsu_pkt_dc1ff/genblock.dff/dffs/dout[10]_i_11__7/I2
-	swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[0].stbuf_data_vldff/dffsc/dout[10]_i_8__13/I2
-	swervolf/swerv_eh1/swerv/lsu/stbuf/GenStBuf[5].stbuf_data_vldff/dffsc/dout[10]_i_10__8/I0
-	swervolf/swerv_eh1/swerv/dec/decode/e2ff/genblock.dff/dffs/i__i_5/I4
-	swervolf/swerv_eh1/swerv/dec/instbuff/ib0ff/genblock.dff/dffs/i__i_3/I1
-	swervolf/swerv_eh1/swerv/dec/instbuff/ib1ff/genblock.dff/dffs/i__i_16/I3
-
-Phase 6 Post Hold Fix | Checksum: 19f499539
-
-Time (s): cpu = 00:13:39 ; elapsed = 00:09:14 . Memory (MB): peak = 2704.844 ; gain = 197.570
+Time (s): cpu = 00:14:33 ; elapsed = 00:08:48 . Memory (MB): peak = 2588.461 ; gain = 79.059
 
 Phase 7 Route finalize
 
 Router Utilization Summary
-  Global Vertical Routing Utilization    = 20.5244 %
-  Global Horizontal Routing Utilization  = 22.9314 %
+  Global Vertical Routing Utilization    = 19.8547 %
+  Global Horizontal Routing Utilization  = 21.4025 %
   Routable Net Status*
   *Does not include unroutable nets such as driverless and loadless.
   Run report_route_status for detailed report.
@@ -969,111 +920,66 @@ Router Utilization Summary
   Number of Partially Routed Nets     = 0
   Number of Node Overlaps             = 0
 
-Congestion Report
-North Dir 1x1 Area, Max Cong = 93.6937%, Congestion bounded by tiles (Lower Left Tile -> Upper Right Tile):
-   INT_L_X20Y60 -> INT_L_X20Y60
-   INT_L_X10Y55 -> INT_L_X10Y55
-   INT_R_X21Y54 -> INT_R_X21Y54
-   INT_L_X26Y50 -> INT_L_X26Y50
-   INT_L_X22Y49 -> INT_L_X22Y49
-South Dir 2x2 Area, Max Cong = 89.1892%, Congestion bounded by tiles (Lower Left Tile -> Upper Right Tile):
-   INT_L_X22Y74 -> INT_R_X23Y75
-   INT_L_X20Y72 -> INT_R_X21Y73
-   INT_L_X10Y42 -> INT_R_X11Y43
-East Dir 1x1 Area, Max Cong = 95.5882%, Congestion bounded by tiles (Lower Left Tile -> Upper Right Tile):
-   INT_L_X24Y95 -> INT_L_X24Y95
-   INT_L_X32Y90 -> INT_L_X32Y90
-   INT_L_X34Y86 -> INT_L_X34Y86
-   INT_R_X23Y58 -> INT_R_X23Y58
-   INT_R_X7Y55 -> INT_R_X7Y55
-West Dir 2x2 Area, Max Cong = 91.1765%, Congestion bounded by tiles (Lower Left Tile -> Upper Right Tile):
-   INT_L_X24Y72 -> INT_R_X25Y73
-   INT_L_X24Y70 -> INT_R_X25Y71
-   INT_L_X24Y44 -> INT_R_X25Y45
-   INT_L_X14Y42 -> INT_R_X15Y43
-   INT_L_X24Y40 -> INT_R_X25Y41
+Phase 7 Route finalize | Checksum: 129aaaf89
 
-------------------------------
-Reporting congestion hotspots
-------------------------------
-Direction: North
-----------------
-Congested clusters found at Level 0
-Effective congestion level: 1 Aspect Ratio: 0.5 Sparse Ratio: 0.5
-Direction: South
-----------------
-Congested clusters found at Level 0
-Effective congestion level: 2 Aspect Ratio: 0.833333 Sparse Ratio: 0.8125
-Direction: East
-----------------
-Congested clusters found at Level 0
-Effective congestion level: 1 Aspect Ratio: 1 Sparse Ratio: 0.75
-Direction: West
-----------------
-Congested clusters found at Level 1
-Effective congestion level: 3 Aspect Ratio: 0.6 Sparse Ratio: 0.5
-
-Phase 7 Route finalize | Checksum: 1161d6bec
-
-Time (s): cpu = 00:13:39 ; elapsed = 00:09:15 . Memory (MB): peak = 2704.844 ; gain = 197.570
+Time (s): cpu = 00:14:34 ; elapsed = 00:08:49 . Memory (MB): peak = 2588.461 ; gain = 79.059
 
 Phase 8 Verifying routed nets
 
  Verification completed successfully
-Phase 8 Verifying routed nets | Checksum: 1161d6bec
+Phase 8 Verifying routed nets | Checksum: 129aaaf89
 
-Time (s): cpu = 00:13:39 ; elapsed = 00:09:15 . Memory (MB): peak = 2704.844 ; gain = 197.570
+Time (s): cpu = 00:14:34 ; elapsed = 00:08:49 . Memory (MB): peak = 2588.461 ; gain = 79.059
 
 Phase 9 Depositing Routes
-Phase 9 Depositing Routes | Checksum: f81ed3cc
+Phase 9 Depositing Routes | Checksum: f10a819f
 
-Time (s): cpu = 00:13:45 ; elapsed = 00:09:21 . Memory (MB): peak = 2704.844 ; gain = 197.570
+Time (s): cpu = 00:14:40 ; elapsed = 00:08:56 . Memory (MB): peak = 2588.461 ; gain = 79.059
 
 Phase 10 Post Router Timing
 
 Phase 10.1 Update Timing
-Phase 10.1 Update Timing | Checksum: 12afa1055
+Phase 10.1 Update Timing | Checksum: e54d3c32
 
-Time (s): cpu = 00:13:54 ; elapsed = 00:09:27 . Memory (MB): peak = 2704.844 ; gain = 197.570
-INFO: [Route 35-57] Estimated Timing Summary | WNS=-0.639 | TNS=-7.402 | WHS=0.050  | THS=0.000  |
+Time (s): cpu = 00:14:49 ; elapsed = 00:09:02 . Memory (MB): peak = 2588.461 ; gain = 79.059
+INFO: [Route 35-57] Estimated Timing Summary | WNS=0.000  | TNS=0.000  | WHS=0.050  | THS=0.000  |
 
-WARNING: [Route 35-328] Router estimated timing not met.
-Resolution: For a complete and accurate timing signoff, report_timing_summary must be run after route_design. Alternatively, route_design can be run with the -timing_summary option to enable a complete timing signoff at the end of route_design.
-Phase 10 Post Router Timing | Checksum: 12afa1055
+INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
+Phase 10 Post Router Timing | Checksum: e54d3c32
 
-Time (s): cpu = 00:13:54 ; elapsed = 00:09:27 . Memory (MB): peak = 2704.844 ; gain = 197.570
+Time (s): cpu = 00:14:50 ; elapsed = 00:09:02 . Memory (MB): peak = 2588.461 ; gain = 79.059
 INFO: [Route 35-16] Router Completed Successfully
 
-Time (s): cpu = 00:13:54 ; elapsed = 00:09:27 . Memory (MB): peak = 2704.844 ; gain = 197.570
+Time (s): cpu = 00:14:50 ; elapsed = 00:09:02 . Memory (MB): peak = 2588.461 ; gain = 79.059
 
 Routing Is Done.
 INFO: [Common 17-83] Releasing license: Implementation
-114 Infos, 99 Warnings, 0 Critical Warnings and 0 Errors encountered.
+114 Infos, 97 Warnings, 0 Critical Warnings and 0 Errors encountered.
 route_design completed successfully
-route_design: Time (s): cpu = 00:14:03 ; elapsed = 00:09:31 . Memory (MB): peak = 2704.844 ; gain = 197.570
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.032 . Memory (MB): peak = 2704.844 ; gain = 0.000
+route_design: Time (s): cpu = 00:15:05 ; elapsed = 00:09:10 . Memory (MB): peak = 2588.461 ; gain = 79.059
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.033 . Memory (MB): peak = 2588.461 ; gain = 0.000
 INFO: [Timing 38-480] Writing timing data to binary archive.
 Writing placer database...
 Writing XDEF routing.
 Writing XDEF routing logical nets.
 Writing XDEF routing special nets.
-Write XDEF Complete: Time (s): cpu = 00:00:22 ; elapsed = 00:00:08 . Memory (MB): peak = 2704.844 ; gain = 0.000
+Write XDEF Complete: Time (s): cpu = 00:00:26 ; elapsed = 00:00:09 . Memory (MB): peak = 2588.461 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/impl_3/rvfpga_routed.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:32 ; elapsed = 00:00:17 . Memory (MB): peak = 2704.844 ; gain = 0.000
+write_checkpoint: Time (s): cpu = 00:00:35 ; elapsed = 00:00:19 . Memory (MB): peak = 2588.461 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_drc -file rvfpga_drc_routed.rpt -pb rvfpga_drc_routed.pb -rpx rvfpga_drc_routed.rpx
 Command: report_drc -file rvfpga_drc_routed.rpt -pb rvfpga_drc_routed.pb -rpx rvfpga_drc_routed.rpx
 INFO: [IP_Flow 19-1839] IP Catalog is up to date.
 INFO: [DRC 23-27] Running DRC with 2 threads
 INFO: [Coretcl 2-168] The results of DRC are in file C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/impl_3/rvfpga_drc_routed.rpt.
 report_drc completed successfully
-report_drc: Time (s): cpu = 00:00:18 ; elapsed = 00:00:09 . Memory (MB): peak = 2704.844 ; gain = 0.000
+report_drc: Time (s): cpu = 00:00:19 ; elapsed = 00:00:10 . Memory (MB): peak = 2588.461 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_methodology -file rvfpga_methodology_drc_routed.rpt -pb rvfpga_methodology_drc_routed.pb -rpx rvfpga_methodology_drc_routed.rpx
 Command: report_methodology -file rvfpga_methodology_drc_routed.rpt -pb rvfpga_methodology_drc_routed.pb -rpx rvfpga_methodology_drc_routed.rpx
 INFO: [Timing 38-35] Done setting XDC timing constraints.
 INFO: [DRC 23-133] Running Methodology with 2 threads
 INFO: [Coretcl 2-1520] The results of Report Methodology are in file C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/impl_3/rvfpga_methodology_drc_routed.rpt.
 report_methodology completed successfully
-report_methodology: Time (s): cpu = 00:00:52 ; elapsed = 00:00:28 . Memory (MB): peak = 2891.402 ; gain = 186.559
+report_methodology: Time (s): cpu = 00:00:54 ; elapsed = 00:00:29 . Memory (MB): peak = 2829.617 ; gain = 241.156
 INFO: [runtcl-4] Executing : report_power -file rvfpga_power_routed.rpt -pb rvfpga_power_summary_routed.pb -rpx rvfpga_power_routed.rpx
 Command: report_power -file rvfpga_power_routed.rpt -pb rvfpga_power_summary_routed.pb -rpx rvfpga_power_routed.rpx
 INFO: [Power 33-23] Power model is not available for STARTUPE2
@@ -1083,15 +989,13 @@ Running Vector-less Activity Propagation...
 Finished Running Vector-less Activity Propagation
 WARNING: [Power 33-332] Found switching activity that implies high-fanout reset nets being asserted for excessive periods of time which may result in inaccurate power analysis.
 Resolution: To review and fix problems, please run Power Constraints Advisor in the GUI from Tools > Power Constraints Advisor or run report_power with the -advisory option to generate a text report.
-127 Infos, 100 Warnings, 0 Critical Warnings and 0 Errors encountered.
+127 Infos, 98 Warnings, 0 Critical Warnings and 0 Errors encountered.
 report_power completed successfully
-report_power: Time (s): cpu = 00:00:48 ; elapsed = 00:00:30 . Memory (MB): peak = 2891.402 ; gain = 0.000
+report_power: Time (s): cpu = 00:00:56 ; elapsed = 00:00:35 . Memory (MB): peak = 2829.617 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_route_status -file rvfpga_route_status.rpt -pb rvfpga_route_status.pb
 INFO: [runtcl-4] Executing : report_timing_summary -max_paths 10 -file rvfpga_timing_summary_routed.rpt -pb rvfpga_timing_summary_routed.pb -rpx rvfpga_timing_summary_routed.rpx -warn_on_violation 
 INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
 INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
-CRITICAL WARNING: [Timing 38-282] The design failed to meet the timing requirements. Please see the timing summary report for details on the timing violations.
-report_timing_summary: Time (s): cpu = 00:00:12 ; elapsed = 00:00:08 . Memory (MB): peak = 2891.402 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_incremental_reuse -file rvfpga_incremental_reuse_routed.rpt
 INFO: [Vivado_Tcl 4-1062] Incremental flow is disabled. No incremental reuse Info to report.
 INFO: [runtcl-4] Executing : report_clock_utilization -file rvfpga_clock_utilization_routed.rpt
@@ -1333,7 +1237,7 @@ WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv
 WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[12]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[13]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[14]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[16]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[24]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[5]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2 has an input control pin swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2/ADDRARDADDR[13] (net: swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ADR[10]) which is driven by a register (swervolf/swerv_eh1/swerv/lsu/bus_intf/bus_buffer/ld_bus_dataff/dout_reg[8]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 INFO: [Vivado 12-3199] DRC finished with 0 Errors, 175 Warnings
@@ -1348,9 +1252,9 @@ Creating bitstream...
 Writing bitstream ./rvfpga.bit...
 INFO: [Vivado 12-1842] Bitgen Completed Successfully.
 INFO: [Project 1-120] WebTalk data collection is mandatory when using a WebPACK part without a full Vivado license. To see the specific WebTalk data collected for your design, open the usage_statistics_webtalk.html or usage_statistics_webtalk.xml file in the implementation directory.
-INFO: [Common 17-186] 'C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/impl_3/usage_statistics_webtalk.xml' has been successfully sent to Xilinx on Thu Mar  4 10:51:21 2021. For additional details about this file, please refer to the WebTalk help file at C:/Xilinx/Vivado/2019.2/doc/webtalk_introduction.html.
+INFO: [Common 17-186] 'C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.runs/impl_3/usage_statistics_webtalk.xml' has been successfully sent to Xilinx on Thu Mar  4 15:00:35 2021. For additional details about this file, please refer to the WebTalk help file at C:/Xilinx/Vivado/2019.2/doc/webtalk_introduction.html.
 INFO: [Common 17-83] Releasing license: Implementation
-147 Infos, 275 Warnings, 1 Critical Warnings and 0 Errors encountered.
+147 Infos, 273 Warnings, 0 Critical Warnings and 0 Errors encountered.
 write_bitstream completed successfully
-write_bitstream: Time (s): cpu = 00:00:56 ; elapsed = 00:00:39 . Memory (MB): peak = 3206.301 ; gain = 314.898
-INFO: [Common 17-206] Exiting Vivado at Thu Mar  4 10:51:21 2021...
+write_bitstream: Time (s): cpu = 00:01:04 ; elapsed = 00:00:43 . Memory (MB): peak = 3196.273 ; gain = 366.656
+INFO: [Common 17-206] Exiting Vivado at Thu Mar  4 15:00:36 2021...

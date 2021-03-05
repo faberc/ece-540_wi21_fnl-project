@@ -65,20 +65,6 @@ wire        wb_s2m_uart_ack;
 wire        wb_s2m_uart_err;
 wire        wb_s2m_uart_rty;
 
-// UART 2
-wire [31:0] wb_m2s_uart_2_adr;
-wire [31:0] wb_m2s_uart_2_dat;
-wire  [3:0] wb_m2s_uart_2_sel;
-wire        wb_m2s_uart_2_we;
-wire        wb_m2s_uart_2_cyc;
-wire        wb_m2s_uart_2_stb;
-wire  [2:0] wb_m2s_uart_2_cti;
-wire  [1:0] wb_m2s_uart_2_bte;
-wire [31:0] wb_s2m_uart_2_dat;
-wire        wb_s2m_uart_2_ack;
-wire        wb_s2m_uart_2_err;
-wire        wb_s2m_uart_2_rty;
-
 // GPIO
 wire [31:0] wb_m2s_gpio_adr;
 wire [31:0] wb_m2s_gpio_dat;
@@ -229,20 +215,6 @@ wb_intercon wb_intercon0
     .wb_uart_ack_i      (wb_s2m_uart_ack),
     .wb_uart_err_i      (wb_s2m_uart_err),
     .wb_uart_rty_i      (wb_s2m_uart_rty),
-
-// UART 2 - BLE Pmod
-    .wb_uart_2_adr_o      (wb_m2s_uart_2_adr),
-    .wb_uart_2_dat_o      (wb_m2s_uart_2_dat),
-    .wb_uart_2_sel_o      (wb_m2s_uart_2_sel),
-    .wb_uart_2_we_o       (wb_m2s_uart_2_we),
-    .wb_uart_2_cyc_o      (wb_m2s_uart_2_cyc),
-    .wb_uart_2_stb_o      (wb_m2s_uart_2_stb),
-    .wb_uart_2_cti_o      (wb_m2s_uart_2_cti),
-    .wb_uart_2_bte_o      (wb_m2s_uart_2_bte),
-    .wb_uart_2_dat_i      (wb_s2m_uart_2_dat),
-    .wb_uart_2_ack_i      (wb_s2m_uart_2_ack),
-    .wb_uart_2_err_i      (wb_s2m_uart_2_err),
-    .wb_uart_2_rty_i      (wb_s2m_uart_2_rty),
 
 // GPIO
     .wb_gpio_adr_o      (wb_m2s_gpio_adr),

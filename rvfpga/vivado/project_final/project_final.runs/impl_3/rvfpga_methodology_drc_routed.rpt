@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date         : Thu Mar  4 10:49:59 2021
+| Date         : Thu Mar  4 14:59:09 2021
 | Host         : DESKTOP-HHTTKMG running 64-bit major release  (build 9200)
 | Command      : report_methodology -file rvfpga_methodology_drc_routed.rpt -pb rvfpga_methodology_drc_routed.pb -rpx rvfpga_methodology_drc_routed.rpx
 | Design       : rvfpga
@@ -23,7 +23,7 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 350
+             Violations found: 342
 +-----------+------------------+----------------------------------------------------+------------+
 | Rule      | Severity         | Description                                        | Violations |
 +-----------+------------------+----------------------------------------------------+------------+
@@ -34,7 +34,7 @@ Table of Contents
 | TIMING-27 | Critical Warning | Invalid primary clock on hierarchical pin          | 1          |
 | DPIR-1    | Warning          | Asynchronous driver check                          | 152        |
 | LUTAR-1   | Warning          | LUT drives async reset alert                       | 5          |
-| SYNTH-6   | Warning          | Timing of a block RAM might be sub-optimal         | 11         |
+| SYNTH-6   | Warning          | Timing of a block RAM might be sub-optimal         | 3          |
 | SYNTH-10  | Warning          | Wide multiplier                                    | 4          |
 | TIMING-9  | Warning          | Unknown CDC Logic                                  | 1          |
 | TIMING-18 | Warning          | Missing input or output delay                      | 22         |
@@ -1130,47 +1130,7 @@ Related violations: <none>
 
 SYNTH-6#3 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_1, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
-Related violations: <none>
-
-SYNTH-6#4 Warning
-Timing of a block RAM might be sub-optimal  
-The timing for the instance swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[0].dccm_bank/ram_core_reg_2, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
-Related violations: <none>
-
-SYNTH-6#5 Warning
-Timing of a block RAM might be sub-optimal  
-The timing for the instance swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[1].dccm_bank/ram_core_reg_0, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
-Related violations: <none>
-
-SYNTH-6#6 Warning
-Timing of a block RAM might be sub-optimal  
-The timing for the instance swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[1].dccm_bank/ram_core_reg_1, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
-Related violations: <none>
-
-SYNTH-6#7 Warning
-Timing of a block RAM might be sub-optimal  
-The timing for the instance swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[1].dccm_bank/ram_core_reg_2, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
-Related violations: <none>
-
-SYNTH-6#8 Warning
-Timing of a block RAM might be sub-optimal  
-The timing for the instance swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[6].dccm_bank/ram_core_reg_2, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
-Related violations: <none>
-
-SYNTH-6#9 Warning
-Timing of a block RAM might be sub-optimal  
-The timing for the instance swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[7].dccm_bank/ram_core_reg_0, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
-Related violations: <none>
-
-SYNTH-6#10 Warning
-Timing of a block RAM might be sub-optimal  
-The timing for the instance swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[7].dccm_bank/ram_core_reg_1, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
-Related violations: <none>
-
-SYNTH-6#11 Warning
-Timing of a block RAM might be sub-optimal  
-The timing for the instance swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[7].dccm_bank/ram_core_reg_2, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance swervolf/swerv_eh1/mem/Gen_dccm_enable.dccm/mem_bank[2].dccm_bank/ram_core_reg_0, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-10#1 Warning
