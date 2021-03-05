@@ -12,6 +12,18 @@
         android:text="Hello World!"/>
 
     <TextView
+        android:id="@+id/statusBluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:text=""/>
+
+    <ImageView
+        android:id="@+id/bluetoothIcon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+
+    <TextView
         android:id="@+id/xtext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
