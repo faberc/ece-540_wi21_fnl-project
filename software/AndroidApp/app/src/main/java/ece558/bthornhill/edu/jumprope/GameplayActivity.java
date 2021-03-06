@@ -153,7 +153,6 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     View.OnClickListener ButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent i = new Intent(GameplayActivity.this, GameplayActivity.class);
 
             switch (v.getId()){
                 case R.id.send_data_button:
@@ -335,7 +334,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         public void run() {
 
             notifyConnectedDevices();
-            
+
             mHandler.postDelayed(this, 2000);
         }
     };
