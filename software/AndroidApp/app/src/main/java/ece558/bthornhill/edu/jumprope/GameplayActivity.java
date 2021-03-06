@@ -333,7 +333,9 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     private Runnable mNotifyRunnable = new Runnable() {
         @Override
         public void run() {
-            notifyConnectedDevices();
+            if (ifsenddata) {
+                notifyConnectedDevices();
+            }
             mHandler.postDelayed(this, 2000);
         }
     };
