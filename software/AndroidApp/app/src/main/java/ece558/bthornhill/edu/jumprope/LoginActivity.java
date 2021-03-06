@@ -12,7 +12,6 @@ import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
 
-    private EditText mUserName;
     private Button mLogin;
     private Button mCancel;
     private Button mProfile;
@@ -21,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_login);
 
         mProfile = findViewById(R.id.button_profile);
         mProfile.setOnClickListener(ButtonListener);

@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mStartGameButton;
     private Button mProfileButton;
     private Button mLoginButton;
+    private Button mLogoutButton;
 
 
     @Override
@@ -36,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         mProfileButton.setOnClickListener(ButtonListener);
         mLoginButton = (Button) findViewById(R.id.button_login);
         mLoginButton.setOnClickListener(ButtonListener);
+        mLogoutButton = findViewById(R.id.button_logout);
+        mLogoutButton.setOnClickListener(ButtonListener);
 
 
     }
@@ -57,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.button_login:
                     startActivity(login);
                     break;
+                case R.id.button_logout:
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    finish();
 
             }
 
