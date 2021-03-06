@@ -25,8 +25,12 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.ParcelUuid;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,6 +67,12 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     private SensorManager sensorManager;
     private Sensor sensor;
 
+    private Switch madvertiseswitch;
+    private Button msenddatabtn;
+
+    private boolean ifadvertise = false;
+    private boolean ifsenddata = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +98,12 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 
+        //Other initialization
+        madvertiseswitch = findViewById(R.id.advertise_switch);
+        madvertiseswitch.setOnCheckedChangeListener(SwitchListener);
+        msenddatabtn = findViewById(R.id.send_data_button);
+        msenddatabtn.setOnClickListener(ButtonListener);
+
     }
 
     @Override
@@ -106,7 +122,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         // Set image according to bluetooth status (on/off)
         // Having issues with Android studio letting me add clip art images
         if ( mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()){
-            //mBlueImage.setImageResource(R.drawable.blueoff);
+            mBlueImage.setImageResource(R.drawable.blue_off);
             //Bluetooth is available on the device and it is not enabled, enable it
             Toast.makeText(getApplicationContext(), "Turning On Bluetooth", Toast.LENGTH_SHORT).show();
             Intent i = new Intent((BluetoothAdapter.ACTION_REQUEST_ENABLE));
@@ -114,7 +130,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         }
         else {
-            //mBlueImage.setImageResource(R.drawable.blue_on);
+            mBlueImage.setImageResource(R.drawable.blue_on);
 
         }
 
@@ -122,7 +138,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         mGattServer = mBluetoothManager.openGattServer(this, mGattServerCallback);
 
         initServer();
-        startAdvertising();
+        //startAdvertising();
 
     }
 
@@ -133,6 +149,29 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         shutdownServer();
         sensorManager.unregisterListener(this);
     }
+
+    View.OnClickListener ButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent i = new Intent(GameplayActivity.this, GameplayActivity.class);
+
+            switch (v.getId()){
+                case R.id.send_data_button:
+                    ifsenddata = true;
+                    break;
+            }
+
+        }
+    };
+
+    CompoundButton.OnCheckedChangeListener SwitchListener = (buttonView, isChecked) -> {
+        if (isChecked){
+            startAdvertising();
+        }
+        else {
+            stopAdvertising();
+        }
+    };
 
     /*
      * Create the GATT server instance, attaching all services and
@@ -324,10 +363,11 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         // If we send raw data over bluetooth
         raw_data = event.values[0] + event.values[1] + event.values[2];
-        // I think this is how to send the data but I am not sure
-        setStoredValue(raw_data);
-        notifyConnectedDevices();
 
+        if (ifsenddata) {
+            setStoredValue(raw_data);
+            notifyConnectedDevices();
+        }
     }
 
     @Override
