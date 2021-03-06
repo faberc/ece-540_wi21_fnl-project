@@ -1,0 +1,37 @@
+/*
+ * File: \ptc_driven.pseudo
+ * Project: c:\Users\Chuck\ECE540\fnlproj-team-tbc\docs\pseudocode
+ * Created Date: Friday, March 5th 2021, 3:58:55 pm
+ * Author: Chuck Faber
+ * -----
+ * Last Modified: Fri Mar 05 2021
+ * Modified By: Chuck Faber
+ * -----
+ * Copyright (c) 2021 Portland State University
+ * 
+ * "Any time I had a problem, and I threw a Molotov cocktail…Boom, right away, I had a different problem."
+ * - Jason Mendoza
+ * -----
+ * HISTORY:
+ * Date      	By	Comments
+ * ----------	---	----------------------------------------------------------
+ */
+
+In the hardware:
+ timer going off every 10 ns or something...
+
+ in interrupt service: increment counter
+
+if counter >= set value determined by bpm
+    move rope one pixel
+    reset counter
+
+
+parse through array
+    if 0b10: duck
+
+duck function:
+    start ptc timer
+    enable interrupt
+    // descent
+    
