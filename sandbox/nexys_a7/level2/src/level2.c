@@ -4,7 +4,7 @@
  * Created Date: Tuesday, February 23th 2021, 6:19:47 pm
  * Author: Brett Thornhill
  * -----
- * Last Modified: Thu Mar 04 2021
+ * Last Modified: Sat Mar 06 2021
  * Modified By: Chuck Faber
  * -----
  * Copyright (c) 2021 Portland State University
@@ -14,20 +14,23 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <string.h>
 #include "jr_lib.h"                     // custom library for jump rope game
 #include "game_arrays.h"                // gameplay arrays
 
-char *game_array = test_arr2;
+#define ARRAY test_arr
 
 int main (void) 
 {
 
+    // char *game_array;
+    // game_array = calloc(sizeof(center_arr), sizeof(char));
+    // game_array = memcpy(game_array, center_arr, sizeof(center_arr));
+    int game_arr_sz = sizeof(ARRAY);
+
     int gpio_enable = 0xFFFF;    //GPIO enable value
     int sseg_enable = 0xF0;      //Seven Segment enable
     int start = 0;
-
-    int game_arr_sz = sizeof(test_arr2);
 
     WRITE_MMIO(PORT_GPIO_EN, gpio_enable);          // Enable GPIOs
     WRITE_MMIO(PORT_SEVENSEG_EN, sseg_enable);      // Enable seven-segment display
@@ -43,7 +46,7 @@ int main (void)
         if(start) {
 
             for(i = 0; i < game_arr_sz; i++){
-                switch (game_array[i])
+                switch (ARRAY[i])
                 {
                 case 0b00:  // Rope stays at center
                     rope_center();
@@ -64,5 +67,6 @@ int main (void)
             }
         }
     }
+
     return(0);
 }
