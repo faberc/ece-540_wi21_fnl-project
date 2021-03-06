@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private Button mStartGameButton;
+    private Button mProfileButton;
+    private Button mLoginButton;
 
 
     @Override
@@ -30,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
         mStartGameButton = (Button) findViewById(R.id.button_play);
         mStartGameButton.setOnClickListener(ButtonListener);
+        mProfileButton = (Button) findViewById(R.id.button_profile);
+        mProfileButton.setOnClickListener(ButtonListener);
+        mLoginButton = (Button) findViewById(R.id.button_login);
+        mLoginButton.setOnClickListener(ButtonListener);
 
 
     }
@@ -37,12 +43,21 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener ButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent i = new Intent(MainActivity.this, GameplayActivity.class);
+            Intent main = new Intent(MainActivity.this, GameplayActivity.class);
+            Intent profile = new Intent(MainActivity.this, ProfileActivity.class);
+            Intent login = new Intent(MainActivity.this, LoginActivity.class);
 
             switch (v.getId()){
                 case R.id.button_play:
-                    startActivity(i);
+                    startActivity(main);
                     break;
+                case R.id.button_profile:
+                    startActivity(profile);
+                    break;
+                case R.id.button_login:
+                    startActivity(login);
+                    break;
+
             }
 
         }

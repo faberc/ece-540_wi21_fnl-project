@@ -28,7 +28,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="Build a profile"
+        android:text="Create a profile"
+        android:textSize="18sp"
+        app:backgroundTint="#8BC34A" />
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="LOG IN"
         android:textSize="18sp"
         app:backgroundTint="#8BC34A" />
 

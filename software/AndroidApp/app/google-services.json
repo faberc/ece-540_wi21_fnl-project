@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "523626834767",
+    "project_id": "ece-540-558-jump-rope-game",
+    "storage_bucket": "ece-540-558-jump-rope-game.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523626834767:android:9ba19529b064f34080333a",
+        "android_client_info": {
+          "package_name": "ece558.bthornhill.edu.jumprope"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "523626834767-ncpip6eqi772m8np14k0ckkqsk2dqb5l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOi18HqNG05gtoLHR53zI-wpqCJcxn5xo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "523626834767-ncpip6eqi772m8np14k0ckkqsk2dqb5l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
