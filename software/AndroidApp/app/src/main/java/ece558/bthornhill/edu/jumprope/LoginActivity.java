@@ -87,5 +87,13 @@ public class LoginActivity extends AppCompatActivity {
         // Notify to user that account is being checked
         mProgressBar.setVisibility(View.VISIBLE);
 
+        // Authenticate User
+        fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+            }
+        });
+
     };
 }

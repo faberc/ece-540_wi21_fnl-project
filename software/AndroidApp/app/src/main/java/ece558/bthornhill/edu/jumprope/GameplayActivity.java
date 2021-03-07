@@ -365,10 +365,10 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         // If we send raw data over bluetooth
         raw_data = event.values[0] + event.values[1] + event.values[2];
 
-        if (ifsenddata) {
-            setStoredValue(raw_data);
-            notifyConnectedDevices();
-        }
+       // if (ifsenddata) {
+        setStoredValue(raw_data);
+        notifyConnectedDevices();
+        //}
     }
 
     @Override
