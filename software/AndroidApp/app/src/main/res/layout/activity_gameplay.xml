@@ -1,81 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="16dp"
+              android:orientation="vertical" android:paddingBottom="30dp">
 
     <TextView
-        android:id="@+id/welcome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"/>
-
-    <TextView
-        android:id="@+id/statusBluetooth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:text=""/>
+            android:id="@+id/statusBluetooth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:text="BT Enable Status" android:gravity="center"/>
 
     <ImageView
-        android:id="@+id/bluetoothIcon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"/>
+            android:id="@+id/bluetoothIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center" />
 
+    <TextView
+            android:id="@+id/bleStatusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Awaiting Connection..."
+            android:gravity="center"
+            android:paddingBottom="30dp" android:paddingTop="30dp"/>
 
-    <Switch
-        android:id="@+id/advertise_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Start Advertising"
-        android:layout_margin="30dp"
-        android:switchPadding="30dp"
-        android:switchMinWidth="50dp"/>
 
     <Button
-        android:id="@+id/send_data_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Start Data Flow"/>
+            android:id="@+id/send_data_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Start Data"/>
 
     <TextView
-        android:id="@+id/xtext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="X axis"/>
+            android:id="@+id/xtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="X axis"/>
 
     <TextView
-        android:id="@+id/xvalue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="x value"/>
+            android:id="@+id/xvalue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="x value"/>
 
     <TextView
-        android:id="@+id/ytext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Y axis"/>
+            android:id="@+id/ytext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Y axis"/>
 
     <TextView
-        android:id="@+id/yvalue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="y value"/>
+            android:id="@+id/yvalue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="y value"/>
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Z axis"/>
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Z axis"/>
 
     <TextView
-        android:id="@+id/zvalue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="z value"/>
+            android:id="@+id/zvalue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="z value"/>
 
 </LinearLayout>
