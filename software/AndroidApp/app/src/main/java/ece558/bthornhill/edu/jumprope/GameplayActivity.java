@@ -127,7 +127,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         }
         else {
             mStatusBluetooth.setText("BT Enabled");
-            mBlueImage.setImageResource(R.drawable.blue_on);
+            mBlueImage.setImageResource(R.drawable.blue_off);
         }
 
         /*
@@ -147,7 +147,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
          * Check for advertising support. Not all devices are enabled to advertise
          * Bluetooth LE data.
          */
-        if (!mBluetoothAdapter.isMultipleAdvertisementSupported() && (mBluetoothLeAdvertiser == null)) {
+        if (!mBluetoothAdapter.isMultipleAdvertisementSupported()) {
             Toast.makeText(this, "No Advertising Support.", Toast.LENGTH_SHORT).show();
             finish();
             return;
@@ -246,7 +246,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                 mBleStatus.setText("Device Connected!");
                 postDeviceChange(device, true);
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
-                mBlueImage.setImageResource(R.drawable.blue_on);
+                mBlueImage.setImageResource(R.drawable.blue_off);
                 mBleStatus.setText("Awaiting Connection...");
                 postDeviceChange(device, false);
             }
@@ -425,8 +425,8 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         // If we send raw data over bluetooth
         raw_data = event.values[0] + event.values[1] + event.values[2];
 
+        setStoredValue(raw_data);
         if(ifSendData) {
-            setStoredValue(raw_data);
             notifyConnectedDevices();
         }
     }
