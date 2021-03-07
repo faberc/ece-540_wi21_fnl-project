@@ -1,15 +1,10 @@
 package ece558.bthornhill.edu.jumprope;
 
+import android.bluetooth.*;
+import android.content.pm.PackageManager;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothGattCharacteristic;
-import android.bluetooth.BluetoothGattServer;
-import android.bluetooth.BluetoothGattServerCallback;
-import android.bluetooth.BluetoothGattService;
-import android.bluetooth.BluetoothManager;
-import android.bluetooth.BluetoothProfile;
 import android.bluetooth.le.AdvertiseCallback;
 import android.bluetooth.le.AdvertiseData;
 import android.bluetooth.le.AdvertiseSettings;
@@ -25,10 +20,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.ParcelUuid;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -43,7 +35,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     private static final String TAG = "GameplayActivity";
 
     // Variables for Bluetooth
-    private TextView mStatusBluetooth;
+//    private TextView mStatusBluetooth;
     private ImageView mBlueImage;
     private BluetoothManager mBluetoothManager;
     private BluetoothAdapter mBluetoothAdapter;
@@ -57,11 +49,17 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     private TextView x_axis, y_axis, z_axis;
     private float raw_data;
     private float lastX, lastY, lastZ;
+    private EditText mAccelSum;
     private float deltaX = 0;
     private float deltaY = 0;
     private float deltaZ = 0;
     private SensorManager sensorManager;
     private Sensor sensor;
+
+    private TextView mBleStatus;
+    private Button msenddatabtn;
+
+    private boolean ifSendData = false;
 
 
     @Override
@@ -70,23 +68,32 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         setContentView(R.layout.activity_gameplay);
 
         // Bluetooth initialization
-        mStatusBluetooth = findViewById(R.id.statusBluetooth);
+        mBleStatus = findViewById(R.id.bleStatusText);
+//        mStatusBluetooth = findViewById(R.id.statusBluetooth);
         mBlueImage = findViewById(R.id.bluetoothIcon);
 
         // Bluetooth adapter
-        mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        mConnectedDevices = new ArrayList<>();
-        mConnectedDevicesAdapter = new ArrayAdapter<>(this,
+        mConnectedDevices = new ArrayList<BluetoothDevice>();
+        mConnectedDevicesAdapter = new ArrayAdapter<BluetoothDevice>(this,
                 android.R.layout.simple_list_item_1, mConnectedDevices);
+
+        mBluetoothManager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
+        mBluetoothAdapter = mBluetoothManager.getAdapter();
 
 
         // Acceleration initialization
-        x_axis = findViewById(R.id.xvalue);
-        y_axis = findViewById(R.id.yvalue);
-        z_axis = findViewById(R.id.zvalue);
+        mAccelSum = findViewById(R.id.accel_sum_val);
+//        x_axis = findViewById(R.id.xvalue);
+//        y_axis = findViewById(R.id.yvalue);
+//        z_axis = findViewById(R.id.zvalue);
+
+
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+
+        //Other initialization
+        msenddatabtn = findViewById(R.id.send_data_button);
+        msenddatabtn.setOnClickListener(ButtonListener);
 
     }
 
@@ -94,31 +101,55 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     public void onResume() {
         super.onResume();
         sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-
-        // Check if bluetooth is available or not
-        if (mBluetoothAdapter == null){
-            mStatusBluetooth.setText("Device not BLE capable");
-        }
-        else {
-            mStatusBluetooth.setText("Congrats! Device is BLE capable");
-        }
+        mBluetoothAdapter.cancelDiscovery();
+        mBleStatus.setText("Awaiting Connection...");
 
         // Set image according to bluetooth status (on/off)
         // Having issues with Android studio letting me add clip art images
         if ( mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()){
-            //mBlueImage.setImageResource(R.drawable.blueoff);
+//            mStatusBluetooth.setText("BT is Not Enabled...");
+            mBlueImage.setImageResource(R.drawable.blue_off2);
             //Bluetooth is available on the device and it is not enabled, enable it
-            Toast.makeText(getApplicationContext(), "Turning On Bluetooth", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent((BluetoothAdapter.ACTION_REQUEST_ENABLE));
-            startActivityForResult(i, REQUEST_ENABLE_BT);
+            // Toast.makeText(getApplicationContext(), "Turning On Bluetooth", Toast.LENGTH_SHORT).show();
+            // Intent i = new Intent((BluetoothAdapter.ACTION_REQUEST_ENABLE));
+            // startActivityForResult(i, REQUEST_ENABLE_BT);
+
+            //Bluetooth is disabled
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivity(enableBtIntent);
+            finish();
+            return;
 
         }
         else {
-            //mBlueImage.setImageResource(R.drawable.blue_on);
+//            mStatusBluetooth.setText("BT Enabled");
+            mBlueImage.setImageResource(R.drawable.blue_off);
+        }
 
+        /*
+         * Check for Bluetooth LE Support.  In production, our manifest entry will keep this
+         * from installing on these devices, but this will allow test devices or other
+         * sideloads to report whether or not the feature exists.
+         */
+        if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
+            Toast.makeText(this, "No LE Support.", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
         }
 
         mBluetoothLeAdvertiser = mBluetoothAdapter.getBluetoothLeAdvertiser();
+
+        /*
+         * Check for advertising support. Not all devices are enabled to advertise
+         * Bluetooth LE data.
+         */
+        if (!mBluetoothAdapter.isMultipleAdvertisementSupported()) {
+            Toast.makeText(this, "No Advertising Support.", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+
         mGattServer = mBluetoothManager.openGattServer(this, mGattServerCallback);
 
         initServer();
@@ -134,6 +165,23 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         sensorManager.unregisterListener(this);
     }
 
+    View.OnClickListener ButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            switch (v.getId()) {
+                case R.id.send_data_button:
+                    ifSendData = !ifSendData;
+                    if(ifSendData) {
+                        msenddatabtn.setText("Sending");
+                    } else {
+                        msenddatabtn.setText("Send Data");
+                    }
+                    break;
+            }
+        }
+    };
+
     /*
      * Create the GATT server instance, attaching all services and
      * characteristics that should be exposed
@@ -144,7 +192,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         BluetoothGattCharacteristic rxCharacteristic =
                 new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_RX_UUID,
-                        //Read-only characteristic, supports notifications
+                        //Write only characteristics
                         BluetoothGattCharacteristic.PROPERTY_WRITE, BluetoothGattCharacteristic.PERMISSION_WRITE);
 
         BluetoothGattCharacteristic txCharacteristic =
@@ -158,6 +206,86 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         mGattServer.addService(service);
     }
 
+    /*
+     * Terminate the server and any running callbacks
+     */
+    private void shutdownServer() {
+        mHandler.removeCallbacks(mNotifyRunnable);
+
+        if (mGattServer == null) return;
+
+        mGattServer.close();
+    }
+
+    private Runnable mNotifyRunnable = new Runnable() {
+        @Override
+        public void run() {
+            notifyConnectedDevices();
+            mHandler.postDelayed(this, 2000);
+        }
+    };
+
+    /*
+     * Callback handles all incoming requests from GATT clients.
+     * From connections to read/write requests.
+     */
+    private BluetoothGattServerCallback mGattServerCallback = new BluetoothGattServerCallback() {
+        @Override
+        public void onConnectionStateChange(BluetoothDevice device, int status, int newState) {
+            super.onConnectionStateChange(device, status, newState);
+            Log.i(TAG, "onConnectionStateChange "
+                    + DeviceProfile.getStatusDescription(status) + " "
+                    + DeviceProfile.getStateDescription(newState));
+
+            if (newState == BluetoothProfile.STATE_CONNECTED) {
+                mBlueImage.setImageResource(R.drawable.blue_connected);
+                mBleStatus.setText("Device Connected!");
+                postDeviceChange(device, true);
+            } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+                mBlueImage.setImageResource(R.drawable.blue_off);
+                mBleStatus.setText("Awaiting Connection...");
+                postDeviceChange(device, false);
+            }
+        }
+
+        @Override
+        public void onCharacteristicWriteRequest(BluetoothDevice device,
+                                                 int requestId,
+                                                 BluetoothGattCharacteristic characteristic,
+                                                 boolean preparedWrite,
+                                                 boolean responseNeeded,
+                                                 int offset,
+                                                 byte[] value) {
+            super.onCharacteristicWriteRequest(device, requestId, characteristic, preparedWrite, responseNeeded, offset, value);
+            Log.i(TAG, "onCharacteristicWriteRequest "+characteristic.getUuid().toString());
+
+            if (DeviceProfile.CHARACTERISTIC_RX_UUID.equals(characteristic.getUuid())) {
+                int newOffset = DeviceProfile.unsignedIntFromBytes(value);
+                setStoredValue(newOffset);
+
+                if (responseNeeded) {
+                    mGattServer.sendResponse(device,
+                            requestId,
+                            BluetoothGatt.GATT_SUCCESS,
+                            0,
+                            value);
+                }
+
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(GameplayActivity.this, "RX Packet Updated", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                notifyConnectedDevices();
+            }
+        }
+    };
+
+    /*
+     * Initialize the advertiser
+     */
     private void startAdvertising() {
         if(mBluetoothLeAdvertiser == null) return;
 
@@ -212,66 +340,24 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         });
     }
 
-    /*
-     * Callback handles all incoming requests from GATT clients.
-     * From connections to read/write requests.
-     */
-    private BluetoothGattServerCallback mGattServerCallback = new BluetoothGattServerCallback() {
-        @Override
-        public void onConnectionStateChange(BluetoothDevice device, int status, int newState) {
-            super.onConnectionStateChange(device, status, newState);
-            Log.i(TAG, "onConnectionStateChange "
-                    + DeviceProfile.getStatusDescription(status) + " "
-                    + DeviceProfile.getStateDescription(newState));
 
-            if (newState == BluetoothProfile.STATE_CONNECTED) {
-                postDeviceChange(device, true);
 
-            } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
-                postDeviceChange(device, false);
-            }
-        }
 
-        private void postDeviceChange(final BluetoothDevice device, final boolean toAdd) {
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    //This will add the item to our list and update the adapter at the same time.
-                    if (toAdd) {
-                        mConnectedDevicesAdapter.add(device);
-                    } else {
-                        mConnectedDevicesAdapter.remove(device);
-                    }
-
-                    //Trigger our periodic notification once devices are connected
-                    mHandler.removeCallbacks(mNotifyRunnable);
-                    if (!mConnectedDevices.isEmpty()) {
-                        mHandler.post(mNotifyRunnable);
-                    }
+    private void postDeviceChange(final BluetoothDevice device, final boolean toAdd) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                //This will add the item to our list and update the adapter at the same time.
+                if (toAdd) {
+                    mConnectedDevicesAdapter.add(device);
+                } else {
+                    mConnectedDevicesAdapter.remove(device);
                 }
-            });
-        }
-
-    };
-
-    private Object mLock = new Object();
-
-    private float mtxPacket;
-
-    private byte[] getStoredValue() {
-        synchronized (mLock) {
-            return DeviceProfile.getDataValue(mtxPacket);
-        }
-    }
-
-    private void setStoredValue(float newOffset) {
-        synchronized (mLock) {
-            mtxPacket = newOffset;
-        }
+            }
+        });
     }
 
     /* Storage and access to local characteristic data */
-
     private void notifyConnectedDevices() {
         for (BluetoothDevice device : mConnectedDevices) {
             BluetoothGattCharacteristic txCharacteristic = mGattServer.getService(DeviceProfile.SERVICE_UUID)
@@ -281,32 +367,42 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         }
     }
 
-    /*
-     * Terminate the server and any running callbacks
-     */
-    private void shutdownServer() {
-        mHandler.removeCallbacks(mNotifyRunnable);
+    private Object mLock = new Object();
 
-        if (mGattServer == null) return;
+    private float mTxPacket;
 
-        mGattServer.close();
-    }
-    private Runnable mNotifyRunnable = new Runnable() {
-        @Override
-        public void run() {
-            notifyConnectedDevices();
-            mHandler.postDelayed(this, 2000);
+    private byte[] getStoredValue() {
+        synchronized (mLock) {
+            return DeviceProfile.getDataValue(mTxPacket);
         }
-    };
+    }
+
+    private void setStoredValue(float newTxPacket) {
+        synchronized (mLock) {
+            mTxPacket = newTxPacket;
+        }
+    }
+
+    // private BluetoothConnectionCallback mBtConnectionCallback = new BluetoothConnectionCallback() {
+    //     @Override
+    //     public void onConnected(BluetoothDevice device, int profile) {
+    //         super.onConnected(device, profile);
+    //     }
+
+    //     @Override
+    //     public void onDisconnected(BluetoothDevice device, int profile) {
+    //         super.onDisconnected(device, profile);
+    //     }
+    // };
 
     /*
     Acceleration data processing
      */
     @Override
     public void onSensorChanged(SensorEvent event) {
-        x_axis.setText(String.valueOf(deltaX));
-        y_axis.setText(String.valueOf(deltaY));
-        z_axis.setText(String.valueOf(deltaZ));
+//        x_axis.setText(String.valueOf(deltaX));
+//        y_axis.setText(String.valueOf(deltaY));
+//        z_axis.setText(String.valueOf(deltaZ));
 
         deltaX = Math.abs(lastX - event.values[0]);     // x value
         deltaY = Math.abs(lastY - event.values[1]);    // y value
@@ -324,17 +420,17 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         // If we send raw data over bluetooth
         raw_data = event.values[0] + event.values[1] + event.values[2];
-        // I think this is how to send the data but I am not sure
-        setStoredValue(raw_data);
-        notifyConnectedDevices();
 
+        mAccelSum.setText(String.format("%.2f",raw_data));
+
+        setStoredValue(raw_data);
+        if(ifSendData) {
+            notifyConnectedDevices();
+        }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
     }
-
-
 
 }

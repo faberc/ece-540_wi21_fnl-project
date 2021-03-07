@@ -9,37 +9,21 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/profilewelcome"
+        android:id="@+id/loginwelcome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:gravity="center"
-        android:text="Create a new account"
+        android:text="Log in to your account"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/name_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:text="Name"
-        android:textSize="18sp" />
-
-    <EditText
-        android:id="@+id/editname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:hint="Enter full name"
-        android:inputType="text" />
-
-    <TextView
-        android:id="@+id/email_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:text="Email"
-        android:textSize="18sp" />
+    android:id="@+id/email_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:text="Email"
+    android:textSize="18sp" />
 
     <EditText
         android:id="@+id/editemail"
@@ -65,7 +49,6 @@
         android:hint="Enter password"
         android:inputType="textPassword" />
 
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,11 +56,11 @@
         android:layout_marginTop="50dp">
 
         <Button
-            android:id="@+id/button_save"
+            android:id="@+id/button_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:text="Save"
+            android:text="Log in"
             android:textSize="18sp" />
 
         <ProgressBar
@@ -95,8 +78,6 @@
             android:layout_marginLeft="10dp"
             android:text="Cancel"
             android:textSize="18sp" />
-
-
     </LinearLayout>
 
     <TextView
@@ -106,13 +87,13 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginTop="30dp"
-        android:text="Already Registered? Log In Here"
+        android:text="Don't have an account? Create one Here"
         android:textSize="18sp" />
     <Button
-        android:id="@+id/button_login"
+        android:id="@+id/button_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Log in"
+        android:text="Create Profile"
         android:textSize="18sp" />
 </LinearLayout>

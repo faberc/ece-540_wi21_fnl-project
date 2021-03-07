@@ -4,7 +4,7 @@
  * Created Date: Thursday, March 4th 2021, 7:34:28 pm
  * Author: Chuck Faber
  * -----
- * Last Modified: Fri Mar 05 2021
+ * Last Modified: Sat Mar 06 2021
  * Modified By: Chuck Faber
  * -----
  * Copyright (c) 2021 Portland State University
@@ -78,7 +78,11 @@
 #define VGA_WIDTH 768
 #define HALF_VGA_WIDTH 384
 #define ACTION_WINDOW 50
-#define BEAT_CORRECT 500
+#define CENT_DISP 20
+
+// Timing Corrections
+#define COARSE_CORRECT 988
+#define FINE_CORRECT 0
 
 ///////////////////
 // MMIO Commands //
@@ -123,11 +127,14 @@ void score(int amount);
 ///////////////////////////////
 
 int global_score = 0;
-const double bpm = 125.0;                   // beats per minute
-const double bps = bpm / 60.0;              // beats per second
-const double spb = 1 / bps;                 // seconds per beat
-const unsigned long int uspb = spb * 1e6;   // us per beat
-const unsigned long int hbd = uspb / 2;     // Half beat delay in us
+const double bpm = 125.0;                               // beats per minute
+const double bps = bpm / 60.0;                          // beats per second
+const double spb = 1 / bps;                             // seconds per beat
+const unsigned long int uspb = spb * 1e6;               // us per beat
+const unsigned long int hbd = uspb / 2;                 // Half beat delay in us
+const unsigned long int rdl = (hbd / HALF_VGA_WIDTH) 
+    + COARSE_CORRECT;                                   // rope movement delay for half screen movement
+
 
 // Made up number right now to see if timing works
 long int test_time = 2000000; // quarter-beat time?
@@ -213,7 +220,7 @@ void myDelay(unsigned long int delay)
 
 int beatDelay(unsigned long int us)
 {
-    unsigned long int cycles = (us * 100) + BEAT_CORRECT;
+    unsigned long int cycles = (us * 10) + FINE_CORRECT;
     if (cycles > 0) {
         for (unsigned long int i = 0; i < cycles; i++)
         {
@@ -249,7 +256,7 @@ void score(int amount)
 
 void rope_down()
 {
-    int i, j;
+    int i;
     bool thresh1 = false;
     bool thresh2 = false;
     int btn_value = 0;
@@ -258,11 +265,7 @@ void rope_down()
     for (i = HALF_VGA_WIDTH; i < VGA_WIDTH; i++)
     {
         WRITE_MMIO(ROPE_REG, i);
-
-        // Delay - will get changed to delay(half beat / vga half-width)
-        for (j = 0; j < (test_time / (HALF_VGA_WIDTH * 4)); j++)
-            ;
-
+        beatDelay(rdl);
         // If we are in action window, check for button push
         if (i > (VGA_WIDTH - ACTION_WINDOW))
         {
@@ -278,10 +281,7 @@ void rope_down()
     for (i = VGA_WIDTH; i >= HALF_VGA_WIDTH; i--)
     {
         WRITE_MMIO(ROPE_REG, i);
-
-        for (j = 0; j < (test_time / (HALF_VGA_WIDTH * 4)); j++)
-            ;
-
+        beatDelay(rdl);
         // If we are in action window, check for button push
         if (i > (VGA_WIDTH - ACTION_WINDOW))
         {
@@ -307,15 +307,12 @@ void rope_up()
     bool thresh1 = false;
     bool thresh2 = false;
     int btn_value = 0;
-    unsigned long int trans_delay = hbd / HALF_VGA_WIDTH;
 
     // Rope starts ascent
     for (i = HALF_VGA_WIDTH; i > 0; i--)
     {
         WRITE_MMIO(ROPE_REG, i);
-
-        // Delay - will get changed to delay(half beat / vga half-width)
-        beatDelay(trans_delay);
+        beatDelay(rdl);
 
         // If we are in action window, check for button push
         if (i > ACTION_WINDOW)
@@ -332,8 +329,7 @@ void rope_up()
     for (i = 0; i <= HALF_VGA_WIDTH; i++)
     {
         WRITE_MMIO(ROPE_REG, i);
-
-        beatDelay(trans_delay);
+        beatDelay(rdl);
 
         // If we are in action window, check for button push
         if (i < ACTION_WINDOW)
@@ -356,14 +352,37 @@ void rope_up()
 
 void rope_center()
 {
-    int j;
-    WRITE_MMIO(ROPE_REG, HALF_VGA_WIDTH);
-    for (j = 0; j < ((test_time / 4)); j++);
-    WRITE_MMIO(ROPE_REG, (HALF_VGA_WIDTH + 10));
-    for (j = 0; j < ((test_time / 4)); j++);
-    WRITE_MMIO(ROPE_REG, HALF_VGA_WIDTH);
-    for (j = 0; j < ((test_time / 4)); j++);
-    WRITE_MMIO(ROPE_REG, (HALF_VGA_WIDTH + 10));
-    for (j = 0; j < ((test_time / 4)); j++);
-    WRITE_MMIO(ROPE_REG, HALF_VGA_WIDTH);
+    unsigned long int cdl = hbd / (CENT_DISP / 1.25);
+    int i;
+    for (i = HALF_VGA_WIDTH; i < (HALF_VGA_WIDTH + CENT_DISP); i++)
+    {
+        WRITE_MMIO(ROPE_REG, i);
+        beatDelay(cdl);
+    }
+    for (i = (HALF_VGA_WIDTH + CENT_DISP); i > HALF_VGA_WIDTH; i--) 
+    {
+        WRITE_MMIO(ROPE_REG, i);
+        beatDelay(cdl);
+    }
+    for (i = HALF_VGA_WIDTH; i > (HALF_VGA_WIDTH - CENT_DISP); i--)
+    {
+        WRITE_MMIO(ROPE_REG, i);
+        beatDelay(cdl);
+    }
+    for (i = (HALF_VGA_WIDTH - CENT_DISP); i <= HALF_VGA_WIDTH; i++)
+    {
+        WRITE_MMIO(ROPE_REG, i);
+        beatDelay(cdl);
+    }
+
+    // int j;
+    // WRITE_MMIO(ROPE_REG, HALF_VGA_WIDTH);
+    // for (j = 0; j < ((test_time / 4)); j++);
+    // WRITE_MMIO(ROPE_REG, (HALF_VGA_WIDTH + 10));
+    // for (j = 0; j < ((test_time / 4)); j++);
+    // WRITE_MMIO(ROPE_REG, HALF_VGA_WIDTH);
+    // for (j = 0; j < ((test_time / 4)); j++);
+    // WRITE_MMIO(ROPE_REG, (HALF_VGA_WIDTH + 10));
+    // for (j = 0; j < ((test_time / 4)); j++);
+    // WRITE_MMIO(ROPE_REG, HALF_VGA_WIDTH);
 }
