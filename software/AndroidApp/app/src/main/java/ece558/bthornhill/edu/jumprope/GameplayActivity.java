@@ -65,8 +65,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     private Switch madvertiseswitch;
     private Button msenddatabtn;
 
-    private boolean ifadvertise = false;
-    private boolean ifsenddata = false;
+    private boolean ifSendData = false;
 
 
     @Override
@@ -76,7 +75,6 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         // Bluetooth initialization
         mBleStatus = findViewById(R.id.bleStatusText);
-        mBleStatus.setText("Device Connected!");
         mStatusBluetooth = findViewById(R.id.statusBluetooth);
         mBlueImage = findViewById(R.id.bluetoothIcon);
 
@@ -107,12 +105,14 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     public void onResume() {
         super.onResume();
         sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+        mBluetoothAdapter.cancelDiscovery();
+        mBleStatus.setText("Awaiting Connection...");
 
         // Set image according to bluetooth status (on/off)
         // Having issues with Android studio letting me add clip art images
         if ( mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()){
             mStatusBluetooth.setText("BT is Not Enabled...");
-            mBlueImage.setImageResource(R.drawable.blue_off);
+            mBlueImage.setImageResource(R.drawable.blue_off2);
             //Bluetooth is available on the device and it is not enabled, enable it
             // Toast.makeText(getApplicationContext(), "Turning On Bluetooth", Toast.LENGTH_SHORT).show();
             // Intent i = new Intent((BluetoothAdapter.ACTION_REQUEST_ENABLE));
@@ -175,8 +175,8 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
             switch (v.getId()) {
                 case R.id.send_data_button:
-                    ifsenddata = !ifsenddata;
-                    if(ifsenddata) {
+                    ifSendData = !ifSendData;
+                    if(ifSendData) {
                         msenddatabtn.setText("Sending");
                     } else {
                         msenddatabtn.setText("Send Data");
@@ -196,7 +196,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         BluetoothGattCharacteristic rxCharacteristic =
                 new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_RX_UUID,
-                        //Read-only characteristic, supports notifications
+                        //Write only characteristics
                         BluetoothGattCharacteristic.PROPERTY_WRITE, BluetoothGattCharacteristic.PERMISSION_WRITE);
 
         BluetoothGattCharacteristic txCharacteristic =
@@ -242,8 +242,8 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                     + DeviceProfile.getStateDescription(newState));
 
             if (newState == BluetoothProfile.STATE_CONNECTED) {
-                mBleStatus.setText("Device Connected!");
                 mBlueImage.setImageResource(R.drawable.blue_connected);
+                mBleStatus.setText("Device Connected!");
                 postDeviceChange(device, true);
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
                 mBlueImage.setImageResource(R.drawable.blue_on);
@@ -357,13 +357,6 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                 } else {
                     mConnectedDevicesAdapter.remove(device);
                 }
-
-                // FIXME: Disabling to see if it turns off periodic notification
-                //Trigger our periodic notification once devices are connected
-                // mHandler.removeCallbacks(mNotifyRunnable);
-                // if (!mConnectedDevices.isEmpty()) {
-                //     mHandler.post(mNotifyRunnable);
-                // }
             }
         });
     }
@@ -394,6 +387,18 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         }
     }
 
+    // private BluetoothConnectionCallback mBtConnectionCallback = new BluetoothConnectionCallback() {
+    //     @Override
+    //     public void onConnected(BluetoothDevice device, int profile) {
+    //         super.onConnected(device, profile);
+    //     }
+
+    //     @Override
+    //     public void onDisconnected(BluetoothDevice device, int profile) {
+    //         super.onDisconnected(device, profile);
+    //     }
+    // };
+
     /*
     Acceleration data processing
      */
@@ -420,7 +425,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         // If we send raw data over bluetooth
         raw_data = event.values[0] + event.values[1] + event.values[2];
 
-        if(ifsenddata) {
+        if(ifSendData) {
             setStoredValue(raw_data);
             notifyConnectedDevices();
         }
