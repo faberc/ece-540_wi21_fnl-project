@@ -2,6 +2,7 @@ package ece558.bthornhill.edu.jumprope;
 
 import android.bluetooth.*;
 import android.content.pm.PackageManager;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.bluetooth.le.AdvertiseCallback;
@@ -20,13 +21,6 @@ import android.os.Looper;
 import android.os.ParcelUuid;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -41,7 +35,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     private static final String TAG = "GameplayActivity";
 
     // Variables for Bluetooth
-    private TextView mStatusBluetooth;
+//    private TextView mStatusBluetooth;
     private ImageView mBlueImage;
     private BluetoothManager mBluetoothManager;
     private BluetoothAdapter mBluetoothAdapter;
@@ -55,6 +49,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     private TextView x_axis, y_axis, z_axis;
     private float raw_data;
     private float lastX, lastY, lastZ;
+    private EditText mAccelSum;
     private float deltaX = 0;
     private float deltaY = 0;
     private float deltaZ = 0;
@@ -62,7 +57,6 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     private Sensor sensor;
 
     private TextView mBleStatus;
-    private Switch madvertiseswitch;
     private Button msenddatabtn;
 
     private boolean ifSendData = false;
@@ -75,7 +69,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         // Bluetooth initialization
         mBleStatus = findViewById(R.id.bleStatusText);
-        mStatusBluetooth = findViewById(R.id.statusBluetooth);
+//        mStatusBluetooth = findViewById(R.id.statusBluetooth);
         mBlueImage = findViewById(R.id.bluetoothIcon);
 
         // Bluetooth adapter
@@ -88,14 +82,16 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
 
         // Acceleration initialization
-        x_axis = findViewById(R.id.xvalue);
-        y_axis = findViewById(R.id.yvalue);
-        z_axis = findViewById(R.id.zvalue);
+        mAccelSum = findViewById(R.id.accel_sum_val);
+//        x_axis = findViewById(R.id.xvalue);
+//        y_axis = findViewById(R.id.yvalue);
+//        z_axis = findViewById(R.id.zvalue);
+
+
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 
         //Other initialization
-        // madvertiseswitch.setOnCheckedChangeListener(SwitchListener);
         msenddatabtn = findViewById(R.id.send_data_button);
         msenddatabtn.setOnClickListener(ButtonListener);
 
@@ -111,7 +107,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         // Set image according to bluetooth status (on/off)
         // Having issues with Android studio letting me add clip art images
         if ( mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()){
-            mStatusBluetooth.setText("BT is Not Enabled...");
+//            mStatusBluetooth.setText("BT is Not Enabled...");
             mBlueImage.setImageResource(R.drawable.blue_off2);
             //Bluetooth is available on the device and it is not enabled, enable it
             // Toast.makeText(getApplicationContext(), "Turning On Bluetooth", Toast.LENGTH_SHORT).show();
@@ -126,7 +122,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         }
         else {
-            mStatusBluetooth.setText("BT Enabled");
+//            mStatusBluetooth.setText("BT Enabled");
             mBlueImage.setImageResource(R.drawable.blue_off);
         }
 
@@ -404,9 +400,9 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
      */
     @Override
     public void onSensorChanged(SensorEvent event) {
-        x_axis.setText(String.valueOf(deltaX));
-        y_axis.setText(String.valueOf(deltaY));
-        z_axis.setText(String.valueOf(deltaZ));
+//        x_axis.setText(String.valueOf(deltaX));
+//        y_axis.setText(String.valueOf(deltaY));
+//        z_axis.setText(String.valueOf(deltaZ));
 
         deltaX = Math.abs(lastX - event.values[0]);     // x value
         deltaY = Math.abs(lastY - event.values[1]);    // y value
@@ -424,6 +420,8 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         // If we send raw data over bluetooth
         raw_data = event.values[0] + event.values[1] + event.values[2];
+
+        mAccelSum.setText(String.format("%.2f",raw_data));
 
         setStoredValue(raw_data);
         if(ifSendData) {
