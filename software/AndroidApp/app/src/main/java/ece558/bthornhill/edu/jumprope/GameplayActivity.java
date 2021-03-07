@@ -100,7 +100,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         //Other initialization
         madvertiseswitch = findViewById(R.id.advertise_switch);
-        madvertiseswitch.setOnCheckedChangeListener(SwitchListener);
+       // madvertiseswitch.setOnCheckedChangeListener(SwitchListener);
         msenddatabtn = findViewById(R.id.send_data_button);
         msenddatabtn.setOnClickListener(ButtonListener);
 
@@ -138,7 +138,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         mGattServer = mBluetoothManager.openGattServer(this, mGattServerCallback);
 
         initServer();
-        //startAdvertising();
+        startAdvertising();
 
     }
 
