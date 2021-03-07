@@ -63,6 +63,14 @@
             android:text="Log in"
             android:textSize="18sp" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="invisible"/>
+
         <Button
             android:id="@+id/button_cancel"
             android:layout_width="wrap_content"
