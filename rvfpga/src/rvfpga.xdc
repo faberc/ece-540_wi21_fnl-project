@@ -108,6 +108,10 @@ set_property -dict {PACKAGE_PIN D8 IOSTANDARD LVCMOS33} [get_ports {BLU[3]}]
 set_property -dict {PACKAGE_PIN B11 IOSTANDARD LVCMOS33} [get_ports hsync]
 set_property -dict {PACKAGE_PIN B12 IOSTANDARD LVCMOS33} [get_ports vsync]
 
+##PWM Audio Amplifier
+set_property -dict { PACKAGE_PIN A11   IOSTANDARD LVCMOS33 } [get_ports { AUD_PWM }]; #IO_L4N_T0_15 Sch=aud_pwm
+set_property -dict { PACKAGE_PIN D12   IOSTANDARD LVCMOS33 } [get_ports { AUD_SD  }]; #IO_L6P_T0_15 Sch=aud_sd
+
 ##Pmod Headers
 ##Pmod Header JA
 set_property -dict {PACKAGE_PIN C17 IOSTANDARD LVCMOS33} [get_ports JA1]

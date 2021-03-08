@@ -63,6 +63,8 @@ module rvfpga
     inout wire         i_btn_c,
     output reg [3:0]   RED, GRN, BLU,
     output wire        vsync, hsync,
+    output wire        AUD_PWM,
+    output wire        AUD_SD,
 
     // Junction A -- BLE PMOD
     output wire        JA1,     // RTS
@@ -291,6 +293,7 @@ module rvfpga
       .i_ram_init_error (litedram_init_error),
       .io_data        ({i_sw[15:0],gpio_out[15:0]}),
       .io_data_a      ({i_btn_u,i_btn_d,i_btn_l,i_btn_r,i_btn_c}),
+      .io_aux         ({AUD_PWM, AUD_SD}),
       .AN (AN),
       .DP (DP),
       .Digits_Bits ({CA,CB,CC,CD,CE,CF,CG}),

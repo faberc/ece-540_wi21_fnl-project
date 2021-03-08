@@ -83,6 +83,7 @@ module swervolf_core
     input wire 	       i_ram_init_error,
     inout wire [31:0]  io_data,
     inout wire [31:0]  io_data_a,
+    inout wire [1:0]   io_aux,
 
     output wire [ 7          :0] AN,
     output wire                  DP,
@@ -330,6 +331,30 @@ module swervolf_core
       .dcd_pad_i (1'b0),
       .baud_o (/*s_tick*/)
       );
+
+    // PWM audio
+
+    wire pwm_irq;
+    wire ignore_aux;
+
+    wbpwmaudio ropegameaudio (
+      .i_clk(wb_clk),
+      .i_reset(wb_rst),
+      .i_wb_cyc(wb_m2s_pwm_cyc),
+      .i_wb_stb(wb_m2s_pwm_stb),
+      .i_wb_we(wb_m2s_pwm_we),
+      .i_wb_addr(wb_m2s_pwm_adr[2]),
+      .i_wb_data(wb_m2s_pwm_dat),
+      .o_wb_ack(wb_s2m_pwm_ack),
+      .o_wb_stall(wb_s2m_pwm_err),
+      .o_wb_data(wb_s2m_pwm_dat),
+      .o_pwm(io_aux[1]),
+      .o_aux(ignore_aux),
+      .o_int(pwm_irq)
+
+    );
+
+    assign io_aux[0] = 1'b1;
 
     // Adding UART RX Interpreter
     wire        s_tick;
@@ -827,7 +852,7 @@ module swervolf_core
       .dma_bus_clk_en (1'b1),
 
       .timer_int (timer_irq),
-      .extintsrc_req ({4'd0, sw_irq4, sw_irq3, spi0_irq, uart_irq}),
+      .extintsrc_req ({4'd0, pwm_irq, sw_irq3, spi0_irq, uart_irq}),
       .dec_tlu_perfcnt0 (),
       .dec_tlu_perfcnt1 (),
       .dec_tlu_perfcnt2 (),

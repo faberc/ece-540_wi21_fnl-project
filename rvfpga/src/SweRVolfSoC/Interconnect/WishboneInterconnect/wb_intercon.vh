@@ -93,19 +93,19 @@ wire        wb_s2m_gpio_a_ack;
 wire        wb_s2m_gpio_a_err;
 wire        wb_s2m_gpio_a_rty;
 
-// Peripheral 1 :: RoJoBot
-wire [31:0] wb_m2s_per1_adr;
-wire [31:0] wb_m2s_per1_dat;
-wire  [3:0] wb_m2s_per1_sel;
-wire        wb_m2s_per1_we;
-wire        wb_m2s_per1_cyc;
-wire        wb_m2s_per1_stb;
-wire  [2:0] wb_m2s_per1_cti;
-wire  [1:0] wb_m2s_per1_bte;
-wire [31:0] wb_s2m_per1_dat;
-wire        wb_s2m_per1_ack;
-wire        wb_s2m_per1_err;
-wire        wb_s2m_per1_rty;
+// PWM audio
+wire [31:0] wb_m2s_pwm_adr;
+wire [31:0] wb_m2s_pwm_dat;
+wire  [3:0] wb_m2s_pwm_sel;
+wire        wb_m2s_pwm_we;
+wire        wb_m2s_pwm_cyc;
+wire        wb_m2s_pwm_stb;
+wire  [2:0] wb_m2s_pwm_cti;
+wire  [1:0] wb_m2s_pwm_bte;
+wire [31:0] wb_s2m_pwm_dat;
+wire        wb_s2m_pwm_ack;
+wire        wb_s2m_pwm_err;
+wire        wb_s2m_pwm_rty;
 
 // Peripheral 2 :: Rope Game
 wire [31:0] wb_m2s_per2_adr;
@@ -244,19 +244,19 @@ wb_intercon wb_intercon0
     .wb_gpio_a_err_i      (wb_s2m_gpio_a_err),
     .wb_gpio_a_rty_i      (wb_s2m_gpio_a_rty),
 
-// Peripheral 1 :: RoJoBot
-    .wb_per1_adr_o      (wb_m2s_per1_adr),
-    .wb_per1_dat_o      (wb_m2s_per1_dat),
-    .wb_per1_sel_o      (wb_m2s_per1_sel),
-    .wb_per1_we_o       (wb_m2s_per1_we),
-    .wb_per1_cyc_o      (wb_m2s_per1_cyc),
-    .wb_per1_stb_o      (wb_m2s_per1_stb),
-    .wb_per1_cti_o      (wb_m2s_per1_cti),
-    .wb_per1_bte_o      (wb_m2s_per1_bte),
-    .wb_per1_dat_i      (wb_s2m_per1_dat),
-    .wb_per1_ack_i      (wb_s2m_per1_ack),
-    .wb_per1_err_i      (wb_s2m_per1_err),
-    .wb_per1_rty_i      (wb_s2m_per1_rty),
+// PWM audio
+    .wb_pwm_adr_o      (wb_m2s_pwm_adr),
+    .wb_pwm_dat_o      (wb_m2s_pwm_dat),
+    .wb_pwm_sel_o      (wb_m2s_pwm_sel),
+    .wb_pwm_we_o       (wb_m2s_pwm_we),
+    .wb_pwm_cyc_o      (wb_m2s_pwm_cyc),
+    .wb_pwm_stb_o      (wb_m2s_pwm_stb),
+    .wb_pwm_cti_o      (wb_m2s_pwm_cti),
+    .wb_pwm_bte_o      (wb_m2s_pwm_bte),
+    .wb_pwm_dat_i      (wb_s2m_pwm_dat),
+    .wb_pwm_ack_i      (wb_s2m_pwm_ack),
+    .wb_pwm_err_i      (wb_s2m_pwm_err),
+    .wb_pwm_rty_i      (wb_s2m_pwm_rty),
 
 // Peripheral 2 :: Rope Game
     .wb_per2_adr_o      (wb_m2s_per2_adr),
