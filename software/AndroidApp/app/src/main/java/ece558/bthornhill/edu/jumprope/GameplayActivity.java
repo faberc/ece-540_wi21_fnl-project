@@ -87,9 +87,10 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 //        y_axis = findViewById(R.id.yvalue);
 //        z_axis = findViewById(R.id.zvalue);
 
-
+        Log.d(TAG, "onCreate: Initializing Sensor");
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);     // TYPE_LINEAR_ACCELEROMETER
+        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
         //Other initialization
         msenddatabtn = findViewById(R.id.send_data_button);
@@ -100,7 +101,6 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     @Override
     public void onResume() {
         super.onResume();
-        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
         mBluetoothAdapter.cancelDiscovery();
         mBleStatus.setText("Awaiting Connection...");
 
