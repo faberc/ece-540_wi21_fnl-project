@@ -19,35 +19,44 @@
         android:id="@+id/button_play"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:text="Play Game!"
         android:textSize="18sp" />
 
     <Button
-        android:id="@+id/button_profile"
+        android:id="@+id/button_createprofile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:text="Create a profile"
         android:textSize="18sp"
         app:backgroundTint="#8BC34A" />
 
     <Button
+        android:id="@+id/button_viewprofile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="View Profile"
+        android:textSize="18sp"
+        app:backgroundTint="#009688" />
+
+    <Button
         android:id="@+id/button_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="LOG IN"
         android:textSize="18sp"
-        app:backgroundTint="#8BC34A" />
+        app:backgroundTint="#FF9800" />
 
     <Button
         android:id="@+id/button_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="LOG OUT"
         android:textSize="18sp"
-        app:backgroundTint="#8BC34A" />
+        app:backgroundTint="#FF9800" />
 
 </LinearLayout>
