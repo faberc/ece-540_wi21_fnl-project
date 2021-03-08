@@ -335,6 +335,7 @@ module swervolf_core
     // PWM audio
 
     wire pwm_irq;
+    wire ignore_aux;
 
     wbpwmaudio ropegameaudio (
       .i_clk(wb_clk),
@@ -348,10 +349,12 @@ module swervolf_core
       .o_wb_stall(wb_s2m_pwm_err),
       .o_wb_data(wb_s2m_pwm_dat),
       .o_pwm(io_aux[1]),
-      .o_aux(io_aux[0]),
+      .o_aux(ignore_aux),
       .o_int(pwm_irq)
 
     );
+
+    assign io_aux[0] = 1'b1;
 
     // Adding UART RX Interpreter
     wire        s_tick;
