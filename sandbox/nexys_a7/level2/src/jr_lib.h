@@ -4,7 +4,7 @@
  * Created Date: Thursday, March 4th 2021, 7:34:28 pm
  * Author: Chuck Faber
  * -----
- * Last Modified: Sat Mar 06 2021
+ * Last Modified: Mon Mar 08 2021
  * Modified By: Chuck Faber
  * -----
  * Copyright (c) 2021 Portland State University
@@ -54,7 +54,7 @@
 #define PORT_GPIO_EN 0x80001408 // (o) enable LEDs for output
 
 // Rope Game Peripheral Ports
-#define ACCCEL_REG 0x80001700
+#define ACCEL_REG 0x80001700
 #define ROPE_REG 0x80001704
 
 // Seven Segment Display Ports
@@ -84,6 +84,10 @@
 #define COARSE_CORRECT 988
 #define FINE_CORRECT 0
 
+// Base Acceleration Defines
+#define BASE_ACCEL 10
+#define THRESH 3
+
 ///////////////////
 // MMIO Commands //
 ///////////////////
@@ -112,6 +116,7 @@ void rope_center();
 void rope_up();
 void rope_down();
 void score(int amount);
+float calibration_val(void);
 
     /* example of usage */
     // int main(void)
@@ -122,11 +127,11 @@ void score(int amount);
     //     return (0);
     // }
 
-///////////////////////////////
-// Gameplay Global Variables //
-///////////////////////////////
+    ///////////////////////////////
+    // Gameplay Global Variables //
+    ///////////////////////////////
 
-int global_score = 0;
+    int global_score = 0;
 const double bpm = 125.0;                               // beats per minute
 const double bps = bpm / 60.0;                          // beats per second
 const double spb = 1 / bps;                             // seconds per beat
@@ -134,7 +139,14 @@ const unsigned long int uspb = spb * 1e6;               // us per beat
 const unsigned long int hbd = uspb / 2;                 // Half beat delay in us
 const unsigned long int rdl = (hbd / HALF_VGA_WIDTH) 
     + COARSE_CORRECT;                                   // rope movement delay for half screen movement
-
+union accel                                             // Acceleration Reading Value Union
+{
+    float f;
+    unsigned int i;
+};
+union accel acl;                                        // Acceleration reading value
+float calib_arr[100];                                   // Calibration array for averaging
+float center_baseline;                                  // baseline acceleration value when player standing still
 
 // Made up number right now to see if timing works
 long int test_time = 2000000; // quarter-beat time?
@@ -269,9 +281,13 @@ void rope_down()
         // If we are in action window, check for button push
         if (i > (VGA_WIDTH - ACTION_WINDOW))
         {
-            btn_value = READ_MMIO(PORT_PBTNS);
-            if (btn_value == BTN_U_MASK)
-            {
+            // btn_value = READ_MMIO(PORT_PBTNS);
+            // if (btn_value == BTN_U_MASK)
+            // {
+            //     thresh1 = true;
+            // }
+            acl.i = READ_MMIO(ACCEL_REG);
+            if (acl.f < (center_baseline - THRESH)) {
                 thresh1 = true;
             }
         }
@@ -285,9 +301,13 @@ void rope_down()
         // If we are in action window, check for button push
         if (i > (VGA_WIDTH - ACTION_WINDOW))
         {
-            btn_value = READ_MMIO(PORT_PBTNS);
-            if (btn_value == BTN_U_MASK)
-            {
+            // btn_value = READ_MMIO(PORT_PBTNS);
+            // if (btn_value == BTN_U_MASK)
+            // {
+            //     thresh2 = true;
+            // }
+            acl.i = READ_MMIO(ACCEL_REG);
+            if (acl.f > (center_baseline - THRESH)) {
                 thresh2 = true;
             }
         }
@@ -317,11 +337,16 @@ void rope_up()
         // If we are in action window, check for button push
         if (i > ACTION_WINDOW)
         {
-            btn_value = READ_MMIO(PORT_PBTNS);
-            if (btn_value == BTN_U_MASK)
+            acl.i = READ_MMIO(ACCEL_REG);
+            if (acl.f > (center_baseline + THRESH))
             {
                 thresh1 = true;
             }
+            // btn_value = READ_MMIO(PORT_PBTNS);
+            // if (btn_value == BTN_U_MASK)
+            // {
+            //     thresh1 = true;
+            // }
         }
     }
 
@@ -334,11 +359,16 @@ void rope_up()
         // If we are in action window, check for button push
         if (i < ACTION_WINDOW)
         {
-            btn_value = READ_MMIO(PORT_PBTNS);
-            if (btn_value == BTN_U_MASK)
+            acl.i = READ_MMIO(ACCEL_REG);
+            if (acl.f < (center_baseline + THRESH))
             {
-                thresh2 = true;
+                thresh1 = true;
             }
+            // btn_value = READ_MMIO(PORT_PBTNS);
+            // if (btn_value == BTN_U_MASK)
+            // {
+            //     thresh2 = true;
+            // }
         }
         else if (i == ACTION_WINDOW)
         {
@@ -374,15 +404,18 @@ void rope_center()
         WRITE_MMIO(ROPE_REG, i);
         beatDelay(cdl);
     }
+}
 
-    // int j;
-    // WRITE_MMIO(ROPE_REG, HALF_VGA_WIDTH);
-    // for (j = 0; j < ((test_time / 4)); j++);
-    // WRITE_MMIO(ROPE_REG, (HALF_VGA_WIDTH + 10));
-    // for (j = 0; j < ((test_time / 4)); j++);
-    // WRITE_MMIO(ROPE_REG, HALF_VGA_WIDTH);
-    // for (j = 0; j < ((test_time / 4)); j++);
-    // WRITE_MMIO(ROPE_REG, (HALF_VGA_WIDTH + 10));
-    // for (j = 0; j < ((test_time / 4)); j++);
-    // WRITE_MMIO(ROPE_REG, HALF_VGA_WIDTH);
+float calibration_val (void) 
+{
+    int i;
+    float sum = 0;
+    for (i = 0; i < 100; i++)
+    {
+        acl.i = READ_MMIO(ACCEL_REG);
+        calib_arr[i] = acl.f;
+        sum = sum + calib_arr[i];
+        myDelay(0xFFFFFF);
+    }
+    return (sum / 100.0);
 }

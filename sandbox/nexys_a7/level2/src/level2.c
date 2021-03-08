@@ -4,7 +4,7 @@
  * Created Date: Tuesday, February 23th 2021, 6:19:47 pm
  * Author: Brett Thornhill
  * -----
- * Last Modified: Sat Mar 06 2021
+ * Last Modified: Mon Mar 08 2021
  * Modified By: Chuck Faber
  * -----
  * Copyright (c) 2021 Portland State University
@@ -42,9 +42,16 @@ int main (void)
     while (1) { 
 
         start = READ_MMIO(PORT_PBTNS);          // Game starts when the user presses any button
-
         if(start) {
 
+            // Calibrate while player stands still to get a baseline acceleration value
+            center_baseline = calibration_val();
+
+            /////////////////////////////
+            // Start playing song here //
+            /////////////////////////////
+
+            // Run through game array
             for(i = 0; i < game_arr_sz; i++){
                 switch (ARRAY[i])
                 {
