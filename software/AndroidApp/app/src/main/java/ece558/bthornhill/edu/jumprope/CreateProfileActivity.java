@@ -3,10 +3,10 @@ package ece558.bthornhill.edu.jumprope;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,14 +14,19 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ProfileActivity extends AppCompatActivity {
-    private static final String TAG = "ProfileActivity";
+import java.util.HashMap;
+import java.util.Map;
+
+public class CreateProfileActivity extends AppCompatActivity {
+    private static final String TAG = "CreateProfileActivity";
 
     private EditText mName, mEmail, mPassword;
     private Button mSave;
@@ -29,12 +34,14 @@ public class ProfileActivity extends AppCompatActivity {
     private Button mLogin;
     FirebaseAuth fAuth;
     ProgressBar mProgressBar;
+    FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+    String userID;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_createprofile);
 
         mName = findViewById(R.id.editname);
         mEmail = findViewById(R.id.editemail);
@@ -52,6 +59,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Check is user is already logged in
         if(fAuth.getCurrentUser() != null){
+            Toast.makeText(getApplicationContext(), "Already logged in", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
@@ -66,11 +74,11 @@ public class ProfileActivity extends AppCompatActivity {
                     authenticate();
                     break;
                 case R.id.button_cancel:
-                    Intent main = new Intent(ProfileActivity.this, MainActivity.class);
+                    Intent main = new Intent(CreateProfileActivity.this, MainActivity.class);
                     startActivity(main);
                     break;
                 case R.id.button_login:
-                    Intent login = new Intent(ProfileActivity.this, LoginActivity.class);
+                    Intent login = new Intent(CreateProfileActivity.this, LoginActivity.class);
                     startActivity(login);
                     break;
             }
@@ -78,7 +86,7 @@ public class ProfileActivity extends AppCompatActivity {
     };
 
     private void authenticate(){
-        String name = mName.getText().toString().trim();
+        String name = mName.getText().toString();
         String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
 
@@ -108,7 +116,29 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), "Profile saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Profile created", Toast.LENGTH_SHORT).show();
+                    // Was able to create a new user so now we need to save their information to their profile
+                    // Get the new user ID so we can save the information to this ID
+                    userID = fAuth.getCurrentUser().getUid();
+                    DocumentReference documentReference = fStore.collection("users").document(userID);
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("Name", name);
+                    user.put("Email", email);
+                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(getApplicationContext(), "User Profile saved", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "onSuccess: user profile is created for " + userID);
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d(TAG, "onFailure " + e.toString());
+                        }
+                    });
+
+                    // Profile is all saved and good to go back to the main activity
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 }else {
                     Toast.makeText(getApplicationContext(), "Error !" +task.getException().getMessage(), Toast.LENGTH_LONG).show();
