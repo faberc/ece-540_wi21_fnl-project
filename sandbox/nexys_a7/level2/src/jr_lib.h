@@ -4,7 +4,7 @@
  * Created Date: Thursday, March 4th 2021, 7:34:28 pm
  * Author: Chuck Faber
  * -----
- * Last Modified: Mon Mar 08 2021
+ * Last Modified: Tue Mar 09 2021
  * Modified By: Chuck Faber
  * -----
  * Copyright (c) 2021 Portland State University
@@ -54,8 +54,10 @@
 #define PORT_GPIO_EN 0x80001408 // (o) enable LEDs for output
 
 // Rope Game Peripheral Ports
-#define ACCEL_REG 0x80001700
-#define ROPE_REG 0x80001704
+#define PORT_ACCEL 0x80001700
+#define PORT_ROPE 0x80001704
+#define PORT_UNUSED 0x80001708
+#define PORT_START 0x8000170C
 
 // Seven Segment Display Ports
 #define PORT_SEVENSEG_EN 0x80001038  // (o) 7 Segment enable
@@ -280,7 +282,7 @@ void rope_down()
     // Rope starts descent
     for (i = HALF_VGA_WIDTH; i < VGA_WIDTH; i++)
     {
-        WRITE_MMIO(ROPE_REG, i);
+        WRITE_MMIO(PORT_ROPE, i);
         beatDelay(rdl);
         // If we are in action window, check for button push
         if (i > (VGA_WIDTH - ACTION_WINDOW))
@@ -290,7 +292,7 @@ void rope_down()
             // {
             //     thresh1 = true;
             // }
-            acl.i = READ_MMIO(ACCEL_REG);
+            acl.i = READ_MMIO(PORT_ACCEL);
             if (acl.f < (center_baseline - THRESH)) {
                 thresh1 = true;
             }
@@ -300,7 +302,7 @@ void rope_down()
     // Rope starts ascent
     for (i = VGA_WIDTH; i >= HALF_VGA_WIDTH; i--)
     {
-        WRITE_MMIO(ROPE_REG, i);
+        WRITE_MMIO(PORT_ROPE, i);
         beatDelay(rdl);
         // If we are in action window, check for button push
         if (i > (VGA_WIDTH - ACTION_WINDOW))
@@ -310,7 +312,7 @@ void rope_down()
             // {
             //     thresh2 = true;
             // }
-            acl.i = READ_MMIO(ACCEL_REG);
+            acl.i = READ_MMIO(PORT_ACCEL);
             if (acl.f < (center_baseline - THRESH)) {
                 thresh2 = true;
             }
@@ -337,13 +339,13 @@ void rope_up()
     // Rope starts ascent
     for (i = HALF_VGA_WIDTH; i > 0; i--)
     {
-        WRITE_MMIO(ROPE_REG, i);
+        WRITE_MMIO(PORT_ROPE, i);
         beatDelay(rdl);
 
         // If we are in action window, check for button push
         if (i > ACTION_WINDOW)
         {
-            acl.i = READ_MMIO(ACCEL_REG);
+            acl.i = READ_MMIO(PORT_ACCEL);
             if (acl.f > (center_baseline + THRESH))
             {
                 thresh1 = true;
@@ -359,13 +361,13 @@ void rope_up()
     // Rope starts descent
     for (i = 0; i <= HALF_VGA_WIDTH; i++)
     {
-        WRITE_MMIO(ROPE_REG, i);
+        WRITE_MMIO(PORT_ROPE, i);
         beatDelay(rdl);
 
         // If we are in action window, check for button push
         if (i < ACTION_WINDOW)
         {
-            acl.i = READ_MMIO(ACCEL_REG);
+            acl.i = READ_MMIO(PORT_ACCEL);
             if (acl.f > (center_baseline + THRESH))
             {
                 thresh1 = true;
@@ -394,22 +396,22 @@ void rope_center()
     int i;
     for (i = HALF_VGA_WIDTH; i < (HALF_VGA_WIDTH + CENT_DISP); i++)
     {
-        WRITE_MMIO(ROPE_REG, i);
+        WRITE_MMIO(PORT_ROPE, i);
         beatDelay(cdl);
     }
     for (i = (HALF_VGA_WIDTH + CENT_DISP); i > HALF_VGA_WIDTH; i--) 
     {
-        WRITE_MMIO(ROPE_REG, i);
+        WRITE_MMIO(PORT_ROPE, i);
         beatDelay(cdl);
     }
     for (i = HALF_VGA_WIDTH; i > (HALF_VGA_WIDTH - CENT_DISP); i--)
     {
-        WRITE_MMIO(ROPE_REG, i);
+        WRITE_MMIO(PORT_ROPE, i);
         beatDelay(cdl);
     }
     for (i = (HALF_VGA_WIDTH - CENT_DISP); i <= HALF_VGA_WIDTH; i++)
     {
-        WRITE_MMIO(ROPE_REG, i);
+        WRITE_MMIO(PORT_ROPE, i);
         beatDelay(cdl);
     }
 }
@@ -420,7 +422,7 @@ float calibration_val (void)
     float sum = 0;
     for (i = 0; i < 100; i++)
     {
-        acl.i = READ_MMIO(ACCEL_REG);
+        acl.i = READ_MMIO(PORT_ACCEL);
         calib_arr[i] = acl.f;
         sum = sum + calib_arr[i];
         myDelay(0xFF);

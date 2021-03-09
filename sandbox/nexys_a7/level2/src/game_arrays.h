@@ -86,7 +86,7 @@ char test_arr[100] = {
     0b00, 0b00, 0b00, 0b00, 0b00, 0b00, 0b00, 0b00, 0b00, 0b00
 };
 
-transition[432] = {
+char transition[432] = {
 
     /*Warm-Up*/
     0b00,0b00,0b00,0b00,    0b00,0b00,0b00,0b00,

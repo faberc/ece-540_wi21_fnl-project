@@ -612,7 +612,7 @@ module swervolf_core
         .i_reg_a    (ble_accel_val[31:0]),
         .o_reg_a    (rope_loc[9:0]),
         .i_reg_b    (),
-        .o_reg_b    (song_start)        // should be cleared after being set
+        .o_reg_b    ({31'b0,song_start})        // should be cleared after being set
     );
 
    // PTC

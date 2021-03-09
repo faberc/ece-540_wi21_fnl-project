@@ -4,7 +4,7 @@
  * Created Date: Tuesday, February 23th 2021, 6:19:47 pm
  * Author: Brett Thornhill
  * -----
- * Last Modified: Mon Mar 08 2021
+ * Last Modified: Tue Mar 09 2021
  * Modified By: Chuck Faber
  * -----
  * Copyright (c) 2021 Portland State University
@@ -35,7 +35,7 @@ int main (void)
     WRITE_MMIO(PORT_GPIO_EN, gpio_enable);          // Enable GPIOs
     WRITE_MMIO(PORT_SEVENSEG_EN, sseg_enable);      // Enable seven-segment display
     WRITE_MMIO(PORT_SEVENSEG_LOW, global_score);    // Initialize score to 0000
-    WRITE_MMIO(ROPE_REG, HALF_VGA_WIDTH);           // Start rope in the middle of the screen
+    WRITE_MMIO(PORT_ROPE, HALF_VGA_WIDTH);           // Start rope in the middle of the screen
     
     int i;
 
@@ -47,9 +47,10 @@ int main (void)
             // Calibrate while player stands still to get a baseline acceleration value
             center_baseline = calibration_val();
 
-            /////////////////////////////
-            // Start playing song here //
-            /////////////////////////////
+            // Start song -- using raspi for testing atm
+            WRITE_MMIO(PORT_START,0x01);    // Starts song playing on raspberry pi
+            myDelay(0x10);
+            WRITE_MMIO(PORT_START,0x00);    // clears start bit
 
             // Run through game array
             for(i = 0; i < game_arr_sz; i++){
@@ -68,7 +69,7 @@ int main (void)
                     break;
 
                 default:
-                    WRITE_MMIO(ROPE_REG, HALF_VGA_WIDTH);
+                    WRITE_MMIO(PORT_ROPE, HALF_VGA_WIDTH);
                     break;
                 } 
             }
