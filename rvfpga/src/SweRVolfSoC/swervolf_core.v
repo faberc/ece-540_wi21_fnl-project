@@ -115,7 +115,10 @@ module swervolf_core
     inout wire         ble_gpio,        // GPIO
     input wire         ble_rstn,        // RST_N
     inout wire         ble_mode,        // MODE
-    inout wire         ble_status       // STATUS
+    inout wire         ble_status,       // STATUS
+
+    // Song Start Signal
+    output wire        song_start
     );
 
 
@@ -609,7 +612,7 @@ module swervolf_core
         .i_reg_a    (ble_accel_val[31:0]),
         .o_reg_a    (rope_loc[9:0]),
         .i_reg_b    (),
-        .o_reg_b    ()
+        .o_reg_b    (song_start)        // should be cleared after being set
     );
 
    // PTC

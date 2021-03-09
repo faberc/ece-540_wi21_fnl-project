@@ -77,12 +77,16 @@
 
 #define VGA_WIDTH 768
 #define HALF_VGA_WIDTH 384
-#define ACTION_WINDOW 50
+#define ACTION_WINDOW 300
 #define CENT_DISP 20
 
 // Timing Corrections
 #define COARSE_CORRECT 988
 #define FINE_CORRECT 0
+
+/* Notes on specific Songs/BPM
+ * Transition: BPM = 125, Coarse = 988, Fine = 0
+ */
 
 // Base Acceleration Defines
 #define BASE_ACCEL 10
@@ -127,11 +131,11 @@ float calibration_val(void);
     //     return (0);
     // }
 
-    ///////////////////////////////
-    // Gameplay Global Variables //
-    ///////////////////////////////
+///////////////////////////////
+// Gameplay Global Variables //
+///////////////////////////////
 
-    int global_score = 0;
+int global_score = 0;
 const double bpm = 125.0;                               // beats per minute
 const double bps = bpm / 60.0;                          // beats per second
 const double spb = 1 / bps;                             // seconds per beat
@@ -271,7 +275,7 @@ void rope_down()
     int i;
     bool thresh1 = false;
     bool thresh2 = false;
-    int btn_value = 0;
+    // int btn_value = 0;
 
     // Rope starts descent
     for (i = HALF_VGA_WIDTH; i < VGA_WIDTH; i++)
@@ -307,15 +311,17 @@ void rope_down()
             //     thresh2 = true;
             // }
             acl.i = READ_MMIO(ACCEL_REG);
-            if (acl.f > (center_baseline - THRESH)) {
+            if (acl.f < (center_baseline - THRESH)) {
                 thresh2 = true;
             }
         }
         else if (i == (VGA_WIDTH - ACTION_WINDOW))
         {
-            if (thresh1 | thresh2)
-            {
-                score(1);
+            if (thresh1 && thresh2) {       // Perfectly timed
+                score(10);
+            }
+            else if (thresh1 || thresh2) {  // A little off (half score)
+                score(5);
             }
         }
     }
@@ -326,7 +332,7 @@ void rope_up()
     int i;
     bool thresh1 = false;
     bool thresh2 = false;
-    int btn_value = 0;
+    // int btn_value = 0;
 
     // Rope starts ascent
     for (i = HALF_VGA_WIDTH; i > 0; i--)
@@ -360,7 +366,7 @@ void rope_up()
         if (i < ACTION_WINDOW)
         {
             acl.i = READ_MMIO(ACCEL_REG);
-            if (acl.f < (center_baseline + THRESH))
+            if (acl.f > (center_baseline + THRESH))
             {
                 thresh1 = true;
             }
@@ -372,9 +378,11 @@ void rope_up()
         }
         else if (i == ACTION_WINDOW)
         {
-            if (thresh1 | thresh2)
-            {
-                score(1);
+            if (thresh1 && thresh2) {       // Perfectly timed
+                score(10);
+            }
+            else if (thresh1 || thresh2) {  // A little off (half score)
+                score(5);
             }
         }
     }
@@ -415,7 +423,7 @@ float calibration_val (void)
         acl.i = READ_MMIO(ACCEL_REG);
         calib_arr[i] = acl.f;
         sum = sum + calib_arr[i];
-        myDelay(0xFFFFFF);
+        myDelay(0xFF);
     }
     return (sum / 100.0);
 }

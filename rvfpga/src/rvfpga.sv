@@ -74,7 +74,9 @@ module rvfpga
     inout wire         JA7,     // GPIO
     inout wire         JA8,     // RST_N
     inout wire         JA9,     // MODE
-    inout wire         JA10     // STATUS
+    inout wire         JA10,    // STATUS
+
+    output wire        JD1      // Song Start
 
     );
 
@@ -314,7 +316,8 @@ module rvfpga
       .ble_gpio         (JA7), 
       .ble_rstn         (JA8), 
       .ble_mode         (JA9), 
-      .ble_status       (JA10)
+      .ble_status       (JA10),
+      .song_start       (JD1)
       );
 
     always @(posedge clk_core) begin
