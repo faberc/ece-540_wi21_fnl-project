@@ -7,10 +7,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- Required only if your app isn't using the Device Companion Manager. -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
@@ -23,10 +21,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JumpRope">
-        <activity android:name=".ViewProfileActivity"/>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".CreateProfileActivity" />
-        <activity android:name=".GameplayActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +28,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ViewProfileActivity" />
+        <activity android:name=".GameplayActivity" />
     </application>
 
 </manifest>
