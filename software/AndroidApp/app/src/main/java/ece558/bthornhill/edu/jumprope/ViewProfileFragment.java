@@ -32,6 +32,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.concurrent.Executor;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ViewProfileFragment#newInstance} factory method to
@@ -42,7 +44,6 @@ public class ViewProfileFragment extends Fragment {
 
     private TextView uName;
     private TextView uEmail;
-    private Button buttonLogout;
     private Button buttonPhoto;
     private ImageView profileImage;
     FirebaseAuth fAuth;
@@ -89,21 +90,6 @@ public class ViewProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_view_profile, container, false);
-
-        uName = view.findViewById(R.id.textName);
-        uEmail = view.findViewById(R.id.textEmail);
-        buttonLogout = view.findViewById(R.id.button_logout);
-        buttonLogout.setOnClickListener(ButtonListener);
-        buttonPhoto =view.findViewById(R.id.button_photo);
-        buttonPhoto.setOnClickListener(ButtonListener);
-        profileImage = view.findViewById(R.id.imageProfile);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -116,20 +102,36 @@ public class ViewProfileFragment extends Fragment {
             }
         });
 
+        // Check to see if there is a user logged in. If not, go to log in screen
         FirebaseUser currentUser = fAuth.getCurrentUser();
         if(currentUser != null) {
             userId = currentUser.getUid();
         } else{
-            // startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-            //finish();
+            OnMenuSelectionListener listener = (OnMenuSelectionListener)getActivity();
+            listener.onMenuSelection("login");
         }
 
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_view_profile, container, false);
+
+        uName = view.findViewById(R.id.textName);
+        uEmail = view.findViewById(R.id.textEmail);
+        buttonPhoto =view.findViewById(R.id.button_photo);
+        buttonPhoto.setOnClickListener(ButtonListener);
+        profileImage = view.findViewById(R.id.imageProfile);
+
         DocumentReference documentReference = fStore.collection("users").document(userId);
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+        documentReference.get().addOnSuccessListener(getActivity(), new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                uName.setText(value.getString("Name"));
-                uEmail.setText(value.getString("Email"));
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                uName.setText(documentSnapshot.getString("Name"));
+                uEmail.setText(documentSnapshot.getString("Email"));
             }
         });
 
@@ -145,8 +147,6 @@ public class ViewProfileFragment extends Fragment {
                     Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(openGalleryIntent, 1000);
                     break;
-                case R.id.button_logout:
-                    logout();
 
             }
         }
@@ -154,7 +154,7 @@ public class ViewProfileFragment extends Fragment {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Returning back from picking an image from the gallery
@@ -192,10 +192,5 @@ public class ViewProfileFragment extends Fragment {
         });
     }
 
-    public void logout(){
-        FirebaseAuth.getInstance().signOut();
-
-
-    }
 
 }

@@ -72,12 +72,13 @@ public class ViewProfileActivity extends AppCompatActivity {
             }
         });
 
+        // Check to see if there is a user logged in. If not, go to log in screen
         FirebaseUser currentUser = fAuth.getCurrentUser();
         if(currentUser != null) {
             userId = currentUser.getUid();
         } else{
-           // startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-            //finish();
+            //OnMenuSelectionListener listener = (OnMenuSelectionListener)getActivity();
+            //listener.onMenuSelection("login");
         }
 
         DocumentReference documentReference = fStore.collection("users").document(userId);

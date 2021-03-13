@@ -105,8 +105,8 @@ public class CreateProfileFragment extends Fragment {
         // Check is user is already logged in
         if(fAuth.getCurrentUser() != null){
             Toast.makeText(getActivity(), "Already logged in", Toast.LENGTH_SHORT).show();
-            //startActivity(new Intent(getApplicationContext(), MenuActivity.class));
-            //finish();
+            OnMenuSelectionListener listener = (OnMenuSelectionListener)getActivity();
+            listener.onMenuSelection("menu");
         }
         return view;
     }
@@ -171,7 +171,6 @@ public class CreateProfileFragment extends Fragment {
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(getActivity(), "User Profile saved", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "onSuccess: user profile is created for " + userID);
-
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -181,7 +180,9 @@ public class CreateProfileFragment extends Fragment {
                     });
 
                     // Profile is all saved and good to go back to the main activity
-                    startActivity(new Intent(getActivity(), MenuActivity.class));
+                    OnMenuSelectionListener listener = (OnMenuSelectionListener)getActivity();
+                    listener.onMenuSelection("menu");
+                    return;
                 }else {
                     Toast.makeText(getActivity(), "Error !" +task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }

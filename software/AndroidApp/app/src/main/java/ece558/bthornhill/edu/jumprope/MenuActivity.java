@@ -48,10 +48,10 @@ public class MenuActivity extends AppCompatActivity {
                     startActivity(new Intent(MenuActivity.this, GameplayActivity.class));
                     break;
                 case R.id.button_createprofile:
-                    startActivity(new Intent(MenuActivity.this, CreateProfileActivity.class));
+
                     break;
                 case R.id.button_viewprofile:
-                    startActivity(new Intent(MenuActivity.this, ViewProfileActivity.class));
+
                     break;
                 case R.id.button_login:
 

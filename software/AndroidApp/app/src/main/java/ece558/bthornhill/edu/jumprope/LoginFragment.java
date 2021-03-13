@@ -76,6 +76,15 @@ public class LoginFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        fAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = fAuth.getCurrentUser();
+        if(currentUser != null) {
+            Toast.makeText(getActivity(), "Already logged in", Toast.LENGTH_SHORT).show();
+            OnMenuSelectionListener listener = (OnMenuSelectionListener)getActivity();
+            listener.onMenuSelection("menu");
+            return;
+        }
     }
 
     @Override
@@ -88,18 +97,11 @@ public class LoginFragment extends Fragment {
         mEmail = view.findViewById(R.id.editemail);
         mPassword = view.findViewById(R.id.editpassword);
         mProgressBar = view.findViewById(R.id.progressBar);
-        fAuth = FirebaseAuth.getInstance();
+
         mProfile = view.findViewById(R.id.button_profile);
         mProfile.setOnClickListener(ButtonListener);
         mLogin = view.findViewById(R.id.button_login);
         mLogin.setOnClickListener(ButtonListener);
-
-        FirebaseUser currentUser = fAuth.getCurrentUser();
-        if(currentUser != null) {
-            Toast.makeText(getActivity(), "Already logged in", Toast.LENGTH_SHORT).show();
-            //startActivity(new Intent(getApplicationContext(), MenuActivity.class));
-            //finish();
-        }
 
         return view;
     }
@@ -114,7 +116,7 @@ public class LoginFragment extends Fragment {
                     mSelection = "viewprofile";
                     break;
                 case R.id.button_login:
-                    mSelection = "login";
+                    authenticate();
                     break;
             }
             OnMenuSelectionListener listener = (OnMenuSelectionListener)getActivity();
@@ -150,7 +152,9 @@ public class LoginFragment extends Fragment {
                 Log.d(TAG, "signInWithEmail:success");
                 Toast.makeText(getActivity(), "Successfully logged in", Toast.LENGTH_SHORT).show();
                 //startActivity(new Intent(getApplicationContext(), MenuActivity.class));
-                //finish();
+                OnMenuSelectionListener listener = (OnMenuSelectionListener)getActivity();
+                listener.onMenuSelection("menu");
+                return;
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

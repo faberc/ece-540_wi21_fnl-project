@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements OnMenuSelectionListener {
+    private static final String TAG = "MainActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,9 @@ public class MainActivity extends AppCompatActivity implements OnMenuSelectionLi
                 transaction.commit();
                 break;
             case "viewprofile":
-                startActivity(new Intent(MainActivity.this, ViewProfileActivity.class));
+                transaction.replace(R.id.fragment_container,ViewProfileFragment.class, null);
+                transaction.addToBackStack(null);
+                transaction.commit();
                 break;
             case "login":
                 transaction.replace(R.id.fragment_container,LoginFragment.class, null);
@@ -61,6 +65,11 @@ public class MainActivity extends AppCompatActivity implements OnMenuSelectionLi
             case "logout":
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(MainActivity.this, "Logged Out", Toast.LENGTH_SHORT).show();
+                break;
+            case "menu":
+                transaction.replace(R.id.fragment_container,MenuFragment.class, null);
+                transaction.addToBackStack(null);
+                transaction.commit();
         }
     }
 }

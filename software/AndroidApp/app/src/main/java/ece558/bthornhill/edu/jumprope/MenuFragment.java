@@ -96,6 +96,7 @@ public class MenuFragment extends Fragment {
             switch (v.getId()) {
                 case R.id.button_play:
                     mSelection = "playgame";
+                    break;
                 case R.id.button_createprofile:
                     mSelection = "createprofile";
                     break;
