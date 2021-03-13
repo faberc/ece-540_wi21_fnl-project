@@ -98,18 +98,9 @@ public class ViewProfileFragment extends Fragment {
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(profileImage);
+                Picasso.get().load(uri).resize(450, 450).onlyScaleDown().into(profileImage);
             }
         });
-
-        // Check to see if there is a user logged in. If not, go to log in screen
-        FirebaseUser currentUser = fAuth.getCurrentUser();
-        if(currentUser != null) {
-            userId = currentUser.getUid();
-        } else{
-            OnMenuSelectionListener listener = (OnMenuSelectionListener)getActivity();
-            listener.onMenuSelection("login");
-        }
 
 
     }
@@ -126,6 +117,15 @@ public class ViewProfileFragment extends Fragment {
         buttonPhoto.setOnClickListener(ButtonListener);
         profileImage = view.findViewById(R.id.imageProfile);
 
+        // Check to see if there is a user logged in. If not, go to log in screen
+        FirebaseUser currentUser = fAuth.getCurrentUser();
+        if(currentUser != null) {
+            userId = currentUser.getUid();
+        } else{
+            OnMenuSelectionListener listener = (OnMenuSelectionListener)getActivity();
+            listener.onMenuSelection("login");
+            return view;
+        }
         DocumentReference documentReference = fStore.collection("users").document(userId);
         documentReference.get().addOnSuccessListener(getActivity(), new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -177,7 +177,7 @@ public class ViewProfileFragment extends Fragment {
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        Picasso.get().load(uri).into(profileImage);
+                        Picasso.get().load(uri).resize(450, 450).onlyScaleDown().into(profileImage);
                     }
                 });
 

@@ -113,7 +113,7 @@ public class LoginFragment extends Fragment {
 
             switch (v.getId()){
                 case R.id.button_profile:
-                    mSelection = "viewprofile";
+                    mSelection = "createprofile";
                     break;
                 case R.id.button_login:
                     authenticate();
