@@ -21,8 +21,6 @@
 // UART Defines //
 //////////////////
 
-#include <time.h>
-
 #define UART_BASE 0x80002000
 #define UART_DELAY 0x100000
 
@@ -83,14 +81,14 @@
 #define HALF_VGA_WIDTH 384
 #define ACTION_WINDOW 300
 #define CENT_DISP 20
-#define VGA_CENT_RATIO (VGA_WIDTH/(CENT_DISP*4))
 
 // Timing Corrections
-#define COARSE_CORRECT 1035
+#define COARSE_CORRECT 0
 #define FINE_CORRECT 0
+#define CENTER_CORRECT 0
 
 /* Notes on specific Songs/BPM
- * Transition: BPM = 125, Coarse = 1035, Fine = 0
+ * Transition: BPM = 125, Coarse = 988, Fine = 0
  */
 
 // Base Acceleration Defines
@@ -150,7 +148,7 @@ const unsigned long int rdl = (hbd / HALF_VGA_WIDTH)
     + COARSE_CORRECT;                                   // rope movement delay for half screen movement
 // unsigned long int cdl = hbd / (CENT_DISP / 1.25)
 unsigned long int cdl = (hbd / 2) / (CENT_DISP)
-     + (COARSE_CORRECT * VGA_CENT_RATIO);
+     + CENTER_CORRECT;
 union accel                                             // Acceleration Reading Value Union
 {
     float f;
@@ -258,28 +256,24 @@ int beatDelay(unsigned long int us)
 
 void score(int amount)
 {
-    int ones, tens, hund, thous;
+    int ones, tens, hundreds, thousands;
+
     global_score += amount;
-    int score_send;
 
     if (global_score > 9999)
     {
         global_score = 0;
     }
 
-    score_send = global_score;
-    thous = score_send / 1000;
-    score_send -= (thous*1000);
-    hund = score_send / 100;
-    score_send -= (hund*100);
-    tens = score_send / 10;
-    score_send -= (tens*10);
-    ones = score_send;
+    ones = global_score % 10;
+    tens = global_score / 10;
+    hundreds = global_score / 100;
+    thousands = global_score / 1000;
 
     WRITE_MMIO(PORT_SEVENSEG_LOW, ones);
     WRITE_MMIO((PORT_SEVENSEG_LOW + 1), tens);
-    WRITE_MMIO((PORT_SEVENSEG_LOW + 2), hund);
-    WRITE_MMIO((PORT_SEVENSEG_LOW + 3), thous);
+    WRITE_MMIO((PORT_SEVENSEG_LOW + 2), hundreds);
+    WRITE_MMIO((PORT_SEVENSEG_LOW + 3), thousands);
 }
 
 void rope_down()

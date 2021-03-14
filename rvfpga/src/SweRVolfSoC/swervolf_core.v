@@ -354,7 +354,6 @@ module swervolf_core
       .o_pwm(io_aux[1]),
       .o_aux(ignore_aux),
       .o_int(pwm_irq)
-
     );
 
     assign io_aux[0] = 1'b1;
@@ -671,13 +670,13 @@ module swervolf_core
       .nmi_int (nmi_int),
       .nmi_vec (nmi_vec[31:1]),
 
-      .trace_rv_i_insn_ip      (),
-      .trace_rv_i_address_ip   (),
-      .trace_rv_i_valid_ip     (),
-      .trace_rv_i_exception_ip (),
-      .trace_rv_i_ecause_ip    (),
-      .trace_rv_i_interrupt_ip (),
-      .trace_rv_i_tval_ip      (),
+      .trace_rv_i_insn_ip      (    ),
+      .trace_rv_i_address_ip   (    ),
+      .trace_rv_i_valid_ip     (    ),
+      .trace_rv_i_exception_ip (    ),
+      .trace_rv_i_ecause_ip    (    ),
+      .trace_rv_i_interrupt_ip (    ),
+      .trace_rv_i_tval_ip      (    ),
 
       // Bus signals
       //-------------------------- LSU AXI signals--------------------------

@@ -18,7 +18,7 @@
 #include "jr_lib.h"                     // custom library for jump rope game
 #include "game_arrays.h"                // gameplay arrays
 
-#define ARRAY step_count
+#define ARRAY transition
 #define START_DELAY 0 /*14*/
 
 int main (void) 
