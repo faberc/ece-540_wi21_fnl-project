@@ -198,7 +198,13 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         BluetoothGattCharacteristic txCharacteristic =
                 new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_TX_UUID,
                         //Notify
-                        BluetoothGattCharacteristic.PROPERTY_NOTIFY, BluetoothGattCharacteristic.PERMISSION_READ);
+                        BluetoothGattCharacteristic.PROPERTY_READ | BluetoothGattCharacteristic.PROPERTY_NOTIFY, BluetoothGattCharacteristic.PERMISSION_READ);
+
+        //Descriptor for read notifications
+        BluetoothGattDescriptor TX_READ_CHAR_DESC = new BluetoothGattDescriptor(UARTProfile.TX_READ_CHAR_DESC,
+                UARTProfile.DESCRIPTOR_PERMISSION);
+        TX_READ_CHAR.addDescriptor(TX_READ_CHAR_DESC);
+
 
         service.addCharacteristic(rxCharacteristic);
         service.addCharacteristic(txCharacteristic);
