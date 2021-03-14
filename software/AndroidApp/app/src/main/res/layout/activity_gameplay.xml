@@ -52,6 +52,21 @@
             android:gravity="center"
             android:hint="Acceleration Value" android:numeric="signed|decimal" android:enabled="false"/>
 
+    <TextView
+        android:id="@+id/user_score_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|center_horizontal|center_vertical"
+        android:text="High Score" android:textAlignment="center" android:textSize="24sp"
+        android:paddingTop="30dp"/>
+    <TextView
+        android:id="@+id/user_score_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|center_horizontal|center_vertical"
+        android:text="0" android:textAlignment="center" android:textSize="16sp"
+        android:paddingTop="10dp"/>
+
 <!--    <TextView-->
 <!--            android:id="@+id/xtext"-->
 <!--            android:layout_width="match_parent"-->

@@ -22,6 +22,9 @@ import android.os.ParcelUuid;
 import android.util.Log;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 
 
@@ -33,6 +36,11 @@ import java.util.ArrayList;
 
 public class GameplayActivity extends AppCompatActivity implements SensorEventListener {
     private static final String TAG = "GameplayActivity";
+
+    // Variables for Firebase
+    private FirebaseAuth fAuth;
+    private String userId;
+    private TextView user_score;
 
     // Variables for Bluetooth
 //    private TextView mStatusBluetooth;
@@ -67,6 +75,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameplay);
 
+
         // Bluetooth initialization
         mBleStatus = findViewById(R.id.bleStatusText);
 //        mStatusBluetooth = findViewById(R.id.statusBluetooth);
@@ -96,6 +105,18 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         msenddatabtn = findViewById(R.id.send_data_button);
         msenddatabtn.setOnClickListener(ButtonListener);
 
+        // Ensure user is logged into account before proceeding
+        user_score = findViewById(R.id.user_score_value);
+        fAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = fAuth.getCurrentUser();
+        if(currentUser != null) {
+            userId = currentUser.getUid();
+            // Add code here to show previous high score for user
+        } else {
+            Toast.makeText(this, "Please log in first", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(GameplayActivity.this, MainActivity.class));
+            return;
+        }
     }
 
     @Override
@@ -261,6 +282,8 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
             if (DeviceProfile.CHARACTERISTIC_RX_UUID.equals(characteristic.getUuid())) {
                 int newScore = DeviceProfile.unsignedIntFromBytes(value);
+                // Will add code here later to compare against previous high score
+                user_score.setText(newScore);
                 setStoredValue(newScore);
 
                 if (responseNeeded) {
