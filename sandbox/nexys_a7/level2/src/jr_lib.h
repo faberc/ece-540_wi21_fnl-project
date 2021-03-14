@@ -21,6 +21,8 @@
 // UART Defines //
 //////////////////
 
+#include <time.h>
+
 #define UART_BASE 0x80002000
 #define UART_DELAY 0x100000
 
@@ -81,13 +83,14 @@
 #define HALF_VGA_WIDTH 384
 #define ACTION_WINDOW 300
 #define CENT_DISP 20
+#define VGA_CENT_RATIO (VGA_WIDTH/(CENT_DISP*4))
 
 // Timing Corrections
-#define COARSE_CORRECT 988
+#define COARSE_CORRECT 1035
 #define FINE_CORRECT 0
 
 /* Notes on specific Songs/BPM
- * Transition: BPM = 125, Coarse = 988, Fine = 0
+ * Transition: BPM = 125, Coarse = 1035, Fine = 0
  */
 
 // Base Acceleration Defines
@@ -145,6 +148,9 @@ const unsigned long int uspb = spb * 1e6;               // us per beat
 const unsigned long int hbd = uspb / 2;                 // Half beat delay in us
 const unsigned long int rdl = (hbd / HALF_VGA_WIDTH) 
     + COARSE_CORRECT;                                   // rope movement delay for half screen movement
+// unsigned long int cdl = hbd / (CENT_DISP / 1.25)
+unsigned long int cdl = (hbd / 2) / (CENT_DISP)
+     + (COARSE_CORRECT * VGA_CENT_RATIO);
 union accel                                             // Acceleration Reading Value Union
 {
     float f;
@@ -230,7 +236,7 @@ void sendString(char *str)
 
 void myDelay(unsigned long int delay)
 {
-    for (int i = 0; i < delay; i++)
+    for (unsigned long int i = 0; i < delay; i++)
     {
         __asm__("nop");
     }
@@ -392,7 +398,6 @@ void rope_up()
 
 void rope_center()
 {
-    unsigned long int cdl = hbd / (CENT_DISP / 1.25);
     int i;
     for (i = HALF_VGA_WIDTH; i < (HALF_VGA_WIDTH + CENT_DISP); i++)
     {

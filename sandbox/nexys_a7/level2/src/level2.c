@@ -18,7 +18,8 @@
 #include "jr_lib.h"                     // custom library for jump rope game
 #include "game_arrays.h"                // gameplay arrays
 
-#define ARRAY transition
+#define ARRAY step_count
+#define START_DELAY 0 /*14*/
 
 int main (void) 
 {
@@ -27,7 +28,6 @@ int main (void)
     // game_array = calloc(sizeof(center_arr), sizeof(char));
     // game_array = memcpy(game_array, center_arr, sizeof(center_arr));
     int game_arr_sz = sizeof(ARRAY);
-
     int gpio_enable = 0xFFFF;    //GPIO enable value
     int sseg_enable = 0xF0;      //Seven Segment enable
     int start = 0;
@@ -51,6 +51,10 @@ int main (void)
             WRITE_MMIO(PORT_START,0x01);    // Starts song playing on raspberry pi
             myDelay(0x10);
             WRITE_MMIO(PORT_START,0x00);    // clears start bit
+
+            for (int i = 0; i < START_DELAY; i++) {
+                beatDelay(uspb);
+            }
 
             // Run through game array
             for(i = 0; i < game_arr_sz; i++){
