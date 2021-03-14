@@ -123,7 +123,9 @@ public class ViewProfileFragment extends Fragment {
             userId = currentUser.getUid();
         } else{
             OnMenuSelectionListener listener = (OnMenuSelectionListener)getActivity();
-            listener.onMenuSelection("login");
+            Toast.makeText(getActivity(), "Please Log in first", Toast.LENGTH_SHORT).show();
+            listener.onMenuSelection("menu");
+
             return view;
         }
         DocumentReference documentReference = fStore.collection("users").document(userId);
