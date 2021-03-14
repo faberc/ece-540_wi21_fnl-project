@@ -26,37 +26,38 @@ public class MainActivity extends AppCompatActivity implements OnMenuSelectionLi
         setContentView(R.layout.activity_main);
 
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+        Fragment fragmentmenu = fm.findFragmentById(R.id.fragment_menu);
+        Fragment fragmentcont = fm.findFragmentById(R.id.fragment_container);
 
-        if (fragment == null){
-            fragment = new MenuFragment();
-            fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
-        }
 
         LinearLayout linearLayout = findViewById(R.id.LargeLayout);
         if(linearLayout != null){
             mDualPane = true;
             Log.d(TAG, "Is dual " + mDualPane);
+            if (fragmentmenu == null){
+                fragmentmenu = new MenuFragment();
+                fm.beginTransaction().add(R.id.fragment_menu, fragmentmenu).commit();
+            }
+            // If fragment in fragment container is the menu, I want to clear it
+            if(fragmentcont.getTag() != null){
+                if(fragmentcont.getTag().equals("menu")){
+                    Log.d(TAG, "The fragment containter did have menu as the last fragment");
+                    fm.beginTransaction().remove(fragmentcont).commit();
+                }
+            }
+
         }
         else{
             Log.d(TAG, "Is NOT dual " + mDualPane);
+            if (fragmentcont == null){
+                fragmentcont = new MenuFragment();
+                fm.beginTransaction().add(R.id.fragment_container, fragmentcont, "menu").commit();
+            }
         }
 
 
-        /*fm.beginTransaction().replace(R.id.fragment_detail, LoginFragment.class,null)
-                .setReorderingAllowed(true)
-                .addToBackStack("name")
-                .commit();
-*/
-
     }
 
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflates the menu
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }*/
 
     public void onMenuSelection(String selection){
         FragmentManager fm = getSupportFragmentManager();
@@ -66,37 +67,20 @@ public class MainActivity extends AppCompatActivity implements OnMenuSelectionLi
                 startActivity(new Intent(MainActivity.this, GameplayActivity.class));
                 break;
             case "createprofile":
-                if(mDualPane){
-                    fm.beginTransaction().replace(R.id.fragment_detail,CreateProfileFragment.class, null)
-                            .addToBackStack(null)
-                            .commit();
-                }else{
-                    fm.beginTransaction().replace(R.id.fragment_container,CreateProfileFragment.class, null)
-                            .addToBackStack(null)
-                            .commit();
-                }
+                fm.beginTransaction().replace(R.id.fragment_container,CreateProfileFragment.class, null)
+                        .addToBackStack(null)
+                        .commit();
+
                 break;
             case "viewprofile":
-                if(mDualPane){
-                    fm.beginTransaction().replace(R.id.fragment_detail,ViewProfileFragment.class, null)
-                            .addToBackStack(null)
-                            .commit();
-                }else {
-                    fm.beginTransaction().replace(R.id.fragment_container, ViewProfileFragment.class, null)
-                            .addToBackStack(null)
-                            .commit();
-                }
+                fm.beginTransaction().replace(R.id.fragment_container,ViewProfileFragment.class, null)
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case "login":
-                if(mDualPane){
-                    fm.beginTransaction().replace(R.id.fragment_detail,LoginFragment.class, null)
-                            .addToBackStack(null)
-                            .commit();
-                }else {
-                    fm.beginTransaction().replace(R.id.fragment_container, LoginFragment.class, null)
-                            .addToBackStack(null)
-                            .commit();
-                }
+                fm.beginTransaction().replace(R.id.fragment_container,LoginFragment.class, null)
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case "logout":
                 FirebaseAuth.getInstance().signOut();
@@ -104,7 +88,16 @@ public class MainActivity extends AppCompatActivity implements OnMenuSelectionLi
                 break;
             case "menu":
                 if(mDualPane){
-                  // Want to clear out view
+                    // I want fragment menu to hold the menu and I want to clear out fragment container view
+                    Fragment fragmentmenu = fm.findFragmentById(R.id.fragment_menu);
+                    if (fragmentmenu == null) {
+                        fragmentmenu = new MenuFragment();
+                        fm.beginTransaction().add(R.id.fragment_menu, fragmentmenu).commit();
+                    }
+
+                    Fragment fragmentcont = fm.findFragmentById(R.id.fragment_container);
+                    fm.beginTransaction().remove(fragmentcont).commit();
+
                 }else {
                     fm.beginTransaction().replace(R.id.fragment_container, MenuFragment.class, null)
                             .addToBackStack(null)
