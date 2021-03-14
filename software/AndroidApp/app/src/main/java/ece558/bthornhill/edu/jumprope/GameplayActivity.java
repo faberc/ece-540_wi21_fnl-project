@@ -260,8 +260,8 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
             Log.i(TAG, "onCharacteristicWriteRequest "+characteristic.getUuid().toString());
 
             if (DeviceProfile.CHARACTERISTIC_RX_UUID.equals(characteristic.getUuid())) {
-                int newOffset = DeviceProfile.unsignedIntFromBytes(value);
-                setStoredValue(newOffset);
+                int newScore = DeviceProfile.unsignedIntFromBytes(value);
+                setStoredValue(newScore);
 
                 if (responseNeeded) {
                     mGattServer.sendResponse(device,
@@ -269,6 +269,8 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                             BluetoothGatt.GATT_SUCCESS,
                             0,
                             value);
+                    Log.d(TAG, "Received data on "+characteristic.getUuid().toString());
+                    Log.d(TAG, "Received data "+ newScore);
                 }
 
                 mHandler.post(new Runnable() {
