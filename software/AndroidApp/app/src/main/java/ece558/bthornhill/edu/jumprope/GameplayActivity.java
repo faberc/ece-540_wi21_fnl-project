@@ -109,14 +109,14 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         user_score = findViewById(R.id.user_score_value);
         fAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = fAuth.getCurrentUser();
-        if(currentUser != null) {
+        /*if(currentUser != null) {
             userId = currentUser.getUid();
             // Add code here to show previous high score for user
         } else {
             Toast.makeText(this, "Please log in first", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(GameplayActivity.this, MainActivity.class));
             return;
-        }
+        }*/
     }
 
     @Override
