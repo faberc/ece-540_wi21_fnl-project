@@ -95,7 +95,7 @@ extern int _end;
 
 // Base Acceleration Defines
 #define BASE_ACCEL 10
-#define THRESH 3
+#define THRESH 2
 
 ///////////////////
 // MMIO Commands //
@@ -137,11 +137,12 @@ void *_sbrk(int incr);
     //     return (0);
     // }
 
-    ///////////////////////////////
-    // Gameplay Global Variables //
-    ///////////////////////////////
+///////////////////////////////
+// Gameplay Global Variables //
+///////////////////////////////
 
 int global_score = 0;
+
 const double bpm = 125.0;                               // beats per minute
 const double bps = bpm / 60.0;                          // beats per second
 const double spb = 1 / bps;                             // seconds per beat
@@ -342,7 +343,7 @@ void rope_down()
             //     thresh2 = true;
             // }
             acl.i = READ_MMIO(PORT_ACCEL);
-            if (acl.f < (center_baseline - THRESH)) {
+            if (acl.f > (center_baseline + THRESH)) {
                 thresh2 = true;
             }
         }
@@ -375,7 +376,7 @@ void rope_up()
         if (i > ACTION_WINDOW)
         {
             acl.i = READ_MMIO(PORT_ACCEL);
-            if (acl.f > (center_baseline + (THRESH/2)))
+            if (acl.f > (center_baseline + THRESH))
             {
                 thresh1 = true;
             }
@@ -397,9 +398,9 @@ void rope_up()
         if (i < ACTION_WINDOW)
         {
             acl.i = READ_MMIO(PORT_ACCEL);
-            if (acl.f > (center_baseline + (THRESH/2)))
+            if (acl.f > (center_baseline + THRESH))
             {
-                thresh1 = true;
+                thresh2 = true;
             }
             // btn_value = READ_MMIO(PORT_PBTNS);
             // if (btn_value == BTN_U_MASK)
@@ -415,6 +416,16 @@ void rope_up()
             else if (thresh1 || thresh2) {  // A little off (half score)
                 score(5);
             }
+            // DEBUG:
+            // if (thresh1 && thresh2) {
+            //     score(3);
+            // }
+            // if (thresh1 && !thresh2) {
+            //     score(1);
+            // }
+            // if (!thresh1 && thresh2) {
+            //     score(2);
+            // }
         }
     }
 }
@@ -448,14 +459,14 @@ float calibration_val (void)
 {
     int i;
     float sum = 0;
-    for (i = 0; i < 100; i++)
+    for (i = 0; i < 1000; i++)
     {
         acl.i = READ_MMIO(PORT_ACCEL);
         calib_arr[i] = acl.f;
         sum = sum + calib_arr[i];
         myDelay(0xFF);
     }
-    return (sum / 100.0);
+    return (sum / 1000.0);
 }
 
 void *_sbrk(int incr)

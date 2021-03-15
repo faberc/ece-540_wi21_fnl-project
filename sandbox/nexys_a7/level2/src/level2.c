@@ -18,8 +18,10 @@
 #include "jr_lib.h"                     // custom library for jump rope game
 #include "game_arrays.h"                // gameplay arrays
 
-#define ARRAY test
+#define ARRAY transition
 #define START_DELAY 0 /*14*/
+
+int local_score;
 
 int main (void) 
 {
@@ -79,9 +81,9 @@ int main (void)
                     WRITE_MMIO(PORT_ROPE, HALF_VGA_WIDTH);
                     break;
                 }
+                local_score = global_score;
             }
-            global_score = 300;
-            bleSendScore(global_score);
+            bleSendScore(local_score);
         }
     }
 
