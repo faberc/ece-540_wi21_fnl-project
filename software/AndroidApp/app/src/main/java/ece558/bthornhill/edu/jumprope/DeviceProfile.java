@@ -1,6 +1,7 @@
 package ece558.bthornhill.edu.jumprope;
 
 import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothProfile;
 
 import java.nio.ByteBuffer;
@@ -23,6 +24,10 @@ public class DeviceProfile {
     public static UUID CHARACTERISTIC_RX_UUID = UUID.fromString("6E400002-B5A3-F393-E0A9-E50E24DCCA9E");
     //Read-write characteristic for current offset timestamp
     public static UUID CHARACTERISTIC_TX_UUID = UUID.fromString("6E400003-B5A3-F393-E0A9-E50E24DCCA9E");
+    public static UUID TX_READ_CHAR_DESC = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
+    public final static int DESCRIPTOR_PERMISSION = BluetoothGattDescriptor.PERMISSION_WRITE;
+
+
 
     public static String getStateDescription(int state) {
         switch (state) {

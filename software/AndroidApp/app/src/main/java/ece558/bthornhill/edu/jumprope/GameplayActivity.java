@@ -131,11 +131,6 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 //            mStatusBluetooth.setText("BT is Not Enabled...");
             mBlueImage.setImageResource(R.drawable.blue_off2);
             //Bluetooth is available on the device and it is not enabled, enable it
-            // Toast.makeText(getApplicationContext(), "Turning On Bluetooth", Toast.LENGTH_SHORT).show();
-            // Intent i = new Intent((BluetoothAdapter.ACTION_REQUEST_ENABLE));
-            // startActivityForResult(i, REQUEST_ENABLE_BT);
-
-            //Bluetooth is disabled
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivity(enableBtIntent);
             finish();
@@ -158,7 +153,6 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
             return;
         }
 
-        mBluetoothLeAdvertiser = mBluetoothAdapter.getBluetoothLeAdvertiser();
 
         /*
          * Check for advertising support. Not all devices are enabled to advertise
@@ -170,13 +164,14 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
             return;
         }
 
-
+        mBluetoothLeAdvertiser = mBluetoothAdapter.getBluetoothLeAdvertiser();
         mGattServer = mBluetoothManager.openGattServer(this, mGattServerCallback);
 
         initServer();
         startAdvertising();
 
     }
+
 
     @Override
     public void onPause() {
@@ -186,22 +181,34 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         sensorManager.unregisterListener(this);
     }
 
-    View.OnClickListener ButtonListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
 
-            switch (v.getId()) {
-                case R.id.send_data_button:
-                    ifSendData = !ifSendData;
-                    if(ifSendData) {
-                        msenddatabtn.setText("Sending");
-                    } else {
-                        msenddatabtn.setText("Send Data");
-                    }
-                    break;
-            }
+    /*
+     * Callback handles events from the framework describing
+     * if we were successful in starting the advertisement requests.
+     */
+    private AdvertiseCallback mAdvertiseCallback = new AdvertiseCallback() {
+        @Override
+        public void onStartSuccess(AdvertiseSettings settingsInEffect) {
+            Log.i(TAG, "Peripheral Advertise Started.");
+            postStatusMessage("GATT Server Ready");
+        }
+
+        @Override
+        public void onStartFailure(int errorCode) {
+            Log.w(TAG, "Peripheral Advertise Failed: "+errorCode);
+            postStatusMessage("GATT Server Error "+errorCode);
         }
     };
+
+    private Handler mHandler = new Handler(Looper.myLooper());
+    private void postStatusMessage(final String message) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                setTitle(message);
+            }
+        });
+    }
 
     /*
      * Create the GATT server instance, attaching all services and
@@ -211,20 +218,64 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         BluetoothGattService service =new BluetoothGattService(DeviceProfile.SERVICE_UUID,
                 BluetoothGattService.SERVICE_TYPE_PRIMARY);
 
+        BluetoothGattCharacteristic txCharacteristic =
+                new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_TX_UUID,
+                        //Notify
+                        BluetoothGattCharacteristic.PROPERTY_READ | BluetoothGattCharacteristic.PROPERTY_NOTIFY,
+                        BluetoothGattCharacteristic.PERMISSION_READ);
+
+        //Descriptor for read notifications
+        BluetoothGattDescriptor TX_READ_CHAR_DESC = new BluetoothGattDescriptor(DeviceProfile.TX_READ_CHAR_DESC, DeviceProfile.DESCRIPTOR_PERMISSION);
+        txCharacteristic.addDescriptor(TX_READ_CHAR_DESC);
+
         BluetoothGattCharacteristic rxCharacteristic =
                 new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_RX_UUID,
                         //Write only characteristics
                         BluetoothGattCharacteristic.PROPERTY_WRITE, BluetoothGattCharacteristic.PERMISSION_WRITE);
 
-        BluetoothGattCharacteristic txCharacteristic =
-                new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_TX_UUID,
-                        //Notify
-                        BluetoothGattCharacteristic.PROPERTY_READ | BluetoothGattCharacteristic.PROPERTY_NOTIFY, BluetoothGattCharacteristic.PERMISSION_READ);
-
-        service.addCharacteristic(rxCharacteristic);
         service.addCharacteristic(txCharacteristic);
+        service.addCharacteristic(rxCharacteristic);
 
         mGattServer.addService(service);
+    }
+
+
+    /*
+     * Initialize the advertiser
+     */
+    private void startAdvertising() {
+        if(mBluetoothLeAdvertiser == null) return;
+
+        AdvertiseSettings settings = new AdvertiseSettings.Builder()
+                .setAdvertiseMode(AdvertiseSettings.ADVERTISE_MODE_BALANCED)
+                .setConnectable(true)
+                .setTimeout(0)
+                .setTxPowerLevel(AdvertiseSettings.ADVERTISE_TX_POWER_MEDIUM)
+                .build();
+
+        AdvertiseData data = new AdvertiseData.Builder()
+                .setIncludeDeviceName(true)
+                .addServiceUuid(new ParcelUuid(DeviceProfile.SERVICE_UUID))
+                .build();
+
+        mBluetoothLeAdvertiser.startAdvertising(settings, data, mAdvertiseCallback);
+    }
+
+
+    private void postDeviceChange(final BluetoothDevice device, final boolean toAdd) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                //This will add the item to our list and update the adapter at the same time.
+                if (toAdd) {
+                    if (mConnectedDevicesAdapter.getPosition(device) < 0){
+                        mConnectedDevicesAdapter.add(device);
+                    }
+                } else {
+                    mConnectedDevicesAdapter.remove(device);
+                }
+            }
+        });
     }
 
     /*
@@ -270,6 +321,30 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         }
 
         @Override
+        public void onServiceAdded(int status, BluetoothGattService service) {
+            Log.d("Start", "Our gatt server service was added.");
+            super.onServiceAdded(status, service);
+        }
+
+        @Override
+        public void onCharacteristicReadRequest(BluetoothDevice device,
+                                                int requestId,
+                                                int offset,
+                                                BluetoothGattCharacteristic characteristic) {
+            super.onCharacteristicReadRequest(device, requestId, offset, characteristic);
+            Log.d(TAG, "READ called onCharacteristicReadRequest " + characteristic.getUuid().toString());
+
+            if (DeviceProfile.CHARACTERISTIC_TX_UUID.equals(characteristic.getUuid())) {
+                mGattServer.sendResponse(device,
+                        requestId,
+                        BluetoothGatt.GATT_SUCCESS,
+                        0,
+                        getStoredValue());
+            }
+
+        }
+
+        @Override
         public void onCharacteristicWriteRequest(BluetoothDevice device,
                                                  int requestId,
                                                  BluetoothGattCharacteristic characteristic,
@@ -280,15 +355,16 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
             super.onCharacteristicWriteRequest(device, requestId, characteristic, preparedWrite, responseNeeded, offset, value);
             Log.i(TAG, "onCharacteristicWriteRequest "+characteristic.getUuid().toString());
 
-            ifSendData = !ifSendData;
-            msenddatabtn.setText("Send Data");
+//            ifSendData = false;
+//            msenddatabtn.setText("Send Data");
 
             if (DeviceProfile.CHARACTERISTIC_RX_UUID.equals(characteristic.getUuid())) {
-                int newScore = DeviceProfile.unsignedIntFromBytes(value);
+                Log.d(TAG, "Got Value: " + bytesToHex(value));
+                int newScore = Integer.parseInt(bytesToHex(value));
                 Log.d(TAG, "Got Score: " + newScore);
                 // Will add code here later to compare against previous high score
-                user_score.setText(String.format("%d",newScore));
-                setStoredValue(newScore);
+//                user_score.setText(String.format("%d",newScore));
+//                setStoredValue(newScore);
 
                 if (responseNeeded) {
                     mGattServer.sendResponse(device,
@@ -297,7 +373,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                             0,
                             value);
                     Log.d(TAG, "Received data on " + characteristic.getUuid().toString());
-                    Log.d(TAG, "Received data " + newScore);
+//                    Log.d(TAG, "Received data " + newScore);
                 }
 
                 mHandler.post(new Runnable() {
@@ -307,31 +383,47 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                     }
                 });
 
-                notifyConnectedDevices();
+                // notifyConnectedDevices();
             }
+        }
+
+
+
+        @Override
+        public void onNotificationSent(BluetoothDevice device, int status)
+        {
+            Log.d("GattServer", "onNotificationSent");
+            super.onNotificationSent(device, status);
+        }
+
+
+        @Override
+        public void onDescriptorReadRequest(BluetoothDevice device, int requestId, int offset, BluetoothGattDescriptor descriptor) {
+            Log.d("HELLO", "Our gatt server descriptor was read.");
+            super.onDescriptorReadRequest(device, requestId, offset, descriptor);
+            Log.d("DONE", "Our gatt server descriptor was read.");
+        }
+
+        @Override
+        public void onDescriptorWriteRequest(BluetoothDevice device, int requestId, BluetoothGattDescriptor descriptor, boolean preparedWrite, boolean responseNeeded, int offset, byte[] value) {
+            Log.d("HELLO", "Our gatt server descriptor was written.");
+            super.onDescriptorWriteRequest(device, requestId, descriptor, preparedWrite, responseNeeded, offset, value);
+            Log.d("DONE", "Our gatt server descriptor was written.");
+
+            //NOTE: Its important to send response. It expects response else it will disconnect
+            if (responseNeeded) {
+                mGattServer.sendResponse(device,
+                        requestId,
+                        BluetoothGatt.GATT_SUCCESS,
+                        0,
+                        value);
+
+            }
+
         }
     };
 
-    /*
-     * Initialize the advertiser
-     */
-    private void startAdvertising() {
-        if(mBluetoothLeAdvertiser == null) return;
 
-        AdvertiseSettings settings = new AdvertiseSettings.Builder()
-                .setAdvertiseMode(AdvertiseSettings.ADVERTISE_MODE_BALANCED)
-                .setConnectable(true)
-                .setTimeout(0)
-                .setTxPowerLevel(AdvertiseSettings.ADVERTISE_TX_POWER_MEDIUM)
-                .build();
-
-        AdvertiseData data = new AdvertiseData.Builder()
-                .setIncludeDeviceName(true)
-                .addServiceUuid(new ParcelUuid(DeviceProfile.SERVICE_UUID))
-                .build();
-
-        mBluetoothLeAdvertiser.startAdvertising(settings, data, mAdvertiseCallback);
-    }
     /*
      * Terminate the advertiser
      */
@@ -341,50 +433,6 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         mBluetoothLeAdvertiser.stopAdvertising(mAdvertiseCallback);
     }
 
-    /*
-     * Callback handles events from the framework describing
-     * if we were successful in starting the advertisement requests.
-     */
-    private AdvertiseCallback mAdvertiseCallback = new AdvertiseCallback() {
-        @Override
-        public void onStartSuccess(AdvertiseSettings settingsInEffect) {
-            Log.i(TAG, "Peripheral Advertise Started.");
-            postStatusMessage("GATT Server Ready");
-        }
-
-        @Override
-        public void onStartFailure(int errorCode) {
-            Log.w(TAG, "Peripheral Advertise Failed: "+errorCode);
-            postStatusMessage("GATT Server Error "+errorCode);
-        }
-    };
-
-    private Handler mHandler = new Handler(Looper.myLooper());
-    private void postStatusMessage(final String message) {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                setTitle(message);
-            }
-        });
-    }
-
-
-
-
-    private void postDeviceChange(final BluetoothDevice device, final boolean toAdd) {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                //This will add the item to our list and update the adapter at the same time.
-                if (toAdd) {
-                    mConnectedDevicesAdapter.add(device);
-                } else {
-                    mConnectedDevicesAdapter.remove(device);
-                }
-            }
-        });
-    }
 
     /* Storage and access to local characteristic data */
     private void notifyConnectedDevices() {
@@ -411,6 +459,24 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
             mTxPacket = newTxPacket;
         }
     }
+
+
+    View.OnClickListener ButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            switch (v.getId()) {
+                case R.id.send_data_button:
+                    ifSendData = !ifSendData;
+                    if(ifSendData) {
+                        msenddatabtn.setText("Sending");
+                    } else {
+                        msenddatabtn.setText("Send Data");
+                    }
+                    break;
+            }
+        }
+    };
 
     // private BluetoothConnectionCallback mBtConnectionCallback = new BluetoothConnectionCallback() {
     //     @Override
@@ -461,5 +527,21 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
+
+
+    final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
+
+    //Helper function converts byte array to hex string
+    //for printing
+    public static String bytesToHex(byte[] bytes) {
+        char[] hexChars = new char[bytes.length * 2];
+        for ( int j = 0; j < bytes.length; j++ ) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = hexArray[v >>> 4];
+            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+        }
+        return new String(hexChars);
+    }
+
 
 }
