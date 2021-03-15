@@ -3,6 +3,8 @@ package ece558.bthornhill.edu.jumprope;
 import android.bluetooth.*;
 import android.content.pm.PackageManager;
 import android.widget.*;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.bluetooth.le.AdvertiseCallback;
@@ -22,10 +24,16 @@ import android.os.ParcelUuid;
 import android.util.Log;
 import android.view.View;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -41,6 +49,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     private FirebaseAuth fAuth;
     private String userId;
     private TextView user_score;
+    FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
     // Variables for Bluetooth
 //    private TextView mStatusBluetooth;
@@ -109,14 +118,15 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         user_score = findViewById(R.id.user_score_value);
         fAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = fAuth.getCurrentUser();
-        /*if(currentUser != null) {
+        if(currentUser != null) {
             userId = currentUser.getUid();
             // Add code here to show previous high score for user
+            //addScoreToProfile(80);
         } else {
             Toast.makeText(this, "Please log in first", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(GameplayActivity.this, MainActivity.class));
             return;
-        }*/
+        }
     }
 
     @Override
@@ -458,8 +468,26 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         }
     }
 
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
+    public void addScoreToProfile(int score){
+        userId = fAuth.getCurrentUser().getUid();
+        DocumentReference documentReference = fStore.collection("users").document(userId);
+        Map<String, Object> user = new HashMap<>();
+                    user.put("Score", score);
+                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(TAG, "onSuccess: score is created for " + userId);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, "onFailure " + e.toString());
+            }
+        });
+    }
 }

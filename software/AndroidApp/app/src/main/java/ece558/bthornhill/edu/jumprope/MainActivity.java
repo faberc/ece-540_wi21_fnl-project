@@ -99,7 +99,9 @@ public class MainActivity extends AppCompatActivity implements OnMenuSelectionLi
                     fm.beginTransaction().remove(fragmentcont).commit();
 
                 }else {
-                    fm.beginTransaction().replace(R.id.fragment_container, MenuFragment.class, null)
+                    Fragment fragmentcont = fm.findFragmentById(R.id.fragment_container);
+                    fragmentcont = new MenuFragment();
+                    fm.beginTransaction().replace(R.id.fragment_container, fragmentcont, "menu")
                             .addToBackStack(null)
                             .commit();
                 }

@@ -152,12 +152,16 @@ public class LoginFragment extends Fragment {
         fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.d(TAG, "signInWithEmail:success");
-                Toast.makeText(getActivity(), "Successfully logged in", Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent(getApplicationContext(), MenuActivity.class));
-                OnMenuSelectionListener listener = (OnMenuSelectionListener)getActivity();
-                listener.onMenuSelection("menu");
-                return;
+                if(task.isSuccessful()) {
+                    Log.d(TAG, "signInWithEmail:success");
+                    Toast.makeText(getActivity(), "Successfully logged in", Toast.LENGTH_SHORT).show();
+                    OnMenuSelectionListener listener = (OnMenuSelectionListener) getActivity();
+                    listener.onMenuSelection("menu");
+                    return;
+                }else{
+                    Toast.makeText(getActivity(), "Authentication failed", Toast.LENGTH_SHORT).show();
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

@@ -32,7 +32,7 @@
             android:id="@+id/button_createprofile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="180dp"
             android:text="Create a profile"
             android:textSize="18sp" />
 
@@ -40,7 +40,7 @@
             android:id="@+id/button_viewprofile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="230dp"
             android:text="View Profile"
             android:textSize="18sp" />
 
@@ -48,7 +48,7 @@
             android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="280dp"
+            android:layout_marginTop="300dp"
             android:text="LOG IN"
             android:textSize="18sp" />
 
@@ -56,7 +56,7 @@
             android:id="@+id/button_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="330dp"
+            android:layout_marginTop="350dp"
             android:text="LOG OUT"
             android:textSize="18sp" />
 
