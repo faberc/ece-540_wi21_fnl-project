@@ -305,8 +305,15 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                 int newScore = DeviceProfile.unsignedIntFromBytes(value);
                 Log.d(TAG, "Got Score: " + newScore);
                 // Will add code here later to compare against previous high score
+                /*
+                int oldscore = Integer.parseInt((String) user_score.getText());
+                if (newScore > oldscore ){
+                    addScoreToProfile(newScore);
+                    user_score.setText(newScore);
+                }*/
                 user_score.setText(String.format("%d",newScore));
-                setStoredValue(newScore);
+
+                //setStoredValue(newScore);
 
                 if (responseNeeded) {
                     mGattServer.sendResponse(device,
