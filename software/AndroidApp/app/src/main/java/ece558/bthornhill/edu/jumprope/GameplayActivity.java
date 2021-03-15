@@ -373,8 +373,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
             super.onCharacteristicWriteRequest(device, requestId, characteristic, preparedWrite, responseNeeded, offset, value);
             Log.i(TAG, "onCharacteristicWriteRequest "+characteristic.getUuid().toString());
 
-//            ifSendData = false;
-//            msenddatabtn.setText("Send Data");
+            ifSendData = false;
 
             if (DeviceProfile.CHARACTERISTIC_RX_UUID.equals(characteristic.getUuid())) {
                 Log.d(TAG, "Got Value: " + bytesToHex(value));
@@ -388,8 +387,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                     user_score.setText(newScore);
                 }*/
                 user_score.setText(String.format("%d",newScore));
-
-                //setStoredValue(newScore);
+//                msenddatabtn.setText("Send Data");
 
                 if (responseNeeded) {
                     mGattServer.sendResponse(device,
@@ -398,7 +396,6 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                             0,
                             value);
                     Log.d(TAG, "Received data on " + characteristic.getUuid().toString());
-//                    Log.d(TAG, "Received data " + newScore);
                 }
 
                 mHandler.post(new Runnable() {
