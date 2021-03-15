@@ -80,7 +80,7 @@ int main (void)
                     break;
                 }
             }
-            global_score = 100;
+            global_score = 300;
             bleSendScore(global_score);
         }
     }

@@ -122,14 +122,14 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         if(currentUser != null) {
             userId = currentUser.getUid();
             // Get and display previous high score for user
-            /*DocumentReference documentReference = fStore.collection("users").document(userId);
+            DocumentReference documentReference = fStore.collection("users").document(userId);
             documentReference.get().addOnSuccessListener(this, new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     Object scoreObj = documentSnapshot.getLong("Score");
                     user_score.setText((scoreObj.toString()));
                 }
-            });*/
+            });
         } else {
             Toast.makeText(this, "Please log in first", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(GameplayActivity.this, MainActivity.class));
@@ -380,13 +380,11 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                 int newScore = Integer.parseInt(bytesToHex(value));
                 Log.d(TAG, "Got Score: " + newScore);
                 // Will add code here later to compare against previous high score
-                /*
-                int oldscore = Integer.parseInt((String) user_score.getText());
-                if (newScore > oldscore ){
+                int oldScore = Integer.parseInt((String) user_score.getText());
+                if (newScore > oldScore ) {
                     addScoreToProfile(newScore);
-                    user_score.setText(newScore);
-                }*/
-                user_score.setText(String.format("%d",newScore));
+                    user_score.setText(String.format("%d",newScore));
+                }
 
                 if (responseNeeded) {
                     mGattServer.sendResponse(device,
@@ -400,7 +398,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(GameplayActivity.this, "RX Packet Updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GameplayActivity.this, "Sending Score to Server", Toast.LENGTH_SHORT).show();
                         if (ifSendData == false) {
                             msenddatabtn.setText("Send Data");
                         }
