@@ -121,7 +121,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         if(currentUser != null) {
             userId = currentUser.getUid();
             // Add code here to show previous high score for user
-            //addScoreToProfile(80);
+            
         } else {
             Toast.makeText(this, "Please log in first", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(GameplayActivity.this, MainActivity.class));
@@ -476,18 +476,17 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     public void addScoreToProfile(int score){
         userId = fAuth.getCurrentUser().getUid();
         DocumentReference documentReference = fStore.collection("users").document(userId);
-        Map<String, Object> user = new HashMap<>();
-                    user.put("Score", score);
-                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.d(TAG, "onSuccess: score is created for " + userId);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "onFailure " + e.toString());
-            }
-        });
+        documentReference.update("Score", score)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "onSuccess: score is created for " + userId);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.d(TAG, "onFailure " + e.toString());
+                }
+            });
     }
 }
