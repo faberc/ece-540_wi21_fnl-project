@@ -29,6 +29,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -120,8 +121,15 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         FirebaseUser currentUser = fAuth.getCurrentUser();
         if(currentUser != null) {
             userId = currentUser.getUid();
-            // Add code here to show previous high score for user
-            
+            // Get and display previous high score for user
+            /*DocumentReference documentReference = fStore.collection("users").document(userId);
+            documentReference.get().addOnSuccessListener(this, new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    Object scoreObj = documentSnapshot.getLong("Score");
+                    user_score.setText((scoreObj.toString()));
+                }
+            });*/
         } else {
             Toast.makeText(this, "Please log in first", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(GameplayActivity.this, MainActivity.class));
