@@ -280,10 +280,14 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
             super.onCharacteristicWriteRequest(device, requestId, characteristic, preparedWrite, responseNeeded, offset, value);
             Log.i(TAG, "onCharacteristicWriteRequest "+characteristic.getUuid().toString());
 
+            ifSendData = !ifSendData;
+            msenddatabtn.setText("Send Data");
+
             if (DeviceProfile.CHARACTERISTIC_RX_UUID.equals(characteristic.getUuid())) {
                 int newScore = DeviceProfile.unsignedIntFromBytes(value);
+                Log.d(TAG, "Got Score: " + newScore);
                 // Will add code here later to compare against previous high score
-                user_score.setText(newScore);
+                user_score.setText(String.format("%d",newScore));
                 setStoredValue(newScore);
 
                 if (responseNeeded) {

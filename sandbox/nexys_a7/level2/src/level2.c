@@ -18,7 +18,7 @@
 #include "jr_lib.h"                     // custom library for jump rope game
 #include "game_arrays.h"                // gameplay arrays
 
-#define ARRAY transition
+#define ARRAY test
 #define START_DELAY 0 /*14*/
 
 int main (void) 
@@ -32,13 +32,14 @@ int main (void)
     int sseg_enable = 0xF0;      //Seven Segment enable
     int start = 0;
 
+    uartInit();
+    bleClientInit();
+
     WRITE_MMIO(PORT_GPIO_EN, gpio_enable);          // Enable GPIOs
     WRITE_MMIO(PORT_SEVENSEG_EN, sseg_enable);      // Enable seven-segment display
     WRITE_MMIO(PORT_SEVENSEG_LOW, global_score);    // Initialize score to 0000
     WRITE_MMIO(PORT_ROPE, HALF_VGA_WIDTH);           // Start rope in the middle of the screen
-    
-    uartInit();
-    bleClientInit();
+
 
     int i;
     while (1) { 
@@ -77,11 +78,10 @@ int main (void)
                 default:
                     WRITE_MMIO(PORT_ROPE, HALF_VGA_WIDTH);
                     break;
-                } 
+                }
             }
-
+            global_score = 100;
             bleSendScore(global_score);
-            
         }
     }
 

@@ -141,7 +141,7 @@ void *_sbrk(int incr);
     // Gameplay Global Variables //
     ///////////////////////////////
 
-    int global_score = 0;
+int global_score = 0;
 const double bpm = 125.0;                               // beats per minute
 const double bps = bpm / 60.0;                          // beats per second
 const double spb = 1 / bps;                             // seconds per beat
@@ -210,8 +210,8 @@ void bleStopStream(void)
 
 void bleSendScore(int score) 
 {
-    char str[16];
-    sprintf(str, "CHW,002D,%d\r\n", score);
+    char str[20] = "\0";
+    sprintf(str, "CHW,002D,%04d\r\n", score);
     sendString(str);
     myDelay(UART_DELAY);
 }
