@@ -80,7 +80,7 @@
 
     <EditText
         android:id="@+id/editpassword"
-        android:layout_width="359dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Enter password"
         android:inputType="textPassword"

@@ -30,6 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.gson.internal.$Gson$Preconditions;
 import com.squareup.picasso.Picasso;
 
 import java.util.concurrent.Executor;
@@ -44,6 +45,7 @@ public class ViewProfileFragment extends Fragment {
 
     private TextView uName;
     private TextView uEmail;
+    private TextView uScore;
     private Button buttonPhoto;
     private ImageView profileImage;
     FirebaseAuth fAuth;
@@ -102,7 +104,6 @@ public class ViewProfileFragment extends Fragment {
             }
         });
 
-
     }
 
     @Override
@@ -113,6 +114,7 @@ public class ViewProfileFragment extends Fragment {
 
         uName = view.findViewById(R.id.textName);
         uEmail = view.findViewById(R.id.textEmail);
+        uScore = view.findViewById(R.id.textScore);
         buttonPhoto =view.findViewById(R.id.button_photo);
         buttonPhoto.setOnClickListener(ButtonListener);
         profileImage = view.findViewById(R.id.imageProfile);
@@ -134,6 +136,8 @@ public class ViewProfileFragment extends Fragment {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 uName.setText(documentSnapshot.getString("Name"));
                 uEmail.setText(documentSnapshot.getString("Email"));
+                Object scoreObj = documentSnapshot.getLong("Score");
+                uScore.setText((scoreObj.toString()));
             }
         });
 
