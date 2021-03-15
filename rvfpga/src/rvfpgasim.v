@@ -79,7 +79,7 @@ module rvfpgasim
    end
 
    wire [15:0]  i_sw;
-   assign  i_sw = {15'b1111_1110_0011_010, i_sw0};
+   assign  i_sw = {15'b1111_1110_0011_010, i_sw};
 
    wire [5:0]  ram_awid;
    wire [31:0] ram_awaddr;

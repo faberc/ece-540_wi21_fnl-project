@@ -123,7 +123,7 @@ public class ViewProfileFragment extends Fragment {
             userId = currentUser.getUid();
         } else{
             OnMenuSelectionListener listener = (OnMenuSelectionListener)getActivity();
-            Toast.makeText(getActivity(), "Please Log in first", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Please log in first", Toast.LENGTH_SHORT).show();
             listener.onMenuSelection("menu");
 
             return view;

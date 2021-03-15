@@ -166,6 +166,7 @@ public class CreateProfileFragment extends Fragment {
                     Map<String, Object> user = new HashMap<>();
                     user.put("Name", name);
                     user.put("Email", email);
+                    user.put("Score", 0);
                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {

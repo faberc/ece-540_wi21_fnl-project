@@ -74,9 +74,23 @@ module rvfpga
     inout wire         JA7,     // GPIO
     inout wire         JA8,     // RST_N
     inout wire         JA9,     // MODE
+<<<<<<< HEAD
+    inout wire         JA10,     // STATUS
+
+    // Junction B -- I2S2
+    output wire tx_mclk,
+    output wire tx_lrck,
+    output wire tx_sclk,
+    output wire tx_data,
+    output wire rx_mclk,
+    output wire rx_lrck,
+    output wire rx_sclk,
+    input  wire rx_data
+=======
     inout wire         JA10,    // STATUS
 
     output wire        JD1      // Song Start
+>>>>>>> 495912ae253251b96d8ebc4e34aba31baab968cf
 
     );
 
@@ -477,7 +491,66 @@ module rvfpga
         .vgaBlue(BLU)
     );
 
+    wire axis_clk;
+    
+    wire [23:0] axis_tx_data;
+    wire axis_tx_valid;
+    wire axis_tx_ready;
+    wire axis_tx_last;
+    
+    wire [23:0] axis_rx_data;
+    wire axis_rx_valid;
+    wire axis_rx_ready;
+    wire axis_rx_last;
 
+    wire resetn = (rstn == 0) ? 1'b0 : 1'b1;
+	
+    clk_wiz_0 m_clk (
+        .clk_in1(clk),
+        .reset(user_rst),
+        .axis_clk(axis_clk)
+    );
 
+    axis_i2s2 m_i2s2 (
+        .axis_clk(axis_clk),
+        .axis_resetn(resetn),
+    
+        .tx_axis_s_data(axis_tx_data),
+        .tx_axis_s_valid(axis_tx_valid),
+        .tx_axis_s_ready(axis_tx_ready),
+        .tx_axis_s_last(axis_tx_last),
+    
+        .rx_axis_m_data(axis_rx_data),
+        .rx_axis_m_valid(axis_rx_valid),
+        .rx_axis_m_ready(axis_rx_ready),
+        .rx_axis_m_last(axis_rx_last),
+        
+        .tx_mclk(tx_mclk),
+        .tx_lrck(tx_lrck),
+        .tx_sclk(tx_sclk),
+        .tx_sdout(tx_data),
+        .rx_mclk(rx_mclk),
+        .rx_lrck(rx_lrck),
+        .rx_sclk(rx_sclk),
+        .rx_sdin(rx_data)
+    );
+    
+    axis_volume_controller #(
+		.SWITCH_WIDTH(4),
+		.DATA_WIDTH(24)
+	) m_vc (
+        .clk(axis_clk),
+        .sw(sw_db[4:1]),
+        
+        .s_axis_data(axis_rx_data),
+        .s_axis_valid(axis_rx_valid),
+        .s_axis_ready(axis_rx_ready),
+        .s_axis_last(axis_rx_last),
+        
+        .m_axis_data(axis_tx_data),
+        .m_axis_valid(axis_tx_valid),
+        .m_axis_ready(axis_tx_ready),
+        .m_axis_last(axis_tx_last)
+    );
 
 endmodule

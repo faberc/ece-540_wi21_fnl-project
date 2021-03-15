@@ -1,3 +1,4 @@
+`default_nettype wire
 /*
 cdc_utils by Olof Kindgren <olof.kindgren@gmail.com>
 To the extent possible under law, the person who associated CC0 with

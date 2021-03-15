@@ -356,7 +356,7 @@ module swervolf_core
       .o_int(pwm_irq)
     );
 
-    assign io_aux[0] = 1'b1;
+    // assign io_aux[0] = 1'b1;
 
     // Adding UART RX Interpreter
     wire        s_tick;
@@ -854,7 +854,7 @@ module swervolf_core
       .dma_bus_clk_en (1'b1),
 
       .timer_int (timer_irq),
-      .extintsrc_req ({4'd0, pwm_irq, sw_irq3, spi0_irq, uart_irq}),
+      .extintsrc_req ({4'd0, sw_irq4, sw_irq3, spi0_irq, uart_irq}),
       .dec_tlu_perfcnt0 (),
       .dec_tlu_perfcnt1 (),
       .dec_tlu_perfcnt2 (),
