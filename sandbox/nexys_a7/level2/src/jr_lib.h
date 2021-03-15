@@ -17,12 +17,12 @@
  * ----------	---	----------------------------------------------------------
  */
 
+#include <stdlib.h>
+extern int _end;
+
 //////////////////
 // UART Defines //
 //////////////////
-
-#include <time.h>
-
 #define UART_BASE 0x80002000
 #define UART_DELAY 0x100000
 
@@ -126,6 +126,7 @@ void rope_up();
 void rope_down();
 void score(int amount);
 float calibration_val(void);
+void *_sbrk(int incr);
 
     /* example of usage */
     // int main(void)
@@ -136,11 +137,11 @@ float calibration_val(void);
     //     return (0);
     // }
 
-///////////////////////////////
-// Gameplay Global Variables //
-///////////////////////////////
+    ///////////////////////////////
+    // Gameplay Global Variables //
+    ///////////////////////////////
 
-int global_score = 0;
+    int global_score = 0;
 const double bpm = 125.0;                               // beats per minute
 const double bps = bpm / 60.0;                          // beats per second
 const double spb = 1 / bps;                             // seconds per beat
@@ -167,7 +168,7 @@ long int test_time = 2000000; // quarter-beat time?
 // Function Definitions //
 //////////////////////////
 
-    void bleConnect(void)
+void bleConnect(void)       // Only works on ESP32
 {
     sendString("$$$");
     myDelay(UART_DELAY);
@@ -179,13 +180,23 @@ long int test_time = 2000000; // quarter-beat time?
     myDelay(UART_DELAY);
 }
 
+void bleClientInit(void)
+{
+    sendString("$$$");
+    myDelay(UART_DELAY);
+    sendString("+\r\n");
+    myDelay(UART_DELAY);
+    sendString("CI\r\n");
+    myDelay(UART_DELAY);
+}
+
 void bleDisconnect(void)
 {
     sendString("K,1\r\n");
     myDelay(UART_DELAY);
 }
 
-void bleStartStream(void)
+void bleStartStream(void)               // Only needed for ESP32
 {
     sendString("CHW,002B,0100\r\n");
     myDelay(UART_DELAY);
@@ -194,6 +205,14 @@ void bleStartStream(void)
 void bleStopStream(void)
 {
     sendString("CHW,002B,0000\r\n");
+    myDelay(UART_DELAY);
+}
+
+void bleSendScore(int score) 
+{
+    char str[16];
+    sprintf(str, "CHW,002D,%d\r\n", score);
+    sendString(str);
     myDelay(UART_DELAY);
 }
 
@@ -356,7 +375,7 @@ void rope_up()
         if (i > ACTION_WINDOW)
         {
             acl.i = READ_MMIO(PORT_ACCEL);
-            if (acl.f > (center_baseline + THRESH))
+            if (acl.f > (center_baseline + (THRESH/2)))
             {
                 thresh1 = true;
             }
@@ -378,7 +397,7 @@ void rope_up()
         if (i < ACTION_WINDOW)
         {
             acl.i = READ_MMIO(PORT_ACCEL);
-            if (acl.f > (center_baseline + THRESH))
+            if (acl.f > (center_baseline + (THRESH/2)))
             {
                 thresh1 = true;
             }
@@ -437,4 +456,20 @@ float calibration_val (void)
         myDelay(0xFF);
     }
     return (sum / 100.0);
+}
+
+void *_sbrk(int incr)
+{
+    static unsigned char *heap = NULL;
+    unsigned char *prev_heap;
+
+    if (heap == NULL)
+    {
+        heap = (unsigned char *)&_end;
+    }
+    prev_heap = heap;
+
+    heap += incr;
+
+    return prev_heap;
 }

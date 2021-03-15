@@ -292,8 +292,8 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                             BluetoothGatt.GATT_SUCCESS,
                             0,
                             value);
-                    Log.d(TAG, "Received data on "+characteristic.getUuid().toString());
-                    Log.d(TAG, "Received data "+ newScore);
+                    Log.d(TAG, "Received data on " + characteristic.getUuid().toString());
+                    Log.d(TAG, "Received data " + newScore);
                 }
 
                 mHandler.post(new Runnable() {

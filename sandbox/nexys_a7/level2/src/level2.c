@@ -37,8 +37,10 @@ int main (void)
     WRITE_MMIO(PORT_SEVENSEG_LOW, global_score);    // Initialize score to 0000
     WRITE_MMIO(PORT_ROPE, HALF_VGA_WIDTH);           // Start rope in the middle of the screen
     
-    int i;
+    uartInit();
+    bleClientInit();
 
+    int i;
     while (1) { 
 
         start = READ_MMIO(PORT_PBTNS);          // Game starts when the user presses any button
@@ -52,9 +54,9 @@ int main (void)
             myDelay(0x10);
             WRITE_MMIO(PORT_START,0x00);    // clears start bit
 
-            for (int i = 0; i < START_DELAY; i++) {
-                beatDelay(uspb);
-            }
+            // for (int i = 0; i < START_DELAY; i++) {
+            //     beatDelay(uspb);
+            // }
 
             // Run through game array
             for(i = 0; i < game_arr_sz; i++){
@@ -77,6 +79,9 @@ int main (void)
                     break;
                 } 
             }
+
+            bleSendScore(global_score);
+            
         }
     }
 
