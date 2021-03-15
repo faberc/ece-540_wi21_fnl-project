@@ -86,8 +86,8 @@ module	wbpwmaudio(i_clk, i_reset,
 		i_wb_cyc, i_wb_stb, i_wb_we, i_wb_addr, i_wb_data,
 			o_wb_ack, o_wb_stall, o_wb_data,
 		o_pwm, o_aux, o_int);
-	parameter	DEFAULT_RELOAD = 16'd1814, // about 44.1 kHz @  80MHz
-			//DEFAULT_RELOAD = 16'd2268,//about 44.1 kHz @ 100MHz
+	parameter	//DEFAULT_RELOAD = 16'd1814, // about 44.1 kHz @  80MHz
+			DEFAULT_RELOAD = 16'd2268,//about 44.1 kHz @ 100MHz
 			NAUX=2, // Dev control values
 			VARIABLE_RATE=0,
 			TIMING_BITS=16;
