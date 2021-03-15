@@ -173,6 +173,7 @@ read_verilog -library xil_defaultlib {
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon.v
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Peripherals/BootROM/wb_mem_wrapper.v
   C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Interconnect/WishboneInterconnect/wb_intercon_1.2.2/wb_mux.v
+  C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/src/SweRVolfSoC/Peripherals/custom/wbpwmaudio.v
 }
 read_ip -quiet C:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/clk_gen_75M/clk_gen_75M.xci
 set_property used_in_implementation false [get_files -all c:/Users/Chuck/ECE540/fnlproj-team-tbc/rvfpga/vivado/project_final/project_final.srcs/sources_1/ip/clk_gen_75M/clk_gen_75M_board.xdc]

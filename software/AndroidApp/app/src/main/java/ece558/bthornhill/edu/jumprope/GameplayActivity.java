@@ -3,6 +3,8 @@ package ece558.bthornhill.edu.jumprope;
 import android.bluetooth.*;
 import android.content.pm.PackageManager;
 import android.widget.*;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.bluetooth.le.AdvertiseCallback;
@@ -22,7 +24,17 @@ import android.os.ParcelUuid;
 import android.util.Log;
 import android.view.View;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -33,6 +45,12 @@ import java.util.ArrayList;
 
 public class GameplayActivity extends AppCompatActivity implements SensorEventListener {
     private static final String TAG = "GameplayActivity";
+
+    // Variables for Firebase
+    private FirebaseAuth fAuth;
+    private String userId;
+    private TextView user_score;
+    FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
     // Variables for Bluetooth
 //    private TextView mStatusBluetooth;
@@ -67,6 +85,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameplay);
 
+
         // Bluetooth initialization
         mBleStatus = findViewById(R.id.bleStatusText);
 //        mStatusBluetooth = findViewById(R.id.statusBluetooth);
@@ -96,6 +115,26 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         msenddatabtn = findViewById(R.id.send_data_button);
         msenddatabtn.setOnClickListener(ButtonListener);
 
+        // Ensure user is logged into account before proceeding
+        user_score = findViewById(R.id.user_score_value);
+        fAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = fAuth.getCurrentUser();
+        if(currentUser != null) {
+            userId = currentUser.getUid();
+            // Get and display previous high score for user
+            /*DocumentReference documentReference = fStore.collection("users").document(userId);
+            documentReference.get().addOnSuccessListener(this, new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    Object scoreObj = documentSnapshot.getLong("Score");
+                    user_score.setText((scoreObj.toString()));
+                }
+            });*/
+        } else {
+            Toast.makeText(this, "Please log in first", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(GameplayActivity.this, MainActivity.class));
+            return;
+        }
     }
 
     @Override
@@ -198,7 +237,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         BluetoothGattCharacteristic txCharacteristic =
                 new BluetoothGattCharacteristic(DeviceProfile.CHARACTERISTIC_TX_UUID,
                         //Notify
-                        BluetoothGattCharacteristic.PROPERTY_NOTIFY, BluetoothGattCharacteristic.PERMISSION_READ);
+                        BluetoothGattCharacteristic.PROPERTY_READ | BluetoothGattCharacteristic.PROPERTY_NOTIFY, BluetoothGattCharacteristic.PERMISSION_READ);
 
         service.addCharacteristic(rxCharacteristic);
         service.addCharacteristic(txCharacteristic);
@@ -259,9 +298,22 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
             super.onCharacteristicWriteRequest(device, requestId, characteristic, preparedWrite, responseNeeded, offset, value);
             Log.i(TAG, "onCharacteristicWriteRequest "+characteristic.getUuid().toString());
 
+            ifSendData = !ifSendData;
+            msenddatabtn.setText("Send Data");
+
             if (DeviceProfile.CHARACTERISTIC_RX_UUID.equals(characteristic.getUuid())) {
-                int newOffset = DeviceProfile.unsignedIntFromBytes(value);
-                setStoredValue(newOffset);
+                int newScore = DeviceProfile.unsignedIntFromBytes(value);
+                Log.d(TAG, "Got Score: " + newScore);
+                // Will add code here later to compare against previous high score
+                /*
+                int oldscore = Integer.parseInt((String) user_score.getText());
+                if (newScore > oldscore ){
+                    addScoreToProfile(newScore);
+                    user_score.setText(newScore);
+                }*/
+                user_score.setText(String.format("%d",newScore));
+
+                //setStoredValue(newScore);
 
                 if (responseNeeded) {
                     mGattServer.sendResponse(device,
@@ -269,6 +321,8 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                             BluetoothGatt.GATT_SUCCESS,
                             0,
                             value);
+                    Log.d(TAG, "Received data on " + characteristic.getUuid().toString());
+                    Log.d(TAG, "Received data " + newScore);
                 }
 
                 mHandler.post(new Runnable() {
@@ -429,8 +483,25 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         }
     }
 
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
+    public void addScoreToProfile(int score){
+        userId = fAuth.getCurrentUser().getUid();
+        DocumentReference documentReference = fStore.collection("users").document(userId);
+        documentReference.update("Score", score)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "onSuccess: score is created for " + userId);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.d(TAG, "onFailure " + e.toString());
+                }
+            });
+    }
 }

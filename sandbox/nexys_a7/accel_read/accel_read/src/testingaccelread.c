@@ -4,7 +4,7 @@
  * Created Date: Tuesday, March 2nd 2021, 7:07:11 pm
  * Author: Chuck Faber
  * -----
- * Last Modified: Tue Mar 02 2021
+ * Last Modified: Tue Mar 09 2021
  * Modified By: Chuck Faber
  * -----
  * Copyright (c) 2021 Portland State University
@@ -17,9 +17,12 @@
  * ----------	---	----------------------------------------------------------
  */
 
+#include <stdlib.h>
+#include <string.h>
 
 #define ROPE_REG 0x80001704
 #define ACCEL_REG 0x80001700
+#define START_REG 0x8000170C
 
 #define READ_GPIO(dir) (*(volatile unsigned *)dir)
 #define WRITE_GPIO(dir, value)                 \
@@ -27,15 +30,22 @@
         (*(volatile unsigned *)dir) = (value); \
     }
 
-int accel_value = 0x00000000;
+
+
+union accel {
+    float f;
+    unsigned int i;
+};
+
+union accel mem;
 
 int main(void)
 {
     WRITE_GPIO(ROPE_REG, 300);
+    WRITE_GPIO(START_REG, 0x00);
     while (1)
     {
-        accel_value = READ_GPIO(ACCEL_REG);
-        // printf("Value Read: %x\n", accel_value);
+        mem.i = READ_GPIO(ACCEL_REG);
         for(int i = 0; i < 0xFFFF; i++);
     }
 

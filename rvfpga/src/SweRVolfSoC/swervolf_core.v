@@ -115,7 +115,10 @@ module swervolf_core
     inout wire         ble_gpio,        // GPIO
     input wire         ble_rstn,        // RST_N
     inout wire         ble_mode,        // MODE
-    inout wire         ble_status       // STATUS
+    inout wire         ble_status,       // STATUS
+
+    // Song Start Signal
+    output wire        song_start
     );
 
 
@@ -334,6 +337,7 @@ module swervolf_core
 
     // PWM audio
 
+<<<<<<< HEAD
     // wire pwm_irq;
     // wire ignore_aux;
 
@@ -353,6 +357,26 @@ module swervolf_core
     //   .o_int(pwm_irq)
 
     // );
+=======
+    wire pwm_irq;
+    wire ignore_aux;
+
+    wbpwmaudio ropegameaudio (
+      .i_clk(wb_clk),
+      .i_reset(wb_rst),
+      .i_wb_cyc(wb_m2s_pwm_cyc),
+      .i_wb_stb(wb_m2s_pwm_stb),
+      .i_wb_we(wb_m2s_pwm_we),
+      .i_wb_addr(wb_m2s_pwm_adr[2]),
+      .i_wb_data(wb_m2s_pwm_dat),
+      .o_wb_ack(wb_s2m_pwm_ack),
+      .o_wb_stall(wb_s2m_pwm_err),
+      .o_wb_data(wb_s2m_pwm_dat),
+      .o_pwm(io_aux[1]),
+      .o_aux(ignore_aux),
+      .o_int(pwm_irq)
+    );
+>>>>>>> 495912ae253251b96d8ebc4e34aba31baab968cf
 
     // assign io_aux[0] = 1'b1;
 
@@ -609,7 +633,7 @@ module swervolf_core
         .i_reg_a    (ble_accel_val[31:0]),
         .o_reg_a    (rope_loc[9:0]),
         .i_reg_b    (),
-        .o_reg_b    ()
+        .o_reg_b    ({31'b0,song_start})        // should be cleared after being set
     );
 
    // PTC
@@ -668,13 +692,13 @@ module swervolf_core
       .nmi_int (nmi_int),
       .nmi_vec (nmi_vec[31:1]),
 
-      .trace_rv_i_insn_ip      (),
-      .trace_rv_i_address_ip   (),
-      .trace_rv_i_valid_ip     (),
-      .trace_rv_i_exception_ip (),
-      .trace_rv_i_ecause_ip    (),
-      .trace_rv_i_interrupt_ip (),
-      .trace_rv_i_tval_ip      (),
+      .trace_rv_i_insn_ip      (    ),
+      .trace_rv_i_address_ip   (    ),
+      .trace_rv_i_valid_ip     (    ),
+      .trace_rv_i_exception_ip (    ),
+      .trace_rv_i_ecause_ip    (    ),
+      .trace_rv_i_interrupt_ip (    ),
+      .trace_rv_i_tval_ip      (    ),
 
       // Bus signals
       //-------------------------- LSU AXI signals--------------------------
