@@ -387,7 +387,6 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                     user_score.setText(newScore);
                 }*/
                 user_score.setText(String.format("%d",newScore));
-//                msenddatabtn.setText("Send Data");
 
                 if (responseNeeded) {
                     mGattServer.sendResponse(device,
@@ -402,6 +401,9 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
                     @Override
                     public void run() {
                         Toast.makeText(GameplayActivity.this, "RX Packet Updated", Toast.LENGTH_SHORT).show();
+                        if (ifSendData == false) {
+                            msenddatabtn.setText("Send Data");
+                        }
                     }
                 });
 
