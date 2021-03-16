@@ -94,20 +94,16 @@ module swervolf_core
     output wire        o_accel_mosi,
     input wire         i_accel_miso,
 
-    // ROJO Bot Signals
-    // inout wire [31:0]   io_botinfo,
-    // inout wire [7:0]    io_botctrl,
-    // input wire          io_botupdt_sync,
-    // output wire         io_int_ack,
-
     // Debounced Switches Output
     output wire [15:0]  sw_db,
 
     // Rope Game Signals
-    output wire [9:0]  rope_loc,
+    output wire [9:0]  rope_loc,        // Rope Location on Screen
+    output wire        song_start,      // Song Start Signal
+
 
     // BLE Pmod
-        // Junction A -- BLE PMOD
+    // Junction A -- BLE PMOD
     output wire        ble_rts,         // RTS
     output wire        ble_rxd,         // RXD
     input wire         ble_txd,         // TXD
@@ -115,10 +111,9 @@ module swervolf_core
     inout wire         ble_gpio,        // GPIO
     input wire         ble_rstn,        // RST_N
     inout wire         ble_mode,        // MODE
-    inout wire         ble_status,       // STATUS
+    inout wire         ble_status       // STATUS
 
-    // Song Start Signal
-    output wire        song_start
+
     );
 
 
@@ -363,6 +358,8 @@ module swervolf_core
     wire [10:0] divisor;
     assign      divisor = 27;        // Divisor value for 115200 baud.
 
+
+    // Baud Tick Generator for 115200 baud with oversampling rate of 16.
     baud_gen baud_115200 (
         .clk(clk), 
         .reset(~rst_n),         // system clock and reset
@@ -378,6 +375,7 @@ module swervolf_core
     wire parsed_tick;
     wire [31:0] ble_accel_val;
 
+    // UART Receiver Module -- Outputs bytes
     uart_rx
     #(
         .DBIT(8),               // 8 Data Bits
@@ -392,6 +390,7 @@ module swervolf_core
         .smpl_tick()            // Debug Signal
     );
 
+    // Byte Stream Parsing Module -- Extracts Acceleration data from message
     uart_parse up0 (
         .clk(clk),
         .reset(~rst_n),
@@ -401,6 +400,7 @@ module swervolf_core
         .ascii_out(ascii_out)
     );
 
+    // Converts ascii acceleration data to a hex value
     ascii_2_hex a2h (
         .clk(clk),
         .reset(~rst_n),
@@ -410,7 +410,7 @@ module swervolf_core
         .hex_result(ble_accel_val)
     );
 
-    // Adding BLE PMOD
+    // BLE PMOD module for communication with the RN4871 chip via different means
     pmod_ble_top ble0 (
         .clk(clk),
 
@@ -419,16 +419,16 @@ module swervolf_core
         .o_uart_tx(o_uart_tx),        // UART TX Data To Computer
 
         // UART Core Connections
-        .i_core_rx(o_core_tx),
-        .o_core_tx(i_core_rx),
+        .i_core_rx(o_core_tx),        // UART Core to BLE PMOD
+        .o_core_tx(i_core_rx),        // BLE PMOD to UART Core
 
-        .o_parse_tx(ble_txd_parse),
-        .sw(sw_db[0]),
+        .o_parse_tx(ble_txd_parse),   // Signal to start parsing data from BLE PMOD
+        .sw(sw_db[0]),                // Switch to signal computer control or software control
 
         // PMOD Interface
-        .o_pmod_rxd(ble_rxd),               // Receive on RN4871 - FPGA drives this -- pin 2
-        .i_pmod_txd(ble_txd),               // Transmit on RN4871 -- pin 3
-        .o_pmod_rstn(ble_rstn)              // pin 8
+        .o_pmod_rxd(ble_rxd),         // Receive on RN4871 - FPGA drives this -- pin 2
+        .i_pmod_txd(ble_txd),         // Transmit on RN4871 -- pin 3
+        .o_pmod_rstn(ble_rstn)        // pin 8
     );
 
     // GPIO - Leds and Switches
@@ -451,7 +451,6 @@ module swervolf_core
 
     // Push buttons and Switches Debounced
     wire [5:0] pbtn_db;
-    // wire [15:0] sw_db;
 
     // Tristate Bidirects for LEDs and Switches
     bidirec gpio0  (.oe(en_gpio[0] ), .inp(o_gpio[0] ), .outp(i_gpio[0] ), .bidir(io_data[0] ));
@@ -493,33 +492,6 @@ module swervolf_core
     bidirec gpio2a  (.oe(en_gpio_a[2]),  .inp(o_gpio_a[2]),  .outp(i_gpio_a[2]),  .bidir(io_data_a[2]));
     bidirec gpio3a  (.oe(en_gpio_a[3]),  .inp(o_gpio_a[3]),  .outp(i_gpio_a[3]),  .bidir(io_data_a[3]));
     bidirec gpio4a  (.oe(en_gpio_a[4]),  .inp(o_gpio_a[4]),  .outp(i_gpio_a[4]),  .bidir(io_data_a[4]));
-    // bidirec gpio5a  (.oe(en_gpio_a[5]),  .inp(o_gpio_a[5]),  .outp(i_gpio_a[5]),  .bidir(io_data_a[5]));
-    // bidirec gpio6a  (.oe(en_gpio_a[6]),  .inp(o_gpio_a[6]),  .outp(i_gpio_a[6]),  .bidir(io_data_a[6]));
-    // bidirec gpio7a  (.oe(en_gpio_a[7]),  .inp(o_gpio_a[7]),  .outp(i_gpio_a[7]),  .bidir(io_data_a[7]));
-    // bidirec gpio8a  (.oe(en_gpio_a[8]),  .inp(o_gpio_a[8]),  .outp(i_gpio_a[8]),  .bidir(io_data_a[8]));
-    // bidirec gpio9a  (.oe(en_gpio_a[9]),  .inp(o_gpio_a[9]),  .outp(i_gpio_a[9]),  .bidir(io_data_a[9]));
-    // bidirec gpio10a (.oe(en_gpio_a[10]), .inp(o_gpio_a[10]), .outp(i_gpio_a[10]), .bidir(io_data_a[10]));
-    // bidirec gpio11a (.oe(en_gpio_a[11]), .inp(o_gpio_a[11]), .outp(i_gpio_a[11]), .bidir(io_data_a[11]));
-    // bidirec gpio12a (.oe(en_gpio_a[12]), .inp(o_gpio_a[12]), .outp(i_gpio_a[12]), .bidir(io_data_a[12]));
-    // bidirec gpio13a (.oe(en_gpio_a[13]), .inp(o_gpio_a[13]), .outp(i_gpio_a[13]), .bidir(io_data_a[13]));
-    // bidirec gpio14a (.oe(en_gpio_a[14]), .inp(o_gpio_a[14]), .outp(i_gpio_a[14]), .bidir(io_data_a[14]));
-    // bidirec gpio15a (.oe(en_gpio_a[15]), .inp(o_gpio_a[15]), .outp(i_gpio_a[15]), .bidir(io_data_a[15]));
-    // bidirec gpio16a (.oe(en_gpio_a[16]), .inp(o_gpio_a[16]), .outp(i_gpio_a[16]), .bidir(io_data_a[16]));
-    // bidirec gpio17a (.oe(en_gpio_a[17]), .inp(o_gpio_a[17]), .outp(i_gpio_a[17]), .bidir(io_data_a[17]));
-    // bidirec gpio18a (.oe(en_gpio_a[18]), .inp(o_gpio_a[18]), .outp(i_gpio_a[18]), .bidir(io_data_a[18]));
-    // bidirec gpio19a (.oe(en_gpio_a[19]), .inp(o_gpio_a[19]), .outp(i_gpio_a[19]), .bidir(io_data_a[19]));
-    // bidirec gpio20a (.oe(en_gpio_a[20]), .inp(o_gpio_a[20]), .outp(i_gpio_a[20]), .bidir(io_data_a[20]));
-    // bidirec gpio21a (.oe(en_gpio_a[21]), .inp(o_gpio_a[21]), .outp(i_gpio_a[21]), .bidir(io_data_a[21]));
-    // bidirec gpio22a (.oe(en_gpio_a[22]), .inp(o_gpio_a[22]), .outp(i_gpio_a[22]), .bidir(io_data_a[22]));
-    // bidirec gpio23a (.oe(en_gpio_a[23]), .inp(o_gpio_a[23]), .outp(i_gpio_a[23]), .bidir(io_data_a[23]));
-    // bidirec gpio24a (.oe(en_gpio_a[24]), .inp(o_gpio_a[24]), .outp(i_gpio_a[24]), .bidir(io_data_a[24]));
-    // bidirec gpio25a (.oe(en_gpio_a[25]), .inp(o_gpio_a[25]), .outp(i_gpio_a[25]), .bidir(io_data_a[25]));
-    // bidirec gpio26a (.oe(en_gpio_a[26]), .inp(o_gpio_a[26]), .outp(i_gpio_a[26]), .bidir(io_data_a[26]));
-    // bidirec gpio27a (.oe(en_gpio_a[27]), .inp(o_gpio_a[27]), .outp(i_gpio_a[27]), .bidir(io_data_a[27]));
-    // bidirec gpio28a (.oe(en_gpio_a[28]), .inp(o_gpio_a[28]), .outp(i_gpio_a[28]), .bidir(io_data_a[28]));
-    // bidirec gpio29a (.oe(en_gpio_a[29]), .inp(o_gpio_a[29]), .outp(i_gpio_a[29]), .bidir(io_data_a[29]));
-    // bidirec gpio30a (.oe(en_gpio_a[30]), .inp(o_gpio_a[30]), .outp(i_gpio_a[30]), .bidir(io_data_a[30]));
-    // bidirec gpio31a (.oe(en_gpio_a[31]), .inp(o_gpio_a[31]), .outp(i_gpio_a[31]), .bidir(io_data_a[31]));
 
     // Debouncing Module
     debounce db_buttons(
@@ -569,29 +541,6 @@ module swervolf_core
         .ext_padoe_o   (en_gpio_a));
 
 
-    // Instantiation of RojoBot Peripheral
-    // wire            per1_irq;
-
-    // periph_top per1 (
-    //     .wb_clk_i   (clk), 
-    //     .wb_rst_i   (wb_rst), 
-    //     .wb_adr_i   (wb_m2s_per1_adr), 
-    //     .wb_dat_i   (wb_m2s_per1_dat), 
-    //     .wb_sel_i   (wb_m2s_per1_sel), 
-    //     .wb_we_i    (wb_m2s_per1_we), 
-    //     .wb_cyc_i   (wb_m2s_per1_cyc), 
-    //     .wb_stb_i   (wb_m2s_per1_stb), 
-    //     .wb_dat_o   (wb_s2m_per1_dat), 
-    //     .wb_ack_o   (wb_s2m_per1_ack), 
-    //     .wb_err_o   (wb_s2m_per1_err), 
-    //     .wb_inta_o  (per1_irq),
-    //     .i_reg_a    (io_botinfo[31:0]),
-    //     .o_reg_a    (io_botctrl[7:0]),
-    //     .i_reg_b    ({31'b0, io_botupdt_sync}),
-    //     .o_reg_b    (io_int_ack)
-    // );
-
-
     // Instantiation of Rope Game Peripheral
     wire            per2_irq;
 
@@ -608,10 +557,10 @@ module swervolf_core
         .wb_ack_o   (wb_s2m_per2_ack), 
         .wb_err_o   (wb_s2m_per2_err), 
         .wb_inta_o  (per2_irq),
-        .i_reg_a    (ble_accel_val[31:0]),
-        .o_reg_a    (rope_loc[9:0]),
+        .i_reg_a    (ble_accel_val[31:0]),      // Readable Player Acceleration Values
+        .o_reg_a    (rope_loc[9:0]),            // Writable Rope Location on Screen
         .i_reg_b    (),
-        .o_reg_b    ({31'b0,song_start})        // should be cleared after being set
+        .o_reg_b    ({31'b0,song_start})        // Song Start Signal -- should be cleared after being set
     );
 
    // PTC
