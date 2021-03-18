@@ -149,16 +149,17 @@ const double spb = 1 / bps;                             // seconds per beat
 const unsigned long int uspb = spb * 1e6;               // us per beat
 const unsigned long int hbd = uspb / 2;                 // Half beat delay in us
 const unsigned long int rdl = (hbd / HALF_VGA_WIDTH) 
-    + COARSE_CORRECT;                                   // rope movement delay for half screen movement
-// unsigned long int cdl = hbd / (CENT_DISP / 1.25)
-unsigned long int cdl = (hbd / 2) / (CENT_DISP)
+    + COARSE_CORRECT;                                   // rope up/down movement delay
+                                                        // for half screen movement
+unsigned long int cdl = (hbd / 2) / (CENT_DISP)         // rope center movement delay
      + (COARSE_CORRECT * VGA_CENT_RATIO);
+
 union accel                                             // Acceleration Reading Value Union
 {
     float f;
     unsigned int i;
 };
-union accel acl;                                        // Acceleration reading value
+`union accel acl;                                        // Acceleration reading value
 float calib_arr[100];                                   // Calibration array for averaging
 float center_baseline;                                  // baseline acceleration value when player standing still
 
