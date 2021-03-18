@@ -8,6 +8,11 @@
  * Modified By: Chuck Faber
  * -----
  * Copyright (c) 2021 Portland State University
+ *
+ * This module connects the BLE PMOD to the boards external UART lines, and also to the
+ * UART core instantiated in swervolf_core. Upon receiving data, it also outputs its data
+ * to the UART parsing modules to retrieve the acceleration data to place it in the
+ * software accessible memory locations exposed by periph_top.
  * 
  * "Any time I had a problem, and I threw a Molotov cocktail…Boom, right away, I had a different problem."
  * - Jason Mendoza
