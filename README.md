@@ -22,4 +22,7 @@ The player jumps and ducks according to the beats of the song, and awards points
     * vivado - includes Vivado project files
  * sandbox - landing location for working on intermediary code and testing.
  * src - final version source code for each hardware element
+    * android - includes the Android Studio/IntelliJ project that contains our android app
+    * nexys_a7 - includes the Jump Rope game software and the rvfpga HDL source code
+    * raspi - includes the python script for music playback
 
