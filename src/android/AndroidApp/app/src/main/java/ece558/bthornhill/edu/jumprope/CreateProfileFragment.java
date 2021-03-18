@@ -29,9 +29,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link CreateProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Fragment that allows users to create a profile using
+ * the Firebase platform
  */
 public class CreateProfileFragment extends Fragment {
     private static final String TAG = "CreateProfileFragment";
@@ -44,12 +43,9 @@ public class CreateProfileFragment extends Fragment {
     FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     String userID;
 
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -65,7 +61,6 @@ public class CreateProfileFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment CreateProfileFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static CreateProfileFragment newInstance(String param1, String param2) {
         CreateProfileFragment fragment = new CreateProfileFragment();
         Bundle args = new Bundle();
@@ -127,6 +122,11 @@ public class CreateProfileFragment extends Fragment {
         }
     };
 
+    /**
+     * Verifies user inputs are valid and creates a new
+     * profile in the Firebase platform
+     *
+     */
     private void authenticate(){
         String name = mName.getText().toString();
         String email = mEmail.getText().toString().trim();

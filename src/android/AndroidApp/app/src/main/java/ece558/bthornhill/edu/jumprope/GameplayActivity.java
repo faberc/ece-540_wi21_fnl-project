@@ -38,7 +38,9 @@ import java.util.Map;
 
 
 /**
- *  Add words here about this activity
+ *  Allows device to communicate to Nexys A7 via Bluetooth Low Energy.
+ *  Accesses device's acceleration data to be used by Nexys A7 game
+ *  to see if user is jumping or ducking
  *
  *  Bluetooth code created by Dave Smith
  */
@@ -53,7 +55,6 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
     FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
     // Variables for Bluetooth
-//    private TextView mStatusBluetooth;
     private ImageView mBlueImage;
     private BluetoothManager mBluetoothManager;
     private BluetoothAdapter mBluetoothAdapter;
@@ -88,7 +89,6 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         // Bluetooth initialization
         mBleStatus = findViewById(R.id.bleStatusText);
-//        mStatusBluetooth = findViewById(R.id.statusBluetooth);
         mBlueImage = findViewById(R.id.bluetoothIcon);
 
         // Bluetooth adapter
@@ -144,9 +144,7 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
         mBleStatus.setText("Awaiting Connection...");
 
         // Set image according to bluetooth status (on/off)
-        // Having issues with Android studio letting me add clip art images
         if ( mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()){
-//            mStatusBluetooth.setText("BT is Not Enabled...");
             mBlueImage.setImageResource(R.drawable.blue_off2);
             //Bluetooth is available on the device and it is not enabled, enable it
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -156,7 +154,6 @@ public class GameplayActivity extends AppCompatActivity implements SensorEventLi
 
         }
         else {
-//            mStatusBluetooth.setText("BT Enabled");
             mBlueImage.setImageResource(R.drawable.blue_off);
         }
 

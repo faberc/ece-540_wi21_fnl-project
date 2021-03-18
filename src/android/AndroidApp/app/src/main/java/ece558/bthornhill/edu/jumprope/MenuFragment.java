@@ -13,10 +13,13 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link MenuFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Menu fragment allows the user to select different user profile
+ * options including logging in, viewing the profile, creating a
+ * new profile, and logging out. Selection is sent to the Main Activity
+ * which handles the fragment rotation
  */
+
+
 public class MenuFragment extends Fragment {
     private static final String TAG = "MenuFragment";
 
@@ -26,12 +29,10 @@ public class MenuFragment extends Fragment {
     private Button mLoginButton;
     private Button mLogoutButton;
 
-    // TODO: Rename parameter arguments, choose names that match
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -47,7 +48,6 @@ public class MenuFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment MenuFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static MenuFragment newInstance(String param1, String param2) {
         MenuFragment fragment = new MenuFragment();
         Bundle args = new Bundle();
@@ -91,6 +91,7 @@ public class MenuFragment extends Fragment {
     View.OnClickListener ButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            // Sends user selection to the MainActivity which handles the fragment switching
             String mSelection= "";
 
             switch (v.getId()) {

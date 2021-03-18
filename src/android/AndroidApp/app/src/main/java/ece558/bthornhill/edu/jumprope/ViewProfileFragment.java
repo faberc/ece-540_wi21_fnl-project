@@ -36,9 +36,8 @@ import com.squareup.picasso.Picasso;
 import java.util.concurrent.Executor;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link ViewProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Allows user to see their user name, email, highscore, and picture
+ * associated with their account stored in the Firebase platform
  */
 public class ViewProfileFragment extends Fragment {
     private static final String TAG = "ViewProfileFragment";
@@ -54,7 +53,6 @@ public class ViewProfileFragment extends Fragment {
     String userId;
 
 
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -75,7 +73,6 @@ public class ViewProfileFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment ViewProfileFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static ViewProfileFragment newInstance(String param1, String param2) {
         ViewProfileFragment fragment = new ViewProfileFragment();
         Bundle args = new Bundle();
@@ -119,7 +116,7 @@ public class ViewProfileFragment extends Fragment {
         buttonPhoto.setOnClickListener(ButtonListener);
         profileImage = view.findViewById(R.id.imageProfile);
 
-        // Check to see if there is a user logged in. If not, go to log in screen
+        // Check to see if there is a user logged in. If not, go back to the menu
         FirebaseUser currentUser = fAuth.getCurrentUser();
         if(currentUser != null) {
             userId = currentUser.getUid();
@@ -167,8 +164,6 @@ public class ViewProfileFragment extends Fragment {
         if(requestCode == 1000){
             if(resultCode == Activity.RESULT_OK){
                 Uri imageUri = data.getData();
-                //profileImage.setImageURI(imageUri);
-
                 uploadImageToFirebase(imageUri);
             }
         }

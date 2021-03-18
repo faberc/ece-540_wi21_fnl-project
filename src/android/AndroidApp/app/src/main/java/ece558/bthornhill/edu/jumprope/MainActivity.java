@@ -15,6 +15,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * Fragment container that holds user profile fragments that get switched
+ * out when the user selects options in the menu fragment.
+ */
+
 public class MainActivity extends AppCompatActivity implements OnMenuSelectionListener {
     private static final String TAG = "MainActivity";
 
@@ -88,7 +93,8 @@ public class MainActivity extends AppCompatActivity implements OnMenuSelectionLi
                 break;
             case "menu":
                 if(mDualPane){
-                    // I want fragment menu to hold the menu and I want to clear out fragment container view
+                    // The fragment menu should hold the menu
+                    // Clear out fragment container view
                     Fragment fragmentmenu = fm.findFragmentById(R.id.fragment_menu);
                     if (fragmentmenu == null) {
                         fragmentmenu = new MenuFragment();
@@ -99,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements OnMenuSelectionLi
                     fm.beginTransaction().remove(fragmentcont).commit();
 
                 }else {
+                    // If the fragment container is empty, show the menu
                     Fragment fragmentcont = fm.findFragmentById(R.id.fragment_container);
                     fragmentcont = new MenuFragment();
                     fm.beginTransaction().replace(R.id.fragment_container, fragmentcont, "menu")
