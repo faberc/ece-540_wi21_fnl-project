@@ -41,7 +41,6 @@ logic tx_reg, tx_next;				// generates tx serial data out
 
 // FSMD state & data registers
 always_ff @(posedge clk, posedge reset) begin: seq_block
-	// ADD YOUR CODE HERE
 	if (reset) begin
 		state_reg	<=	idle;
 		s_reg		<=	0;
@@ -62,7 +61,6 @@ end: seq_block
 // FSMD next-state logic & functional units
 always_comb begin: next_state_logic
 	// set initial values so you don't have to include every signal in every case item
-	// ADD YOUR CODE HERE
 	state_next = state_reg;
 	s_next = s_reg;
 	n_next = n_reg;
@@ -98,7 +96,6 @@ always_comb begin: next_state_logic
 
     data: begin: transmit_data_bits
 			tx_next = b_reg[0];		// set tx to the current data bit
-			// ADD YOUR CODE HERE
 			if (s_tick)
 				if(s_reg == 15) begin
 					s_next = 0;
@@ -116,8 +113,6 @@ always_comb begin: next_state_logic
 
 		stop: begin: transmit_stop_bit
 			tx_next = 1'b1;							// <-- Add to flow chart
-
-			// ADD YOUR CODE HERE
 			if (s_tick)
 					if (s_reg == (SB_TICK-1))
 						begin
