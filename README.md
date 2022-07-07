@@ -32,10 +32,10 @@ The player jumps and ducks according to the beats of the song, and awards points
  * src/OtherSources/colorizer2.sv
  * src/OtherSources/rope.v
  * src/SweRVolfSoC/swervolf_core.v
- * src/SweRVolfSoC/uart_rx/ascii_2_hex.sv
- * src/SweRVolfSoC/uart_rx/baud_gen.sv
- * src/SweRVolfSoC/uart_rx/uart_parse.sv
- * src/SweRVolfSoC/uart_rx/uart_rx.sv
+ * src/SweRVolfSoC/OtherSources/uart_rx/ascii_2_hex.sv
+ * src/SweRVolfSoC/OtherSources/uart_rx/baud_gen.sv
+ * src/SweRVolfSoC/OtherSources/uart_rx/uart_parse.sv
+ * src/SweRVolfSoC/OtherSources/uart_rx/uart_rx.sv
  * src/SweRVolfSoC/Peripherals/custom/periph_top.v
  * src/SweRVolfSoC/Peripherals/custom/pmod_ble_top.v
  * src/SweRVolfSoC/Peripherals/custom/axis_i2s2.v
